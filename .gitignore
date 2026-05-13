@@ -64,6 +64,10 @@ staticfiles/
 static/
 django_admin.log
 
+# Keep sql_lite_db tracked even though .sqlite3 files are generally ignored
+!sql_lite_db/
+!sql_lite_db/**
+
 # FastAPI / project development files
 instance/
 .webassets-cache
