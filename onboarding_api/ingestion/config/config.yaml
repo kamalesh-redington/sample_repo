@@ -1,0 +1,49 @@
+# config/ingest_config.yaml
+
+source:
+  type: s3
+  bucket: my-data-bucket
+  prefix: documents/          # folder prefix to scan
+  region: us-east-1
+
+chunking:
+  chunk_size: 512             # tokens per chunk
+  chunk_overlap: 64           # overlap between chunks
+  split_by: token             # "token" | "sentence" | "character"
+  handle_images: true         # extract & describe images from PDFs
+
+embedding:
+  provider: openai            # "openai" | "bedrock" | "azure" | "huggingface"
+  model: text-embedding-3-small
+  dimensions: 1536
+  batch_size: 32
+
+vector_store:
+  type: pgvector
+  host: localhost
+  port: 5432
+  database: ragdb
+  user: postgres
+  password: ${PG_PASSWORD}    # supports env var interpolation
+  table: document_chunks
+  index_type: ivfflat         # "ivfflat" | "hnsw"
+
+metadata:
+  # Fields to extract and store alongside each chunk
+  fields:
+    - name: source_file
+      source: file_name
+    - name: page_number
+      source: page_number
+    - name: file_type
+      source: file_extension
+    - name: s3_bucket
+      source: bucket
+    - name: ingested_at
+      source: timestamp
+    - name: chunk_index
+      source: chunk_index
+  # Custom static tags added to every document
+  tags:
+    environment: production
+    project: rag-engine

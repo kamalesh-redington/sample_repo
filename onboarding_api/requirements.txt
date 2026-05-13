@@ -1,0 +1,46 @@
+pydantic
+pyyaml
+
+# Vector store
+faiss-cpu
+
+
+# Core RAG
+llama-index
+llama-index-embeddings-openai
+llama-index-vector-stores-faiss
+
+# Embeddings
+openai
+sentence-transformers
+
+
+# Database
+psycopg2-binary
+
+# AWS
+boto3
+
+# API
+fastapi
+uvicorn[standard]
+
+# File extraction
+pymupdf
+python-docx
+python-pptx
+pandas
+openpyxl
+
+# OCR
+pytesseract
+pillow
+pdf2image
+
+# Utilities
+numpy
+python-dotenv
+requests
+
+# Optional (only if using readers)
+llama-index-readers-file

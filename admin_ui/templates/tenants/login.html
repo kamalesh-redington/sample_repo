@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="mx-auto max-w-lg rounded-[2rem] bg-white/95 p-10 shadow-2xl shadow-slate-200/80 ring-1 ring-slate-200">
+    <div class="mb-8 text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.35em] text-sky-700">Welcome back</p>
+        <h2 class="mt-4 text-3xl font-semibold text-slate-900">Sign in to your dashboard</h2>
+        <p class="mt-2 text-slate-500">Access tenant configuration, data, retrieval workflows and logs.</p>
+    </div>
+    <div class="mb-6 rounded-3xl bg-sky-50 p-5 text-slate-700 ring-1 ring-sky-100">
+        <p class="font-medium">Quick login</p>
+        <p class="mt-2 text-sm">Admin: <span class="font-semibold">admin</span> / <span class="font-semibold">Hap$y#2@26</span></p>
+        <p class="mt-1 text-sm">Tenant: <span class="font-semibold">tenant</span> / <span class="font-semibold">tenant123</span></p>
+    </div>
+    <form method="post" class="space-y-6">
+        {% csrf_token %}
+        <div>
+            <label class="mb-2 block text-sm font-semibold text-slate-700">Username</label>
+            {{ form.username }}
+        </div>
+        <div>
+            <label class="mb-2 block text-sm font-semibold text-slate-700">Password</label>
+            {{ form.password }}
+        </div>
+        <button type="submit" class="w-full rounded-3xl bg-sky-600 px-5 py-3 text-base font-semibold text-white shadow-lg shadow-sky-500/20 transition hover:bg-sky-700">Login</button>
+    </form>
+</div>
+{% endblock %}
