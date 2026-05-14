@@ -197,8 +197,7 @@ def build_vector_index(nodes: list[BaseNode], config: dict) -> VectorStoreIndex:
         # Generic adapter: wraps our BaseEmbedder into the LlamaIndex interface
         llama_embed_model = _BaseEmbedderAdapter(embedder)
 
-    # ── FAISS index ────────────────────────────────────────────────────────────
-    
+    # ── FAISS index ────────────────────────────────────────────────────────────    
     # Dynamic vector store from config    
     # Dynamic vector store from config
     vector_store = VectorStoreFactory.create(config)

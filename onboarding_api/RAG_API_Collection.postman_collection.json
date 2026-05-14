@@ -1,0 +1,162 @@
+{
+  "info": {
+    "name": "RAG Chat UI API",
+    "description": "Postman collection for RAG Document Chat API endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Root & Chat",
+      "item": [
+        {
+          "name": "Get Chat UI",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/",
+              "host": ["{{base_url}}"],
+              "path": [""]
+            },
+            "description": "Returns the RAG Document Chat HTML interface"
+          },
+          "response": []
+        },
+        {
+          "name": "Query Document",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"question\": \"What is this document about?\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/query",
+              "host": ["{{base_url}}"],
+              "path": ["query"]
+            },
+            "description": "Query the RAG engine with a question about the documents"
+          },
+          "response": [
+            {
+              "name": "Success Response",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"question\": \"What is this document about?\"\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/query",
+                "host": ["{{base_url}}"],
+                  "path": ["query"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [],
+              "cookie": [],
+              "body": "{\n  \"question\": \"What is this document about?\",\n  \"answer\": \"This is a response from the RAG engine based on your documents.\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Tenant Management",
+      "item": [
+        {
+          "name": "Create Tenant",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{bearer_token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "",
+                  "disabled": false
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/tenant/create",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "tenant", "create"]
+            },
+            "description": "Create a new tenant and user via YAML file upload\n\n**Requirements:**\n- Bearer token authentication\n- YAML file with tenant configuration\n\n**YAML file format:**\n```yaml\ntenant:\n  name: \"Tenant Name\"\n  description: \"Optional description\"\n```\n\n**Returns:**\n- tenant_pkid: Unique tenant identifier\n- username: Created username (tenant_pkid)\n- password: Strong password for the user\n- tenant_name: Name of the created tenant"
+          },
+          "response": [
+            {
+              "name": "Success Response",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{bearer_token}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "file",
+                      "type": "file",
+                      "src": ""
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/v1/tenant/create",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "v1", "tenant", "create"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [],
+              "cookie": [],
+              "body": "{\n  \"tenant_pkid\": \"acme-corp\",\n  \"tenant_name\": \"Acme Corp\",\n  \"username\": \"acme-corp\",\n  \"password\": \"GeneratedStr0ng!Pass\",\n  \"message\": \"Tenant 'Acme Corp' and user 'acme-corp' created successfully\"\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000",
+      "type": "string"
+    },
+    {
+      "key": "bearer_token",
+      "value": "your-secure-token-here",
+      "type": "string"
+    }
+  ]
+}

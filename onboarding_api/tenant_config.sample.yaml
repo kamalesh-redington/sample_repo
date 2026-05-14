@@ -1,0 +1,11 @@
+# Sample Tenant Configuration File
+# 
+# Use this file as a template when creating a new tenant.
+# Upload to the /api/v1/tenant/create endpoint with Bearer token authentication.
+
+tenant:
+  name: "Acme Corporation"
+  description: "This is a sample tenant for the RAG system"
+  
+# Optional configuration fields can be added here
+# and will be stored in the tenant's config_file field
