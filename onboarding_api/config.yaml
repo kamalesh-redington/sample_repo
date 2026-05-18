@@ -1,8 +1,10 @@
 # config.yaml — RAG Engine II  (all settings loaded dynamically by main.py)
-
-# ── Data Source ───────────────────────────────────────────────────────────────
+# ── Data Source ─────────────────────────────────────────────────────────
 # Switch between sources by changing `source.type`.
 # Supported: local | s3 | azure_blob | gdrive | sharepoint | web
+
+tenant:
+  name: redington-ecommerce  
 
 source:
   type: s3

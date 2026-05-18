@@ -16,7 +16,6 @@ Extra config fields:
 
 import json
 from typing import List
-
 from embedding.base import BaseEmbedder, EmbeddingConfig
 
 

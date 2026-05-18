@@ -4,7 +4,7 @@ Defines models for Tenant, User, and Role management.
 """
 from datetime import datetime
 from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, Boolean, Text
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import relationship, synonym
 from db.database import Base
 
 
@@ -29,19 +29,35 @@ class Tenant(Base):
     __tablename__ = "tenants"
 
     id = Column(Integer, primary_key=True, index=True)
-    tenant_pkid = Column(String(100), unique=True, nullable=False, index=True)
+    slug = Column(String(120), unique=True, nullable=False, index=True)
+    tenant_pkid = synonym("slug")
     name = Column(String(255), nullable=False)
     description = Column(Text, nullable=True)
-    config_file = Column(Text, nullable=True)  # YAML config stored as text
     is_active = Column(Boolean, default=True)
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
     # Relationships
     users = relationship("User", back_populates="tenant", cascade="all, delete-orphan")
+    configs = relationship("Config", back_populates="tenant", cascade="all, delete-orphan")
 
     def __repr__(self):
         return f"<Tenant(id={self.id}, tenant_pkid={self.tenant_pkid})>"
+
+
+class Config(Base):
+    """Tenant configuration storage."""
+    __tablename__ = "configs"
+
+    id = Column(Integer, primary_key=True, index=True)
+    tenant_id = Column(Integer, ForeignKey("tenants.id"), nullable=False, index=True)
+    section = Column(String(100), nullable=False)
+    data = Column(Text, nullable=False)
+
+    tenant = relationship("Tenant", back_populates="configs")
+
+    def __repr__(self):
+        return f"<Config(id={self.id}, tenant_id={self.tenant_id}, section={self.section})>"
 
 
 class User(Base):

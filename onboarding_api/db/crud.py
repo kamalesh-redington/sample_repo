@@ -3,7 +3,7 @@
 Provides database agnostic operations for Tenant, User, and Role management.
 """
 from sqlalchemy.orm import Session
-from db.models import Tenant, User, Role
+from db.models import Tenant, User, Role, Config
 from auth.security import get_password_hash
 
 
@@ -43,12 +43,22 @@ def create_tenant(db: Session, tenant_pkid: str, name: str, config_yaml: str = N
     db_tenant = Tenant(
         tenant_pkid=tenant_pkid,
         name=name,
-        config_file=config_yaml,
         is_active=True
     )
     db.add(db_tenant)
     db.commit()
     db.refresh(db_tenant)
+
+    if config_yaml:
+        config_entry = Config(
+            tenant_id=db_tenant.id,
+            section="tenant",
+            data=config_yaml
+        )
+        db.add(config_entry)
+        db.commit()
+        db.refresh(config_entry)
+
     return db_tenant
 
 

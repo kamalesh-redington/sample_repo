@@ -10,7 +10,7 @@ from main import run_pipeline, load_config
 from db.database import init_db, get_db
 from db import crud
 from auth.security import generate_strong_password, verify_bearer_token
-#from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 
 app = FastAPI(title="RAG Chat UI")
 
@@ -207,6 +207,7 @@ def root():
 </body>
 </html>"""
 
+# Streamlit UI can post to this endpoint at /query with JSON payload {"question": "..."}
 @app.post("/query")
 def query_document(request: QueryRequest):
     question = request.question.strip()
@@ -227,7 +228,7 @@ def query_document(request: QueryRequest):
 async def create_tenant(
     file: UploadFile = File(...),
     db: Session = Depends(get_db),
-    authorization: Optional[HTTPAuthCredentials] = Depends(security)
+    authorization: Optional[HTTPAuthorizationCredentials] = Depends(security)
 ):
     """
     Create a new tenant and user via YAML file upload.

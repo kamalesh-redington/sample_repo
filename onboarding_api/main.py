@@ -311,6 +311,12 @@ def run_query(query_text: str, index, config: dict):
 
     result = strategy.execute(query_text, index)
 
+    if result and result.source_nodes:
+        print(f"\n--- TOP {len(result.source_nodes)} RETRIEVED CHUNKS ---")
+        for i, node in enumerate(result.source_nodes, 1):
+            text = getattr(node, "text", str(node))
+            print(f"[{i}] {text[:200]}\n")
+
     print("\n--- QUERY RESULT ---")
     print(f"Strategy : {result.strategy}")
     print(f"Format   : {result.output_format}")

@@ -47,6 +47,7 @@ pdf2image
 numpy
 python-dotenv
 requests
+streamlit
 
 # Optional (only if using readers)
 llama-index-readers-file

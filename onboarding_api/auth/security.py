@@ -4,20 +4,29 @@ Provides password hashing, token verification, and password generation.
 """
 import secrets
 import string
-from passlib.context import CryptContext
+import bcrypt
 from fastapi import HTTPException, status
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from typing import Optional
 
-# Password hashing context
-pwd_context = CryptContext(
-    schemes=["bcrypt"],
-    deprecated="auto",
-    bcrypt__rounds=12
-)
+# Bcrypt limits input to 72 bytes. This helper enforces that limit safely.
+MAX_BCRYPT_PASSWORD_BYTES = 72
+
+# Salt rounds for bcrypt
+BCRYPT_ROUNDS = 12
 
 # HTTP Bearer for token extraction
 security = HTTPBearer()
+
+
+def _normalize_password(password: str) -> str:
+    """Normalize password for bcrypt by truncating to 72 bytes."""
+    if not isinstance(password, str):
+        password = str(password)
+    encoded = password.encode("utf-8")
+    if len(encoded) <= MAX_BCRYPT_PASSWORD_BYTES:
+        return password
+    return encoded[:MAX_BCRYPT_PASSWORD_BYTES].decode("utf-8", errors="ignore")
 
 
 def get_password_hash(password: str) -> str:
@@ -29,7 +38,9 @@ def get_password_hash(password: str) -> str:
     Returns:
         str: Hashed password
     """
-    return pwd_context.hash(password)
+    normalized = _normalize_password(password).encode("utf-8")
+    hashed = bcrypt.hashpw(normalized, bcrypt.gensalt(rounds=BCRYPT_ROUNDS))
+    return hashed.decode("utf-8")
 
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
@@ -42,7 +53,8 @@ def verify_password(plain_password: str, hashed_password: str) -> bool:
     Returns:
         bool: True if password matches, False otherwise
     """
-    return pwd_context.verify(plain_password, hashed_password)
+    normalized = _normalize_password(plain_password).encode("utf-8")
+    return bcrypt.checkpw(normalized, hashed_password.encode("utf-8"))
 
 
 def generate_strong_password(length: int = 16) -> str:

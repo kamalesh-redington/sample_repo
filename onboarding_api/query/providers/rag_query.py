@@ -114,6 +114,25 @@ class RAGQuery(BaseQueryStrategy):
     # ------------------------------------------------------------------
     # Internal helpers
     # ------------------------------------------------------------------
+    
+    # @staticmethod
+    # def _retrieve(index: Any, query_text: str, top_k: int):
+    #     """Call the index retriever and return source nodes."""
+    #     try:
+    #         retriever = index.as_retriever(similarity_top_k=top_k)
+    #         source_nodes = retriever.retrieve(query_text)
+            
+    #         # Print top chunks
+    #         print(f"\n[RAGQuery] Retrieved {len(source_nodes)} chunks (top_k={top_k}):")
+    #         for i, node in enumerate(source_nodes[:top_k], 1):
+    #             text = getattr(node, "text", str(node))
+    #             score = getattr(node, "score", "N/A")
+    #             print(f"  [{i}] Score: {score:.4f} | Text: {text[:150]}...")
+            
+    #         return source_nodes
+    #     except Exception as exc:
+    #         print(f"[RAGQuery] Retrieval error: {exc}")
+    #         return []
 
     @staticmethod
     def _retrieve(index: Any, query_text: str, top_k: int):
