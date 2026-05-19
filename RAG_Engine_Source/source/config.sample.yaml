@@ -1,0 +1,68 @@
+# Sample configuration for all supported data sources.
+# Use only one source type at a time by setting source.type.
+
+source:
+  type: s3            # Supported values: local | s3 | sharepoint | web
+
+  # --- S3 configuration ---
+  bucket: redington-crowdstrike
+  prefix: documents/          # optional prefix to filter S3 objects
+  region: us-east-1           # AWS region
+
+  # --- Local configuration ---
+  # path: ../data/local_input
+
+  # --- Web configuration ---
+  # urls:
+  #   - https://example.com/file1.pdf
+  #   - https://example.com/file2.pdf
+
+  # --- SharePoint configuration ---
+  # site_url: https://company.sharepoint.com/sites/project
+  # client_id: YOUR_CLIENT_ID
+  # client_secret: YOUR_CLIENT_SECRET
+  # tenant_id: YOUR_TENANT_ID
+
+local:
+  data_dir: ../data
+
+chunking:
+  chunk_size: 512
+  chunk_overlap: 64
+  split_by: token
+  handle_images: true
+
+embedding:
+  provider: openai
+  model: text-embedding-3-small
+  dimensions: 1536
+  batch_size: 32
+
+vector_store:
+  type: pgvector
+  host: localhost
+  port: 5432
+  database: ragdb
+  user: postgres
+  password: ${PG_PASSWORD}
+  table: document_chunks
+  index_type: ivfflat
+
+metadata:
+  fields:
+    - name: source_file
+      source: file_name
+    - name: page_number
+      source: page_number
+    - name: file_type
+      source: file_extension
+    - name: source_name
+      source: source
+    - name: ingested_at
+      source: timestamp
+    - name: chunk_index
+      source: chunk_index
+
+  tags:
+    environment: development
+    project: rag-engine
