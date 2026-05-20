@@ -1,0 +1,122 @@
+Onboarding API directory tree
+
+Root:
+- app.py
+- main.py
+- main1.py
+- sample.py
+- streamlit_app.py
+- requirements.txt
+- config.yaml
+- flow.txt
+- chunks_output.txt
+- test.txt
+- .env
+- .gitignore
+- .vscode/
+
+auth/
+- __init__.py
+- security.py
+
+chunking/
+- __init__.py
+- base.py
+- factory.py
+- providers/
+  - __init__.py
+  - character_splitter.py
+  - recursive_splitter.py
+  - semantic_splitter.py
+  - sentence_splitter.py
+  - token_splitter.py
+
+config/
+- logger.py
+
+data/
+- cortex-xdr.pdf
+
+db/
+- __init__.py
+- crud.py
+- database.py
+- models.py
+
+embedding/
+- __init__.py
+- base.py
+- factory.py
+- providers/
+  - __init__.py
+  - azure_openai_embedder.py
+  - bedrock_embedder.py
+  - bm25_embedder.py
+  - clip_embedder.py
+  - cohere_embedder.py
+  - colbert_embedder.py
+  - fastembed_embedder.py
+  - google_vertex_embedder.py
+  - huggingface_embedder.py
+  - hybrid_embedder.py
+  - instructor_embedder.py
+  - jina_embedder.py
+  - ollama_embedder.py
+  - openai_embedder.py
+  - sentence_transformer_embedder.py
+  - splade_embedder.py
+  - voyage_embedder.py
+
+extractors/
+- __init__.py
+- base.py
+- factory.py
+- excel_extractor.py
+- image_extractor.py
+- ocr_config.py
+- pdf_extractor.py
+- ppt_extractor.py
+- word_extractor.py
+
+logs/
+- debug.log
+- info.log
+
+source/
+- __init__.py
+- base.py
+- factory.py
+- utils.py
+- web_source.py
+- local_source.py
+- s3_source.py
+- gdrive_source.py
+- sharepoint_source.py
+- azure_blob_source.py
+- config.sample.yaml
+
+tenant_configs/
+- redington-ecommerce-9-config.yaml
+
+vector_store/
+- __init__.py
+- base.py
+- factory.py
+- stores/
+  - __init__.py
+  - azure_blob_vector_store.py
+  - chroma_store.py
+  - elasticsearch_store.py
+  - faiss_store.py
+  - gcs_vector_store.py
+  - milvus_store.py
+  - pgvector_store.py
+  - pinecone_store.py
+  - qdrant_store.py
+  - s3_vector_store.py
+  - weaviate_store.py
+
+venv/ (virtual environment)
+
+
+Generated on: 2026-05-20

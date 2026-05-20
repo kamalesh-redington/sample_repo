@@ -1,0 +1,62 @@
+admin_ui_fastapi.postman_collection.json
+bedrock_inference.py
+changes.txt
+config.yaml
+embedding_model.py
+nova_test.py
+rag_admin.sqlite3
+.vscode/settings.json
+app/
+  __init__.py
+  main.py
+  requirements.txt
+  .env
+  __pycache__/
+    __init__.cpython-313.pyc
+    main.cpython-313.pyc
+  core/
+    __init__.py
+    config.py
+    security.py
+    __pycache__/
+      __init__.cpython-313.pyc
+      config.cpython-313.pyc
+      security.cpython-313.pyc
+  config/
+    logger.py
+  db/
+    __init__.py
+    base.py
+    session.py
+    __pycache__/
+      __init__.cpython-313.pyc
+      base.cpython-313.pyc
+      session.cpython-313.pyc
+  models/
+    __init__.py
+    tables.py
+    __pycache__/
+      __init__.cpython-313.pyc
+      tables.cpython-313.pyc
+  routers/
+    __init__.py
+    auth.py
+    tenants.py
+    __pycache__/
+      __init__.cpython-313.pyc
+      auth.cpython-313.pyc
+      tenants.cpython-313.pyc
+  schemas/
+    __init__.py
+    schemas.py
+    __pycache__/
+      __init__.cpython-313.pyc
+      schemas.cpython-313.pyc
+  services/
+    __init__.py
+    auth_service.py
+    tenant_service.py
+    __pycache__/
+      __init__.cpython-313.pyc
+      auth_service.cpython-313.pyc
+      tenant_service.cpython-313.pyc

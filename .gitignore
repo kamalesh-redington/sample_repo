@@ -1,0 +1,24 @@
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# IDE
+.vscode/
+.idea/
+
+# Ignore all logs
+logs/*
+*.log
+
+# But keep these specific logs
+!logs/
+!logs/debug.log
+!logs/info.log
+
+# Ignore duplicate engine source
+RAG_Engine_Source/

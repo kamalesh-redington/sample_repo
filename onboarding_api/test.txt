@@ -1,0 +1,507 @@
+RAG ENGINE — COMPLETE ONBOARDING + INGESTION TESTING FLOW
+==========================================================
+
+PROJECT MODULE:
+---------------
+Onboarding API + Ingestion Pipeline
+
+CURRENT STATUS:
+---------------
+✅ Onboarding API completed
+✅ Tenant provisioning completed
+✅ Config-driven onboarding completed
+✅ Ingestion trigger enabled
+
+==========================================================
+ARCHITECTURE OVERVIEW
+==========================================================
+
+Current Flow:
+-------------
+
+Postman
+   ↓
+FastAPI app.py
+   ↓
+Bearer Token Validation
+   ↓
+YAML Parsing
+   ↓
+Tenant Creation
+   ↓
+User Creation
+   ↓
+Config Persistence
+   ↓
+run_pipeline(config)
+   ↓
+main.py
+   ↓
+Source Download
+   ↓
+Document Extraction
+   ↓
+Chunking
+   ↓
+Embedding Generation
+   ↓
+Vector Index Creation
+
+==========================================================
+FILES RESPONSIBILITY
+==========================================================
+
+app.py
+-------
+Handles:
+✅ onboarding APIs
+✅ auth validation
+✅ YAML upload
+✅ tenant provisioning
+✅ ingestion trigger
+
+main.py
+--------
+Handles:
+✅ ingestion pipeline
+✅ source download
+✅ extraction
+✅ chunking
+✅ embedding
+✅ vector indexing
+
+==========================================================
+STEP 1 — START FASTAPI SERVER
+==========================================================
+
+Open terminal inside onboarding_api folder:
+
+cd onboarding_api
+
+==========================================================
+
+Activate virtual environment:
+
+Windows:
+---------
+
+venv\Scripts\activate
+
+==========================================================
+
+Run FastAPI server:
+
+uvicorn app:app --reload
+
+==========================================================
+
+Expected Output:
+----------------
+
+INFO: Uvicorn running on http://127.0.0.1:8000
+
+==========================================================
+
+Startup Logs:
+-------------
+
+RAG ENGINE ONBOARDING API STARTED
+
+==========================================================
+STEP 2 — OPEN SWAGGER
+==========================================================
+
+URL:
+----
+
+http://127.0.0.1:8000/docs
+
+==========================================================
+
+Available APIs:
+---------------
+
+GET  /
+GET  /health
+POST /api/v1/tenant/create
+
+==========================================================
+STEP 3 — VERIFY HEALTH API
+==========================================================
+
+Browser:
+--------
+
+http://127.0.0.1:8000/health
+
+==========================================================
+
+Expected Response:
+------------------
+
+{
+  "status": "ok",
+  "service": "onboarding-api"
+}
+
+==========================================================
+STEP 4 — PREPARE CONFIG.YAML
+==========================================================
+
+Sample config.yaml:
+
+----------------------------------------------------------
+
+tenant:
+  name: redington-ecommerce-3
+
+source:
+  type: s3
+  bucket: rag-engine-datasource
+  prefix: raw-documents/
+  region: ap-south-1
+
+chunking:
+  strategy: sentence
+  chunk_size: 512
+  chunk_overlap: 64
+
+embedding:
+  provider: bedrock
+  model: amazon.titan-embed-text-v2:0
+
+vector_store:
+  provider: faiss
+
+----------------------------------------------------------
+
+Purpose:
+--------
+This config defines:
+✅ tenant
+✅ ingestion source
+✅ chunking strategy
+✅ embedding provider
+✅ vector store
+
+==========================================================
+STEP 5 — OPEN POSTMAN
+==========================================================
+
+Create:
+-------
+
+New HTTP Request
+
+==========================================================
+STEP 6 — CONFIGURE REQUEST
+==========================================================
+
+METHOD:
+-------
+
+POST
+
+==========================================================
+
+URL:
+----
+
+http://127.0.0.1:8000/api/v1/tenant/create
+
+==========================================================
+STEP 7 — AUTHORIZATION
+==========================================================
+
+Authorization Tab:
+------------------
+
+Type:
+-----
+
+Bearer Token
+
+==========================================================
+
+Token:
+------
+
+your-secure-token-here
+
+==========================================================
+
+Postman Automatically Sends:
+----------------------------
+
+Authorization: Bearer your-secure-token-here
+
+==========================================================
+STEP 8 — BODY CONFIGURATION
+==========================================================
+
+Body Tab:
+---------
+
+Select:
+-------
+
+form-data
+
+==========================================================
+
+Add Row:
+--------
+
+KEY:
+----
+file
+
+TYPE:
+-----
+File
+
+VALUE:
+------
+config.yaml
+
+==========================================================
+STEP 9 — SEND REQUEST
+==========================================================
+
+Click:
+------
+
+Send
+
+==========================================================
+STEP 10 — EXPECTED SUCCESS RESPONSE
+==========================================================
+
+{
+  "tenant_pkid": "redington-ecommerce-3",
+  "tenant_name": "redington-ecommerce-3",
+  "username": "redington-ecommerce-3",
+  "password": "GeneratedPassword",
+  "message": "Tenant created successfully"
+}
+
+==========================================================
+STEP 11 — INGESTION PIPELINE EXECUTION
+==========================================================
+
+After onboarding success,
+run_pipeline(config) executes automatically.
+
+==========================================================
+
+Expected Terminal Logs:
+-----------------------
+
+STEP 1: Downloading source files...
+source.type = s3
+
+STEP 2: Extracting documents...
+
+STEP 3: Chunking documents...
+
+STEP 4: Building vector index...
+
+==========================================================
+
+This validates:
+----------------
+
+✅ S3 connection
+✅ source download
+✅ extraction pipeline
+✅ chunking pipeline
+✅ embedding generation
+✅ vector index creation
+
+==========================================================
+STEP 12 — VERIFY DATABASE
+==========================================================
+
+Open SQLite DB:
+---------------
+
+rag_admin.sqlite3
+
+==========================================================
+
+Verify Tables:
+--------------
+
+✅ tenants
+✅ users
+✅ roles
+
+==========================================================
+
+Verify:
+--------
+
+✅ tenant insertion
+✅ username creation
+✅ role mapping
+✅ config persistence
+
+==========================================================
+STEP 13 — NEGATIVE TESTING
+==========================================================
+
+TEST 1 — INVALID TOKEN
+----------------------
+
+Use:
+-----
+
+wrong-token
+
+Expected:
+----------
+
+401 / 403
+
+==========================================================
+
+TEST 2 — NO TOKEN
+-----------------
+
+Remove Authorization.
+
+Expected:
+----------
+
+Authorization error
+
+==========================================================
+
+TEST 3 — DUPLICATE TENANT
+-------------------------
+
+Use same tenant again.
+
+Expected:
+----------
+
+409 Conflict
+
+==========================================================
+
+TEST 4 — INVALID YAML
+---------------------
+
+Upload malformed YAML.
+
+Expected:
+----------
+
+400 Bad Request
+
+==========================================================
+
+TEST 5 — NON-YAML FILE
+----------------------
+
+Upload TXT file.
+
+Expected:
+----------
+
+Only YAML files allowed
+
+==========================================================
+WHAT THIS TESTING VALIDATES
+==========================================================
+
+ONBOARDING VALIDATION:
+----------------------
+
+✅ tenant provisioning
+✅ user provisioning
+✅ config-driven onboarding
+✅ auth validation
+✅ DB persistence
+
+==========================================================
+
+INGESTION VALIDATION:
+---------------------
+
+✅ source configuration
+✅ source download
+✅ extraction
+✅ chunking
+✅ embedding generation
+✅ vector indexing
+
+==========================================================
+CURRENT PROJECT STATUS
+==========================================================
+
+COMPLETED:
+----------
+
+✅ Admin UI API testing
+✅ JWT auth testing
+✅ RBAC validation
+✅ Multi-tenant validation
+✅ Onboarding API testing
+✅ Config-driven onboarding
+✅ User provisioning
+✅ Ingestion trigger integration
+
+==========================================================
+
+CURRENT PHASE:
+--------------
+
+ONBOARDING + INGESTION TESTING
+
+==========================================================
+
+NEXT PHASE:
+-----------
+
+1. Retrieval API testing
+2. Query execution testing
+3. Semantic retrieval testing
+4. LLM response testing
+5. Streamlit UI testing
+
+==========================================================
+IMPORTANT UNDERSTANDING
+==========================================================
+
+The onboarding response credentials:
+
+{
+  "username": "...",
+  "password": "..."
+}
+
+are REAL tenant credentials.
+
+These will later be used for:
+- login APIs
+- JWT generation
+- ingestion APIs
+- retrieval APIs
+
+This replaces the earlier dummy auth users tested during Admin UI testing.
+
+==========================================================
+FINAL RESULT
+==========================================================
+
+Successfully implemented:
+-------------------------
+
+✅ Multi-tenant onboarding
+✅ Config-driven onboarding
+✅ Ingestion-trigger architecture
+✅ Tenant provisioning
+✅ User provisioning
+✅ Ingestion initialization
+✅ Enterprise onboarding flow

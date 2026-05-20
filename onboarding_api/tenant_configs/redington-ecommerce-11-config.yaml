@@ -1,0 +1,327 @@
+# config.yaml — RAG Engine II  (all settings loaded dynamically by main.py)
+# ── Data Source ─────────────────────────────────────────────────────────
+# Switch between sources by changing `source.type`.
+# Supported: local | s3 | azure_blob | gdrive | sharepoint | web
+
+tenant:
+  name: redington-ecommerce-11
+
+source:
+  type: s3
+  bucket: rag-engine-datasource
+  prefix: raw-documents/
+  region: ap-south-1
+
+  # ── Azure Blob Storage ── (type: azure_blob) ────────────────────────────────
+  # container: my-container
+  # prefix: documents/
+  # connection_string: ${AZURE_STORAGE_CONNECTION_STRING}  # or AZURE_STORAGE_ACCOUNT + AZURE_STORAGE_KEY
+
+  # ── Google Drive ── (type: gdrive) ──────────────────────────────────────────
+  # folder_id: 1AbcXyzFolderIdFromDriveURL
+  # credentials_file: ./gdrive_service_account.json   # service account JSON
+  # token_file: ./gdrive_token.json                   # OAuth2 token (optional)
+  # recursive: false
+  # mime_types:
+  #   - application/pdf
+  #   - application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+  # ── AWS S3 ── (type: s3) ────────────────────────────────────────────────────
+  # bucket: my-bucket
+  # prefix: documents/
+  # region: us-east-1
+
+  # ── Local filesystem ── (type: local) ───────────────────────────────────────
+  # path: ./data
+
+  # ── Web URLs ── (type: web) ─────────────────────────────────────────────────
+  # urls:
+  #   - https://example.com/file1.pdf
+  #   - https://example.com/file2.pdf
+
+  # ── SharePoint ── (type: sharepoint) ────────────────────────────────────────
+  # site_url: https://company.sharepoint.com/sites/project
+  # client_id: ${SP_CLIENT_ID}
+  # client_secret: ${SP_CLIENT_SECRET}
+  # tenant_id: ${SP_TENANT_ID}
+
+
+# ── Local output directory ────────────────────────────────────────────────────
+#local:
+#  data_dir: ./data
+
+
+# ── Chunking ──────────────────────────────────────────────────────────────────
+# strategy: sentence | token | character | recursive | semantic
+chunking:
+  strategy: sentence              # which chunker to instantiate via ChunkingFactory
+  chunk_size: 512                 # tokens (sentence/token) or chars (character/recursive)
+  chunk_overlap: 64               # overlap between consecutive chunks
+  split_by: token                 # used by sentence strategy: token | sentence | character
+  handle_images: true             # extract & describe images from PDFs
+
+  # ── Semantic chunker extras (only used when strategy=semantic) ───────────────
+  # embed_model: openai           # which EmbeddingFactory provider to use
+  # embed_model_name: text-embedding-3-small
+  # breakpoint_percentile: 95     # higher = fewer splits
+
+
+# ── Embedding ─────────────────────────────────────────────────────────────────
+embedding:
+  # Providers: openai | azure_openai | bedrock | google | cohere | voyage | jina
+  #            huggingface | sentence_transformers | instructor | fastembed | ollama
+  #            splade | bm25 | hybrid | colbert | clip
+  provider: openai
+
+  model: text-embedding-3-small
+
+  # Strategy type: dense | sparse | hybrid | late_interaction | instructor
+  type: dense
+
+  # Modality: text | image | multimodal | audio | molecular
+  modality: text
+
+  dimensions: 1536                 # output vector size
+  batch_size: 32                   # texts per API call / forward pass
+  normalize: true                  # L2-normalize output vectors
+  pooling: mean                    # mean | cls | max  (token-based models only)
+
+  # ── Hybrid sub-providers (only used when type=hybrid) ───────────────────────
+  # dense_provider: openai
+  # dense_model: text-embedding-3-small
+  # sparse_provider: splade
+  # sparse_model: naver/splade-cocondenser-ensembledistil
+  # alpha: 0.75
+
+
+# ── Vector Store ──────────────────────────────────────────────────────────────
+vector_store:
+  # Backends: pgvector | pinecone | weaviate | milvus | qdrant
+  #           elasticsearch | opensearch | faiss | chroma
+  #           s3_vector | gcs_vector | azure_blob_vector
+  type: s3_vector
+
+  # connection:
+  #   host: localhost
+  #   port: 5432
+  #   database: ragdb
+  #   user: postgres
+  #   password: ${PG_PASSWORD}
+
+  collection:
+    name: rag-engine-vectorstore
+    #schema: public
+
+  index:
+    name: rag-index
+    type: flat                   # flat | ivfflat | hnsw | diskann
+    metric: cosine                # cosine | l2 | dot_product
+    #params:
+      #m: 16
+      #ef_construction: 200
+  
+  extra:
+    region: ap-south-1
+    
+  batching:
+    insert_batch_size: 100
+    query_top_k: 10
+
+  # db_only | s3_only | hybrid
+  #storage_strategy: hybrid
+
+
+# ── Object Store (raw doc + embedding backup) ─────────────────────────────────
+object_store:
+  provider: s3                    # s3 | gcs | azure
+  bucket: rag-engine-objectstore
+  region: ap-south-1
+  prefix: objectstore/
+
+  credentials:
+    access_key: ${AWS_ACCESS_KEY}
+    secret_key: ${AWS_SECRET_KEY}
+
+  storage_format: parquet         # parquet | npy | json
+
+  layout:
+    embeddings_path: embeddings/
+    documents_path: documents/
+    metadata_path: metadata/
+
+
+# ── Metadata ──────────────────────────────────────────────────────────────────
+metadata:
+  fields:
+    - name: source_file
+      source: file_name
+    - name: page_number
+      source: page_number
+    - name: file_type
+      source: file_extension
+    - name: s3_bucket
+      source: bucket
+    - name: s3_key
+      source: object_key
+    - name: ingested_at
+      source: timestamp
+    - name: chunk_index
+      source: chunk_index
+    - name: embedding_model
+      source: embedding_model
+    - name: content_hash
+      source: hash
+    - name: document_id
+      source: doc_id
+
+  tags:
+    environment: production
+    project: rag-engine
+
+
+# ── Query Mode ────────────────────────────────────────────────────────────────
+# Controls whether query execution is active and which strategy to use.
+#
+# strategy:
+#   rag         → retrieve from vector store → LLM answer
+#   query_only  → direct LLM call, no retrieval
+#   hybrid      → rag + query_only merged (default, recommended)
+
+query_mode:
+  enabled: true
+  strategy: hybrid              # rag | query_only | hybrid
+
+
+# ── Query Planner ─────────────────────────────────────────────────────────────
+# The planner analyses incoming queries to decide:
+#   - output format (table | chart | form | text)
+#   - whether retrieval is needed
+#   - whether SQL execution is needed
+#   - optional query rewriting / decomposition
+#
+# rules_enabled: true → fast regex rules run first before calling the LLM.
+# model: used for complex planning decisions (and for LLM answer generation).
+
+query_planner:
+  model: qwen-mini              # LLM model for planning + answer generation
+  rules_enabled: true           # use keyword rules before LLM planning
+
+  # ── Optional extras ─────────────────────────────────────────────────────────
+  # fusion_mode: weighted       # hybrid only: weighted | rag_first | llm_merge
+  # temperature: 0.2
+  # max_tokens: 1024
+
+
+# ── Execution ─────────────────────────────────────────────────────────────────
+# Flags that gate which output renderers QueryExecutor is allowed to produce.
+# At least one must be true; if a requested format is disabled, falls back to text.
+
+execution:
+  enable_table: true            # render structured rows / Markdown tables
+  enable_chart: true            # render Plotly-compatible chart data dict
+  enable_form: true             # render form schema with field definitions
+  enable_text: true             # render plain / markdown text
+
+
+# ── Query Databases ───────────────────────────────────────────────────────────
+# All read-path database connections used during query execution.
+# Previously stored in query/db_config.yaml — now merged here for single-file config.
+# Loaded by: QueryDbConfig.from_config(config)  →  config["query_db"]
+
+query_db:
+
+  # ── Primary Vector Store (retrieval) ───────────────────────────────────────
+  # Backend: pgvector | pinecone | weaviate | milvus | qdrant | faiss | chroma
+  vector_db:
+    type: pgvector
+
+    connection:
+      host: ${PG_QUERY_HOST:-localhost}     # read-replica host (falls back to localhost)
+      port: 5432
+      database: ragdb
+      user: postgres
+      password: ${PG_PASSWORD}
+      pool_size: 10                         # max connections in pool
+      pool_timeout: 30                      # seconds before pool gives up
+
+    collection:
+      name: document_chunks
+      schema: public
+
+    index:
+      type: hnsw
+      metric: cosine
+      params:
+        m: 16
+        ef_search: 64                       # HNSW query-time search width
+
+    query:
+      top_k: 10                             # default number of retrieved chunks
+      score_threshold: 0.70                 # minimum similarity score to include
+      rerank: false                         # enable cross-encoder reranking
+
+  # ── Relational / Analytics DB (structured query + SQL execution) ───────────
+  # Used when execution.enable_table = true and the planner routes to SQL.
+  # type: postgresql | mysql | sqlite | mssql | bigquery
+  relational_db:
+    type: postgresql
+
+    connection:
+      host: ${SQL_HOST:-localhost}
+      port: 5432
+      database: analytics_db
+      user: ${SQL_USER}
+      password: ${SQL_PASSWORD}
+      schema: public
+      pool_size: 5
+      timeout: 30
+
+    read_only: true                         # prevent DDL/DML during query execution
+
+    # Tables visible to the query planner (leave empty to expose all)
+    allowed_tables: []
+    #  - products
+    #  - orders
+    #  - customers
+
+  # ── Cache DB (speed up repeated queries) ───────────────────────────────────
+  # backend: redis | memcached | in_memory
+  cache:
+    enabled: true
+    backend: redis
+
+    redis:
+      host: ${REDIS_HOST:-localhost}
+      port: 6379
+      db: 0
+      password: ${REDIS_PASSWORD:-}
+      ttl_seconds: 3600                     # cache TTL (1 hour)
+      key_prefix: "rag_query:"
+
+    # Embed the query and reuse cached result if cosine similarity > threshold
+    semantic_cache:
+      enabled: false
+      similarity_threshold: 0.95
+
+  # ── Query History / Audit Store ─────────────────────────────────────────────
+  # backend: postgresql | mongodb | elasticsearch
+  audit:
+    enabled: false
+    backend: postgresql
+
+    connection:
+      host: ${AUDIT_DB_HOST:-localhost}
+      port: 5432
+      database: ragdb
+      user: postgres
+      password: ${PG_PASSWORD}
+      table: query_audit_log
+
+    log_fields:
+      - query_text
+      - strategy_used                       # rag | query_only | hybrid
+      - retrieved_chunks
+      - llm_model
+      - latency_ms
+      - timestamp
+      - user_id
