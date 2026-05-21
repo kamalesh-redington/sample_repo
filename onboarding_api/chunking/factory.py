@@ -21,6 +21,7 @@ import importlib
 from typing import Type
 from config.logger import setup_logger
 logger = setup_logger(__name__)
+from config.timer import log_execution_time
 from chunking.base import BaseChunker, ChunkingConfig
 
 # ── Registry: strategy key → dotted class path ────────────────────────────────
@@ -36,6 +37,7 @@ _REGISTRY: dict[str, str] = {
 }
 
 
+@log_execution_time(logger)
 def _import_class(dotted_path: str) -> Type[BaseChunker]:
     """Lazily import a BaseChunker subclass from a dotted module path."""
     module_path, class_name = dotted_path.rsplit(".", 1)
@@ -51,6 +53,7 @@ class ChunkingFactory:
     """
 
     @staticmethod
+    @log_execution_time(logger)
     def create(config: dict) -> BaseChunker:
         """
         Instantiate the appropriate chunker from a raw config dict.
@@ -97,11 +100,13 @@ class ChunkingFactory:
         return chunker_class(chunking_cfg)
 
     @staticmethod
+    @log_execution_time(logger)
     def list_strategies() -> list[str]:
         """Return a sorted list of all registered strategy keys."""
         return sorted(_REGISTRY.keys())
 
     @staticmethod
+    @log_execution_time(logger)
     def register(strategy_key: str, dotted_class_path: str) -> None:
         """
         Register a custom chunking strategy at runtime.

@@ -5,6 +5,7 @@ Supports SQLite, PostgreSQL, MySQL, and other databases via connection string.
 """
 from config.logger import setup_logger
 logger = setup_logger(__name__)
+from config.timer import log_execution_time
 
 import os
 from sqlalchemy import create_engine
@@ -51,6 +52,7 @@ logger.debug("SessionLocal configured")
 Base = declarative_base()
 
 
+@log_execution_time(logger)
 def get_db() -> Generator:
     logger.debug("Creating database session")
     """Dependency injection for database session in FastAPI routes.
@@ -67,6 +69,7 @@ def get_db() -> Generator:
         db.close()
 
 
+@log_execution_time(logger)
 def init_db():
 
     try:

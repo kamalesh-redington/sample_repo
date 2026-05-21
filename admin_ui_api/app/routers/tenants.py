@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 
 from app.config.logger import setup_logger
+from app.config.timer import log_execution_time
 from app.schemas.schemas import (
     ConfigSection,
     MessageResponse,
@@ -23,6 +24,7 @@ router = APIRouter()
 
 
 @router.get("/tenants", response_model=list[TenantSchema])
+@log_execution_time(logger)
 def list_tenants(current_user=Depends(get_current_user)):
 
     logger.info(f"List tenants API invoked by user: {current_user.username}")
@@ -60,6 +62,7 @@ def list_tenants(current_user=Depends(get_current_user)):
 
 
 @router.get("/tenant/{tenant_id}", response_model=TenantSchema)
+@log_execution_time(logger)
 def tenant_detail(tenant_id: int, current_user=Depends(get_current_user)):
 
     logger.info(f"Tenant detail API invoked for tenant_id: {tenant_id}")
@@ -88,6 +91,7 @@ def tenant_detail(tenant_id: int, current_user=Depends(get_current_user)):
 
 
 @router.get("/tenant/{tenant_id}/config", response_model=TenantConfigResponse)
+@log_execution_time(logger)
 def tenant_config(tenant_id: int, current_user=Depends(get_current_user)):
 
     logger.info(f"Tenant config API invoked for tenant_id: {tenant_id}")
@@ -134,6 +138,7 @@ def tenant_config(tenant_id: int, current_user=Depends(get_current_user)):
 
 
 @router.get("/tenant/{tenant_id}/unstructured", response_model=PlaceholderResponse)
+@log_execution_time(logger)
 def tenant_unstructured(tenant_id: int, current_user=Depends(get_current_user)):
 
     logger.info(f"Unstructured endpoint invoked for tenant_id: {tenant_id}")
@@ -159,6 +164,7 @@ def tenant_unstructured(tenant_id: int, current_user=Depends(get_current_user)):
 
 
 @router.get("/tenant/{tenant_id}/structured", response_model=PlaceholderResponse)
+@log_execution_time(logger)
 def tenant_structured(tenant_id: int, current_user=Depends(get_current_user)):
 
     logger.info(f"Structured endpoint invoked for tenant_id: {tenant_id}")
@@ -184,6 +190,7 @@ def tenant_structured(tenant_id: int, current_user=Depends(get_current_user)):
 
 
 @router.get("/tenant/{tenant_id}/retrieval", response_model=PlaceholderResponse)
+@log_execution_time(logger)
 def tenant_retrieval(tenant_id: int, current_user=Depends(get_current_user)):
 
     logger.info(f"Retrieval endpoint invoked for tenant_id: {tenant_id}")
@@ -209,6 +216,7 @@ def tenant_retrieval(tenant_id: int, current_user=Depends(get_current_user)):
 
 
 @router.get("/tenant/{tenant_id}/logs", response_model=PlaceholderResponse)
+@log_execution_time(logger)
 def tenant_logs(tenant_id: int, current_user=Depends(get_current_user)):
 
     logger.info(f"Logs endpoint invoked for tenant_id: {tenant_id}")

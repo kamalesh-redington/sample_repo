@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 
 from app.config.logger import setup_logger
+from app.config.timer import log_execution_time
 from app.core.config import settings
 from app.db.base import Base, engine
 from app.routers import auth, tenants
@@ -49,6 +50,7 @@ except Exception as e:
 
 
 @app.get("/")
+@log_execution_time(logger)
 def read_root():
     logger.debug("Root endpoint invoked")
 

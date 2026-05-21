@@ -17,6 +17,7 @@ from db.database import init_db, get_db
 from db import crud
 from auth.security import generate_strong_password, verify_bearer_token
 from main import load_config, run_pipeline
+from config.timer import log_execution_time
 
 # ───────────────────────────────────────────────────────────────────────────────
 # FastAPI App
@@ -43,7 +44,7 @@ security = HTTPBearer()
 VALID_TOKEN = "your-secure-token-here"
 
 # Local tenant config storage folder
-TENANT_CONFIG_DIR = Path("tenant_configs")
+TENANT_CONFIG_DIR = Path("tenant_configs") #tenant_configs
 
 # Create folder if not exists
 TENANT_CONFIG_DIR.mkdir(exist_ok=True)
@@ -77,6 +78,7 @@ class TenantCreationResponse(BaseModel):
 
 
 @app.get("/")
+@log_execution_time(logger)
 def root():
     logger.info("Root endpoint accessed")
     return {
@@ -93,6 +95,7 @@ def root():
 
 
 @app.get("/health", response_model=HealthResponse)
+@log_execution_time(logger)
 def health_check():
     logger.info("Health check endpoint accessed")
     return HealthResponse(status="ok", service="onboarding-api")
@@ -104,6 +107,7 @@ def health_check():
 
 
 @app.get("/config/debug")
+@log_execution_time(logger)
 def config_debug():
 
     try:
@@ -348,6 +352,7 @@ async def create_tenant(
 
 
 @app.on_event("startup")
+@log_execution_time(logger)
 def startup_event():
 
     logger.info("RAG ENGINE ONBOARDING API STARTED")
@@ -908,6 +913,7 @@ def root():
 
 # Streamlit UI can post to this endpoint at /query with JSON payload {"question": "..."}
 @app.post("/query")
+@log_execution_time(logger)
 def query_document(request: QueryRequest):
     question = request.question.strip()
     if not question:

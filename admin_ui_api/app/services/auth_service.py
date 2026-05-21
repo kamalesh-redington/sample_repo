@@ -5,6 +5,7 @@ from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import joinedload
 
 from app.config.logger import setup_logger
+from app.config.timer import log_execution_time
 from app.core.security import (
     create_access_token,
     get_user_by_token,
@@ -18,6 +19,7 @@ from app.schemas.schemas import UserSchema
 logger = setup_logger(__name__)
 
 
+@log_execution_time(logger)
 def load_user_by_username(username: str) -> Optional[User]:
 
     logger.info(f"Loading user by username: {username}")
@@ -59,6 +61,7 @@ def load_user_by_username(username: str) -> Optional[User]:
         logger.debug("User lookup database session closed")
 
 
+@log_execution_time(logger)
 def authenticate_user(username: str, password: str) -> Optional[User]:
 
     logger.info(f"Authentication initiated for username: {username}")
@@ -88,6 +91,7 @@ def authenticate_user(username: str, password: str) -> Optional[User]:
         raise
 
 
+@log_execution_time(logger)
 def login_user(username: str, password: str) -> Optional[str]:
 
     logger.info(f"Login process initiated for username: {username}")
@@ -124,6 +128,7 @@ def login_user(username: str, password: str) -> Optional[str]:
         raise
 
 
+@log_execution_time(logger)
 def get_current_user(
     authorization: Optional[str] = Header(None)
 ) -> User:
@@ -167,6 +172,7 @@ def get_current_user(
         raise
 
 
+@log_execution_time(logger)
 def get_current_user_schema(
     current_user: User = Depends(get_current_user)
 ) -> UserSchema:
@@ -198,6 +204,7 @@ def get_current_user_schema(
         raise
 
 
+@log_execution_time(logger)
 def ensure_setup() -> None:
 
     logger.info("Initial application setup started")

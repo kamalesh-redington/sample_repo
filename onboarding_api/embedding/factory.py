@@ -3,6 +3,7 @@ from config.logger import setup_logger
 logger = setup_logger(__name__)
 from asyncio.log import logger
 from typing import Type
+from config.timer import log_execution_time
 
 from embedding.base import BaseEmbedder, EmbeddingConfig
 
@@ -38,6 +39,7 @@ _REGISTRY: dict[str, str] = {
 }
 
 
+@log_execution_time(logger)
 def _import_class(dotted_path: str) -> Type[BaseEmbedder]:
     """Lazily import a class from a dotted module path string."""
     module_path, class_name = dotted_path.rsplit(".", 1)

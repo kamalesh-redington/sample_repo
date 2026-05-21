@@ -7,6 +7,7 @@ User, and Role management.
 from config.logger import setup_logger
 
 logger = setup_logger(__name__)
+from config.timer import log_execution_time
 
 from sqlalchemy.orm import Session
 
@@ -24,6 +25,7 @@ from auth.security import get_password_hash
 # Get or Create Tenant Role
 # ────────────────────────────────────────────────────────────────────────────────
 
+@log_execution_time(logger)
 def get_or_create_tenant_role(db: Session) -> Role:
     """Get or create the default tenant role."""
 
@@ -93,6 +95,7 @@ def get_or_create_tenant_role(db: Session) -> Role:
 # Create Tenant
 # ────────────────────────────────────────────────────────────────────────────────
 
+@log_execution_time(logger)
 def create_tenant(
     db: Session,
     tenant_pkid: str,
@@ -198,6 +201,7 @@ def create_tenant(
 # Get Tenant By PKID
 # ────────────────────────────────────────────────────────────────────────────────
 
+@log_execution_time(logger)
 def get_tenant_by_pkid(
     db: Session,
     tenant_pkid: str
@@ -251,6 +255,7 @@ def get_tenant_by_pkid(
 # Create User For Tenant
 # ────────────────────────────────────────────────────────────────────────────────
 
+@log_execution_time(logger)
 def create_user_for_tenant(
     db: Session,
     tenant_id: int,
@@ -346,6 +351,7 @@ def create_user_for_tenant(
 # Get User By Username
 # ────────────────────────────────────────────────────────────────────────────────
 
+@log_execution_time(logger)
 def get_user_by_username(
     db: Session,
     username: str
@@ -387,6 +393,7 @@ def get_user_by_username(
 # User Exists
 # ────────────────────────────────────────────────────────────────────────────────
 
+@log_execution_time(logger)
 def user_exists(
     db: Session,
     username: str

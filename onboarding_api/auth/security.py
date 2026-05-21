@@ -7,6 +7,7 @@ and password generation.
 from config.logger import setup_logger
 
 logger = setup_logger(__name__)
+from config.timer import log_execution_time
 
 import secrets
 import string
@@ -36,6 +37,7 @@ security = HTTPBearer()
 # ────────────────────────────────────────────────────────────────────────────────
 
 
+@log_execution_time(logger)
 def _normalize_password(password: str) -> str:
     """Normalize password for bcrypt."""
 
@@ -67,6 +69,7 @@ def _normalize_password(password: str) -> str:
 # ────────────────────────────────────────────────────────────────────────────────
 
 
+@log_execution_time(logger)
 def get_password_hash(password: str) -> str:
     """Hash plain text password."""
 
@@ -100,6 +103,7 @@ def get_password_hash(password: str) -> str:
 # ────────────────────────────────────────────────────────────────────────────────
 
 
+@log_execution_time(logger)
 def verify_password(plain_password: str, hashed_password: str) -> bool:
     """Verify password against stored hash."""
 
@@ -131,6 +135,7 @@ def verify_password(plain_password: str, hashed_password: str) -> bool:
 # ────────────────────────────────────────────────────────────────────────────────
 
 
+@log_execution_time(logger)
 def generate_strong_password(length: int = 16) -> str:
     """Generate strong random password."""
 
@@ -196,6 +201,7 @@ def generate_strong_password(length: int = 16) -> str:
 # ────────────────────────────────────────────────────────────────────────────────
 
 
+@log_execution_time(logger)
 def verify_bearer_token(
     credentials: Optional[HTTPAuthorizationCredentials], expected_token: str
 ) -> bool:

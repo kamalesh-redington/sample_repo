@@ -1,11 +1,13 @@
 from config.logger import setup_logger
 
 logger = setup_logger(__name__)
+from config.timer import log_execution_time
 
 import os
 import pytesseract
 
 
+@log_execution_time(logger)
 def configure_tesseract():
 
     try:

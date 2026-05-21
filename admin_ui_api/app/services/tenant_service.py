@@ -6,6 +6,7 @@ import yaml
 from fastapi import HTTPException, status
 
 from app.config.logger import setup_logger
+from app.config.timer import log_execution_time
 from app.core.config import settings
 from app.db.session import get_session
 from app.models.tables import Config, Tenant
@@ -13,6 +14,7 @@ from app.models.tables import Config, Tenant
 logger = setup_logger(__name__)
 
 
+@log_execution_time(logger)
 def load_config_yaml() -> Dict:
 
     logger.info("Configuration YAML loading initiated")
@@ -43,6 +45,7 @@ def load_config_yaml() -> Dict:
         raise
 
 
+@log_execution_time(logger)
 def build_config_sections(raw_data: Dict) -> Dict[str, str]:
 
     logger.info("Building configuration sections initiated")
@@ -79,6 +82,7 @@ def build_config_sections(raw_data: Dict) -> Dict[str, str]:
         raise
 
 
+@log_execution_time(logger)
 def get_tenant(tenant_id: int) -> Tenant:
 
     logger.info(f"Fetching tenant for tenant_id: {tenant_id}")
@@ -117,6 +121,7 @@ def get_tenant(tenant_id: int) -> Tenant:
         logger.debug("Tenant database session closed")
 
 
+@log_execution_time(logger)
 def get_all_tenants() -> List[Tenant]:
 
     logger.info("Fetching all tenants initiated")
@@ -142,6 +147,7 @@ def get_all_tenants() -> List[Tenant]:
         logger.debug("Tenant list database session closed")
 
 
+@log_execution_time(logger)
 def get_configs_for_tenant(tenant_id: int) -> List[Config]:
 
     logger.info(f"Fetching configuration sections for tenant_id: " f"{tenant_id}")
@@ -178,6 +184,7 @@ def get_configs_for_tenant(tenant_id: int) -> List[Config]:
         logger.debug("Configuration database session closed")
 
 
+@log_execution_time(logger)
 def authorize_tenant_access(user, tenant_id: int) -> Tenant:
 
     logger.info(

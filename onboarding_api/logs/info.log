@@ -2249,3 +2249,2193 @@ pdf2image.exceptions.PDFInfoNotInstalledError: Unable to get page count. Is popp
 2026-05-20 17:00:09 | INFO     | vector_store.stores.s3_vector_store | Connected to S3 Vector Store successfully
 2026-05-20 17:00:12 | INFO     | app | Ingestion pipeline executed successfully
 2026-05-20 17:00:12 | INFO     | app | Tenant onboarding completed successfully: redington-ecommerce-18
+2026-05-21 10:48:06 | INFO     | __main__ | DEBUG logging DISABLED
+2026-05-21 10:48:06 | INFO     | source.factory | DEBUG logging DISABLED
+2026-05-21 10:48:06 | INFO     | chunking.factory | DEBUG logging DISABLED
+2026-05-21 10:48:13 | INFO     | embedding.factory | DEBUG logging DISABLED
+2026-05-21 10:48:13 | INFO     | extractors.factory | DEBUG logging DISABLED
+2026-05-21 10:48:13 | INFO     | extractors.pdf_extractor | DEBUG logging DISABLED
+2026-05-21 10:48:25 | INFO     | extractors.excel_extractor | DEBUG logging DISABLED
+2026-05-21 10:48:25 | INFO     | extractors.word_extractor | DEBUG logging DISABLED
+2026-05-21 10:48:26 | INFO     | extractors.ppt_extractor | DEBUG logging DISABLED
+2026-05-21 10:48:26 | INFO     | extractors.image_extractor | DEBUG logging DISABLED
+2026-05-21 10:48:26 | INFO     | vector_store.factory | DEBUG logging DISABLED
+2026-05-21 10:48:26 | INFO     | extractors.ocr_config | DEBUG logging DISABLED
+2026-05-21 10:48:26 | INFO     | extractors.ocr_config | configure_tesseract execution started
+2026-05-21 10:48:26 | INFO     | extractors.ocr_config | Configuring Tesseract OCR
+2026-05-21 10:48:26 | INFO     | extractors.ocr_config | Tesseract path configured: D:\Tesseract\tesseract.exe
+2026-05-21 10:48:26 | INFO     | extractors.ocr_config | configure_tesseract execution completed successfully
+2026-05-21 10:48:26 | INFO     | extractors.ocr_config | configure_tesseract execution completed in 0.0009 seconds
+2026-05-21 10:48:26 | INFO     | __main__ | main execution started
+2026-05-21 10:48:26 | INFO     | __main__ | load_config execution started
+2026-05-21 10:48:26 | ERROR    | __main__ | load_config execution failed: load_config() missing 1 required positional argument: 'config_path'
+Traceback (most recent call last):
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\config\timer.py", line 19, in wrapper
+    result = func(*args, **kwargs)
+TypeError: load_config() missing 1 required positional argument: 'config_path'
+2026-05-21 10:48:26 | INFO     | __main__ | load_config execution completed in 0.0014 seconds
+2026-05-21 10:48:26 | ERROR    | __main__ | main execution failed: load_config() missing 1 required positional argument: 'config_path'
+Traceback (most recent call last):
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\config\timer.py", line 19, in wrapper
+    result = func(*args, **kwargs)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\main.py", line 353, in main
+    config = load_config()
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\config\timer.py", line 19, in wrapper
+    result = func(*args, **kwargs)
+TypeError: load_config() missing 1 required positional argument: 'config_path'
+2026-05-21 10:48:26 | INFO     | __main__ | main execution completed in 0.0030 seconds
+2026-05-21 10:51:52 | INFO     | __main__ | DEBUG logging DISABLED
+2026-05-21 10:51:52 | INFO     | source.factory | DEBUG logging DISABLED
+2026-05-21 10:51:52 | INFO     | chunking.factory | DEBUG logging DISABLED
+2026-05-21 10:51:56 | INFO     | embedding.factory | DEBUG logging DISABLED
+2026-05-21 10:51:56 | INFO     | extractors.factory | DEBUG logging DISABLED
+2026-05-21 10:51:56 | INFO     | extractors.pdf_extractor | DEBUG logging DISABLED
+2026-05-21 10:52:00 | INFO     | extractors.excel_extractor | DEBUG logging DISABLED
+2026-05-21 10:52:00 | INFO     | extractors.word_extractor | DEBUG logging DISABLED
+2026-05-21 10:52:00 | INFO     | extractors.ppt_extractor | DEBUG logging DISABLED
+2026-05-21 10:52:00 | INFO     | extractors.image_extractor | DEBUG logging DISABLED
+2026-05-21 10:52:00 | INFO     | vector_store.factory | DEBUG logging DISABLED
+2026-05-21 10:52:00 | INFO     | extractors.ocr_config | DEBUG logging DISABLED
+2026-05-21 10:52:00 | INFO     | extractors.ocr_config | configure_tesseract execution started
+2026-05-21 10:52:00 | INFO     | extractors.ocr_config | Configuring Tesseract OCR
+2026-05-21 10:52:00 | INFO     | extractors.ocr_config | Tesseract path configured: D:\Tesseract\tesseract.exe
+2026-05-21 10:52:00 | INFO     | extractors.ocr_config | configure_tesseract execution completed successfully
+2026-05-21 10:52:00 | INFO     | extractors.ocr_config | configure_tesseract execution completed in 0.0009 seconds
+2026-05-21 10:52:00 | INFO     | __main__ | main execution started
+2026-05-21 10:52:00 | INFO     | __main__ | load_config execution started
+2026-05-21 10:52:00 | ERROR    | __main__ | load_config execution failed: load_config() missing 1 required positional argument: 'config_path'
+Traceback (most recent call last):
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\config\timer.py", line 19, in wrapper
+    result = func(*args, **kwargs)
+TypeError: load_config() missing 1 required positional argument: 'config_path'
+2026-05-21 10:52:00 | INFO     | __main__ | load_config execution completed in 0.0016 seconds
+2026-05-21 10:52:00 | ERROR    | __main__ | main execution failed: load_config() missing 1 required positional argument: 'config_path'
+Traceback (most recent call last):
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\config\timer.py", line 19, in wrapper
+    result = func(*args, **kwargs)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\main.py", line 354, in main
+    config = load_config()
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\config\timer.py", line 19, in wrapper
+    result = func(*args, **kwargs)
+TypeError: load_config() missing 1 required positional argument: 'config_path'
+2026-05-21 10:52:00 | INFO     | __main__ | main execution completed in 0.0038 seconds
+2026-05-21 10:53:51 | INFO     | __main__ | DEBUG logging DISABLED
+2026-05-21 10:53:51 | INFO     | source.factory | DEBUG logging DISABLED
+2026-05-21 10:53:51 | INFO     | chunking.factory | DEBUG logging DISABLED
+2026-05-21 10:53:55 | INFO     | embedding.factory | DEBUG logging DISABLED
+2026-05-21 10:53:55 | INFO     | extractors.factory | DEBUG logging DISABLED
+2026-05-21 10:53:55 | INFO     | extractors.pdf_extractor | DEBUG logging DISABLED
+2026-05-21 10:53:59 | INFO     | extractors.excel_extractor | DEBUG logging DISABLED
+2026-05-21 10:53:59 | INFO     | extractors.word_extractor | DEBUG logging DISABLED
+2026-05-21 10:53:59 | INFO     | extractors.ppt_extractor | DEBUG logging DISABLED
+2026-05-21 10:53:59 | INFO     | extractors.image_extractor | DEBUG logging DISABLED
+2026-05-21 10:53:59 | INFO     | vector_store.factory | DEBUG logging DISABLED
+2026-05-21 10:53:59 | INFO     | extractors.ocr_config | DEBUG logging DISABLED
+2026-05-21 10:53:59 | INFO     | extractors.ocr_config | configure_tesseract execution started
+2026-05-21 10:53:59 | INFO     | extractors.ocr_config | Configuring Tesseract OCR
+2026-05-21 10:53:59 | INFO     | extractors.ocr_config | Tesseract path configured: D:\Tesseract\tesseract.exe
+2026-05-21 10:53:59 | INFO     | extractors.ocr_config | configure_tesseract execution completed successfully
+2026-05-21 10:53:59 | INFO     | extractors.ocr_config | configure_tesseract execution completed in 0.0012 seconds
+2026-05-21 10:53:59 | INFO     | __main__ | main execution started
+2026-05-21 10:53:59 | INFO     | __main__ | load_config execution started
+2026-05-21 10:53:59 | ERROR    | __main__ | load_config execution failed: load_config() missing 1 required positional argument: 'config_path'
+Traceback (most recent call last):
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\config\timer.py", line 19, in wrapper
+    result = func(*args, **kwargs)
+TypeError: load_config() missing 1 required positional argument: 'config_path'
+2026-05-21 10:53:59 | INFO     | __main__ | load_config execution completed in 0.0026 seconds
+2026-05-21 10:53:59 | ERROR    | __main__ | main execution failed: load_config() missing 1 required positional argument: 'config_path'
+Traceback (most recent call last):
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\config\timer.py", line 19, in wrapper
+    result = func(*args, **kwargs)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\main.py", line 353, in main
+    config = load_config()
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\config\timer.py", line 19, in wrapper
+    result = func(*args, **kwargs)
+TypeError: load_config() missing 1 required positional argument: 'config_path'
+2026-05-21 10:54:00 | INFO     | __main__ | main execution completed in 0.0051 seconds
+2026-05-21 11:00:38 | INFO     | __main__ | DEBUG logging DISABLED
+2026-05-21 11:00:38 | INFO     | source.factory | DEBUG logging DISABLED
+2026-05-21 11:00:38 | INFO     | chunking.factory | DEBUG logging DISABLED
+2026-05-21 11:01:01 | INFO     | __main__ | DEBUG logging DISABLED
+2026-05-21 11:01:01 | INFO     | source.factory | DEBUG logging DISABLED
+2026-05-21 11:01:01 | INFO     | chunking.factory | DEBUG logging DISABLED
+2026-05-21 11:01:05 | INFO     | embedding.factory | DEBUG logging DISABLED
+2026-05-21 11:01:05 | INFO     | extractors.factory | DEBUG logging DISABLED
+2026-05-21 11:01:05 | INFO     | extractors.pdf_extractor | DEBUG logging DISABLED
+2026-05-21 11:01:09 | INFO     | extractors.excel_extractor | DEBUG logging DISABLED
+2026-05-21 11:01:09 | INFO     | extractors.word_extractor | DEBUG logging DISABLED
+2026-05-21 11:01:09 | INFO     | extractors.ppt_extractor | DEBUG logging DISABLED
+2026-05-21 11:01:09 | INFO     | extractors.image_extractor | DEBUG logging DISABLED
+2026-05-21 11:01:09 | INFO     | vector_store.factory | DEBUG logging DISABLED
+2026-05-21 11:01:09 | INFO     | extractors.ocr_config | DEBUG logging DISABLED
+2026-05-21 11:01:09 | INFO     | extractors.ocr_config | configure_tesseract execution started
+2026-05-21 11:01:09 | INFO     | extractors.ocr_config | Configuring Tesseract OCR
+2026-05-21 11:01:09 | INFO     | extractors.ocr_config | Tesseract path configured: D:\Tesseract\tesseract.exe
+2026-05-21 11:01:09 | INFO     | extractors.ocr_config | configure_tesseract execution completed successfully
+2026-05-21 11:01:09 | INFO     | extractors.ocr_config | configure_tesseract execution completed in 0.0015 seconds
+2026-05-21 11:01:09 | INFO     | __main__ | main execution started
+2026-05-21 11:01:09 | INFO     | __main__ | load_config execution started
+2026-05-21 11:01:09 | INFO     | __main__ | load_config execution completed successfully
+2026-05-21 11:01:09 | INFO     | __main__ | load_config execution completed in 0.0145 seconds
+2026-05-21 11:01:09 | INFO     | __main__ | run_pipeline execution started
+2026-05-21 11:01:09 | INFO     | __main__ | download_source_files execution started
+2026-05-21 11:01:09 | INFO     | source.factory | create execution started
+2026-05-21 11:01:09 | INFO     | source.factory | _import_class execution started
+2026-05-21 11:01:09 | INFO     | source.s3_source | DEBUG logging DISABLED
+2026-05-21 11:01:10 | INFO     | source.utils | DEBUG logging DISABLED
+2026-05-21 11:01:10 | INFO     | source.factory | _import_class execution completed successfully
+2026-05-21 11:01:10 | INFO     | source.factory | _import_class execution completed in 0.2161 seconds
+2026-05-21 11:01:10 | INFO     | source.factory | Creating source provider: S3Source
+2026-05-21 11:01:10 | INFO     | source.s3_source | Initializing S3 source
+2026-05-21 11:01:10 | INFO     | source.utils | ensure_dir execution started
+2026-05-21 11:01:10 | INFO     | source.utils | ensure_dir execution completed successfully
+2026-05-21 11:01:10 | INFO     | source.utils | ensure_dir execution completed in 0.0007 seconds
+2026-05-21 11:01:10 | INFO     | source.s3_source | S3 client initialized successfully
+2026-05-21 11:01:10 | INFO     | source.factory | create execution completed successfully
+2026-05-21 11:01:10 | INFO     | source.factory | create execution completed in 0.5045 seconds
+2026-05-21 11:01:10 | INFO     | source.s3_source | Starting S3 file download process
+2026-05-21 11:01:11 | INFO     | source.s3_source | Downloading S3 object: raw-documents/CrowdStrike Scheduled Search.pdf
+2026-05-21 11:01:12 | INFO     | source.s3_source | S3 file downloaded successfully: data\CrowdStrike Scheduled Search.pdf
+2026-05-21 11:01:12 | INFO     | source.s3_source | Downloading S3 object: raw-documents/cortex-xdr.pdf
+2026-05-21 11:01:12 | INFO     | source.s3_source | S3 file downloaded successfully: data\cortex-xdr.pdf
+2026-05-21 11:01:12 | INFO     | source.s3_source | Downloading S3 object: raw-documents/sample.txt1
+2026-05-21 11:01:12 | INFO     | source.s3_source | S3 file downloaded successfully: data\sample.txt1
+2026-05-21 11:01:12 | INFO     | source.s3_source | Downloading S3 object: raw-documents/test.pdf
+2026-05-21 11:01:13 | INFO     | source.s3_source | S3 file downloaded successfully: data\test.pdf
+2026-05-21 11:01:13 | INFO     | source.s3_source | Total S3 files downloaded: 4
+2026-05-21 11:01:13 | INFO     | __main__ | download_source_files execution completed successfully
+2026-05-21 11:01:13 | INFO     | __main__ | download_source_files execution completed in 3.5226 seconds
+2026-05-21 11:01:13 | INFO     | __main__ | extract_documents execution started
+2026-05-21 11:01:13 | INFO     | extractors.factory | Selecting extractor for file type: pdf
+2026-05-21 11:01:13 | INFO     | extractors.factory | Extractor selected: PDFExtractor
+2026-05-21 11:01:13 | INFO     | extractors.pdf_extractor | Starting PDF extraction: data\CrowdStrike Scheduled Search.pdf
+2026-05-21 11:01:13 | INFO     | extractors.pdf_extractor | Attempting PyMuPDF text extraction
+2026-05-21 11:01:14 | INFO     | extractors.pdf_extractor | PyMuPDF extraction completed
+2026-05-21 11:01:14 | WARNING  | extractors.pdf_extractor | OCR fallback triggered for PDF: data\CrowdStrike Scheduled Search.pdf
+2026-05-21 11:01:14 | ERROR    | extractors.pdf_extractor | OCR extraction failed
+Traceback (most recent call last):
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\pdf2image\pdf2image.py", line 581, in pdfinfo_from_path
+    proc = Popen(command, env=env, stdout=PIPE, stderr=PIPE)
+  File "C:\Users\kamalesh.saksoft\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 1039, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        pass_fds, cwd, env,
+                        ^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+                        gid, gids, uid, umask,
+                        ^^^^^^^^^^^^^^^^^^^^^^
+                        start_new_session, process_group)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kamalesh.saksoft\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 1554, in _execute_child
+    hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+                       ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+                             # no special security
+                             ^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+                             cwd,
+                             ^^^^
+                             startupinfo)
+                             ^^^^^^^^^^^^
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\extractors\pdf_extractor.py", line 61, in extract_text
+    images = convert_from_path(file_path)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\pdf2image\pdf2image.py", line 127, in convert_from_path
+    page_count = pdfinfo_from_path(
+                 ~~~~~~~~~~~~~~~~~^
+        pdf_path, userpw, ownerpw, poppler_path=poppler_path
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )["Pages"]
+    ^
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\pdf2image\pdf2image.py", line 607, in pdfinfo_from_path
+    raise PDFInfoNotInstalledError(
+        "Unable to get page count. Is poppler installed and in PATH?"
+    )
+pdf2image.exceptions.PDFInfoNotInstalledError: Unable to get page count. Is poppler installed and in PATH?
+2026-05-21 11:01:14 | INFO     | extractors.pdf_extractor | PDF extraction completed successfully: data\CrowdStrike Scheduled Search.pdf
+2026-05-21 11:01:14 | INFO     | extractors.factory | Selecting extractor for file type: pdf
+2026-05-21 11:01:14 | INFO     | extractors.factory | Extractor selected: PDFExtractor
+2026-05-21 11:01:14 | INFO     | extractors.pdf_extractor | Starting PDF extraction: data\cortex-xdr.pdf
+2026-05-21 11:01:14 | INFO     | extractors.pdf_extractor | Attempting PyMuPDF text extraction
+2026-05-21 11:01:14 | INFO     | extractors.pdf_extractor | PyMuPDF extraction completed
+2026-05-21 11:01:14 | INFO     | extractors.pdf_extractor | PDF extraction completed successfully: data\cortex-xdr.pdf
+2026-05-21 11:01:14 | INFO     | extractors.factory | Selecting extractor for file type: txt1
+2026-05-21 11:01:14 | WARNING  | extractors.factory | Unsupported extractor type requested: txt1
+2026-05-21 11:01:14 | INFO     | extractors.factory | Selecting extractor for file type: pdf
+2026-05-21 11:01:14 | INFO     | extractors.factory | Extractor selected: PDFExtractor
+2026-05-21 11:01:14 | INFO     | extractors.pdf_extractor | Starting PDF extraction: data\test.pdf
+2026-05-21 11:01:14 | INFO     | extractors.pdf_extractor | Attempting PyMuPDF text extraction
+2026-05-21 11:01:14 | INFO     | extractors.pdf_extractor | PyMuPDF extraction completed
+2026-05-21 11:01:14 | INFO     | extractors.pdf_extractor | PDF extraction completed successfully: data\test.pdf
+2026-05-21 11:01:14 | INFO     | __main__ | extract_documents execution completed successfully
+2026-05-21 11:01:14 | INFO     | __main__ | extract_documents execution completed in 1.1283 seconds
+2026-05-21 11:01:14 | INFO     | __main__ | chunk_documents execution started
+2026-05-21 11:01:14 | INFO     | chunking.factory | create execution started
+2026-05-21 11:01:14 | INFO     | chunking.factory | Initializing chunking configuration
+2026-05-21 11:01:14 | INFO     | chunking.factory | Chunking strategy selected: sentence
+2026-05-21 11:01:14 | INFO     | chunking.factory | _import_class execution started
+2026-05-21 11:01:14 | INFO     | chunking.providers.sentence_splitter | DEBUG logging DISABLED
+2026-05-21 11:01:14 | INFO     | chunking.providers.token_splitter | DEBUG logging DISABLED
+2026-05-21 11:01:14 | INFO     | chunking.providers.character_splitter | DEBUG logging DISABLED
+2026-05-21 11:01:14 | INFO     | chunking.providers.recursive_splitter | DEBUG logging DISABLED
+2026-05-21 11:01:14 | INFO     | chunking.providers.semantic_splitter | DEBUG logging DISABLED
+2026-05-21 11:01:14 | INFO     | chunking.factory | _import_class execution completed successfully
+2026-05-21 11:01:14 | INFO     | chunking.factory | _import_class execution completed in 0.0148 seconds
+2026-05-21 11:01:14 | INFO     | chunking.factory | Creating chunker: SentenceChunker
+2026-05-21 11:01:14 | INFO     | chunking.factory | Chunker initialized successfully: SentenceChunker
+2026-05-21 11:01:14 | INFO     | chunking.providers.sentence_splitter | Initializing SentenceChunker
+2026-05-21 11:01:16 | INFO     | chunking.factory | create execution completed successfully
+2026-05-21 11:01:16 | INFO     | chunking.factory | create execution completed in 1.9831 seconds
+2026-05-21 11:01:16 | INFO     | chunking.providers.sentence_splitter | Starting sentence chunking for 2 document(s)
+2026-05-21 11:01:23 | INFO     | chunking.providers.sentence_splitter | Sentence chunking completed successfully
+2026-05-21 11:01:23 | INFO     | __main__ | chunk_documents execution completed successfully
+2026-05-21 11:01:23 | INFO     | __main__ | chunk_documents execution completed in 9.1565 seconds
+2026-05-21 11:01:23 | INFO     | __main__ | build_vector_index execution started
+2026-05-21 11:01:23 | INFO     | embedding.providers.openai_embedder | DEBUG logging DISABLED
+2026-05-21 11:01:23 | INFO     | embedding.providers.azure_openai_embedder | DEBUG logging DISABLED
+2026-05-21 11:01:23 | INFO     | embedding.providers.bedrock_embedder | DEBUG logging DISABLED
+2026-05-21 11:01:23 | INFO     | embedding.providers.google_vertex_embedder | DEBUG logging DISABLED
+2026-05-21 11:01:23 | INFO     | embedding.providers.cohere_embedder | DEBUG logging DISABLED
+2026-05-21 11:01:23 | INFO     | embedding.providers.voyage_embedder | DEBUG logging DISABLED
+2026-05-21 11:01:23 | INFO     | embedding.providers.jina_embedder | DEBUG logging DISABLED
+2026-05-21 11:01:23 | INFO     | embedding.providers.huggingface_embedder | DEBUG logging DISABLED
+2026-05-21 11:01:23 | INFO     | embedding.providers.sentence_transformer_embedder | DEBUG logging DISABLED
+2026-05-21 11:01:23 | INFO     | embedding.providers.instructor_embedder | DEBUG logging DISABLED
+2026-05-21 11:01:23 | INFO     | embedding.providers.fastembed_embedder | DEBUG logging DISABLED
+2026-05-21 11:01:23 | INFO     | embedding.providers.ollama_embedder | DEBUG logging DISABLED
+2026-05-21 11:01:23 | INFO     | embedding.providers.splade_embedder | DEBUG logging DISABLED
+2026-05-21 11:01:23 | INFO     | embedding.providers.bm25_embedder | DEBUG logging DISABLED
+2026-05-21 11:01:23 | INFO     | embedding.providers.colbert_embedder | DEBUG logging DISABLED
+2026-05-21 11:01:23 | INFO     | embedding.providers.hybrid_embedder | DEBUG logging DISABLED
+2026-05-21 11:01:23 | INFO     | embedding.providers.clip_embedder | DEBUG logging DISABLED
+2026-05-21 11:01:23 | INFO     | embedding.providers.bedrock_embedder | -------START Initializing BedrockEmbedder-----------
+2026-05-21 11:01:23 | INFO     | embedding.providers.bedrock_embedder | -------END Bedrock client initialized successfully---------------
+2026-05-21 11:01:25 | ERROR    | __main__ | build_vector_index execution failed: Can't instantiate abstract class _BaseEmbedderAdapter without an implementation for abstract methods '_aget_query_embedding', '_get_query_embedding', '_get_text_embedding'
+Traceback (most recent call last):
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\config\timer.py", line 19, in wrapper
+    result = func(*args, **kwargs)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\main.py", line 273, in build_vector_index
+    llama_embed_model = _BaseEmbedderAdapter(embedder)
+TypeError: Can't instantiate abstract class _BaseEmbedderAdapter without an implementation for abstract methods '_aget_query_embedding', '_get_query_embedding', '_get_text_embedding'
+2026-05-21 11:01:25 | INFO     | __main__ | build_vector_index execution completed in 1.5865 seconds
+2026-05-21 11:01:25 | ERROR    | __main__ | run_pipeline execution failed: Can't instantiate abstract class _BaseEmbedderAdapter without an implementation for abstract methods '_aget_query_embedding', '_get_query_embedding', '_get_text_embedding'
+Traceback (most recent call last):
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\config\timer.py", line 19, in wrapper
+    result = func(*args, **kwargs)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\main.py", line 342, in run_pipeline
+    index = build_vector_index(nodes, config)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\config\timer.py", line 19, in wrapper
+    result = func(*args, **kwargs)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\main.py", line 273, in build_vector_index
+    llama_embed_model = _BaseEmbedderAdapter(embedder)
+TypeError: Can't instantiate abstract class _BaseEmbedderAdapter without an implementation for abstract methods '_aget_query_embedding', '_get_query_embedding', '_get_text_embedding'
+2026-05-21 11:01:25 | INFO     | __main__ | run_pipeline execution completed in 15.3989 seconds
+2026-05-21 11:01:25 | ERROR    | __main__ | main execution failed: Can't instantiate abstract class _BaseEmbedderAdapter without an implementation for abstract methods '_aget_query_embedding', '_get_query_embedding', '_get_text_embedding'
+Traceback (most recent call last):
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\config\timer.py", line 19, in wrapper
+    result = func(*args, **kwargs)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\main.py", line 364, in main
+    run_pipeline(config)
+    ~~~~~~~~~~~~^^^^^^^^
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\config\timer.py", line 19, in wrapper
+    result = func(*args, **kwargs)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\main.py", line 342, in run_pipeline
+    index = build_vector_index(nodes, config)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\config\timer.py", line 19, in wrapper
+    result = func(*args, **kwargs)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\main.py", line 273, in build_vector_index
+    llama_embed_model = _BaseEmbedderAdapter(embedder)
+TypeError: Can't instantiate abstract class _BaseEmbedderAdapter without an implementation for abstract methods '_aget_query_embedding', '_get_query_embedding', '_get_text_embedding'
+2026-05-21 11:01:25 | INFO     | __main__ | main execution completed in 15.4175 seconds
+2026-05-21 11:20:33 | INFO     | __main__ | DEBUG logging DISABLED
+2026-05-21 11:20:33 | INFO     | source.factory | DEBUG logging DISABLED
+2026-05-21 11:20:33 | INFO     | chunking.factory | DEBUG logging DISABLED
+2026-05-21 11:20:37 | INFO     | embedding.factory | DEBUG logging DISABLED
+2026-05-21 11:20:37 | INFO     | extractors.factory | DEBUG logging DISABLED
+2026-05-21 11:20:37 | INFO     | extractors.pdf_extractor | DEBUG logging DISABLED
+2026-05-21 11:20:41 | INFO     | extractors.excel_extractor | DEBUG logging DISABLED
+2026-05-21 11:20:41 | INFO     | extractors.word_extractor | DEBUG logging DISABLED
+2026-05-21 11:20:42 | INFO     | extractors.ppt_extractor | DEBUG logging DISABLED
+2026-05-21 11:20:42 | INFO     | extractors.image_extractor | DEBUG logging DISABLED
+2026-05-21 11:20:42 | INFO     | vector_store.factory | DEBUG logging DISABLED
+2026-05-21 11:20:42 | INFO     | extractors.ocr_config | DEBUG logging DISABLED
+2026-05-21 11:20:42 | INFO     | extractors.ocr_config | configure_tesseract execution started
+2026-05-21 11:20:42 | INFO     | extractors.ocr_config | Configuring Tesseract OCR
+2026-05-21 11:20:42 | INFO     | extractors.ocr_config | Tesseract path configured: D:\Tesseract\tesseract.exe
+2026-05-21 11:20:42 | INFO     | extractors.ocr_config | configure_tesseract execution completed successfully
+2026-05-21 11:20:42 | INFO     | extractors.ocr_config | configure_tesseract execution completed in 0.0016 seconds
+2026-05-21 11:20:42 | INFO     | __main__ | main execution started
+2026-05-21 11:20:42 | INFO     | __main__ | load_config execution started
+2026-05-21 11:20:42 | INFO     | __main__ | load_config execution completed successfully
+2026-05-21 11:20:42 | INFO     | __main__ | load_config execution completed in 0.0281 seconds
+2026-05-21 11:20:42 | INFO     | __main__ | run_pipeline execution started
+2026-05-21 11:20:42 | INFO     | __main__ | download_source_files execution started
+2026-05-21 11:20:42 | INFO     | source.factory | create execution started
+2026-05-21 11:20:42 | INFO     | source.factory | _import_class execution started
+2026-05-21 11:20:42 | INFO     | source.s3_source | DEBUG logging DISABLED
+2026-05-21 11:20:42 | INFO     | source.utils | DEBUG logging DISABLED
+2026-05-21 11:20:42 | INFO     | source.factory | _import_class execution completed successfully
+2026-05-21 11:20:42 | INFO     | source.factory | _import_class execution completed in 0.2663 seconds
+2026-05-21 11:20:42 | INFO     | source.factory | Creating source provider: S3Source
+2026-05-21 11:20:42 | INFO     | source.s3_source | Initializing S3 source
+2026-05-21 11:20:42 | INFO     | source.utils | ensure_dir execution started
+2026-05-21 11:20:42 | INFO     | source.utils | ensure_dir execution completed successfully
+2026-05-21 11:20:42 | INFO     | source.utils | ensure_dir execution completed in 0.0017 seconds
+2026-05-21 11:20:43 | INFO     | source.s3_source | S3 client initialized successfully
+2026-05-21 11:20:43 | INFO     | source.factory | create execution completed successfully
+2026-05-21 11:20:43 | INFO     | source.factory | create execution completed in 0.8214 seconds
+2026-05-21 11:20:43 | INFO     | source.s3_source | Starting S3 file download process
+2026-05-21 11:20:44 | INFO     | source.s3_source | Downloading S3 object: raw-documents/CrowdStrike Scheduled Search.pdf
+2026-05-21 11:20:45 | INFO     | source.s3_source | S3 file downloaded successfully: data\CrowdStrike Scheduled Search.pdf
+2026-05-21 11:20:45 | INFO     | source.s3_source | Downloading S3 object: raw-documents/cortex-xdr.pdf
+2026-05-21 11:20:46 | INFO     | source.s3_source | S3 file downloaded successfully: data\cortex-xdr.pdf
+2026-05-21 11:20:46 | INFO     | source.s3_source | Downloading S3 object: raw-documents/sample.txt1
+2026-05-21 11:20:46 | INFO     | source.s3_source | S3 file downloaded successfully: data\sample.txt1
+2026-05-21 11:20:46 | INFO     | source.s3_source | Downloading S3 object: raw-documents/test.pdf
+2026-05-21 11:20:46 | INFO     | source.s3_source | S3 file downloaded successfully: data\test.pdf
+2026-05-21 11:20:46 | INFO     | source.s3_source | Total S3 files downloaded: 4
+2026-05-21 11:20:46 | INFO     | __main__ | download_source_files execution completed successfully
+2026-05-21 11:20:46 | INFO     | __main__ | download_source_files execution completed in 3.8757 seconds
+2026-05-21 11:20:46 | INFO     | __main__ | extract_documents execution started
+2026-05-21 11:20:46 | INFO     | extractors.factory | Selecting extractor for file type: pdf
+2026-05-21 11:20:46 | INFO     | extractors.factory | Extractor selected: PDFExtractor
+2026-05-21 11:20:46 | INFO     | extractors.pdf_extractor | Starting PDF extraction: data\CrowdStrike Scheduled Search.pdf
+2026-05-21 11:20:46 | INFO     | extractors.pdf_extractor | Attempting PyMuPDF text extraction
+2026-05-21 11:20:47 | INFO     | extractors.pdf_extractor | PyMuPDF extraction completed
+2026-05-21 11:20:47 | WARNING  | extractors.pdf_extractor | OCR fallback triggered for PDF: data\CrowdStrike Scheduled Search.pdf
+2026-05-21 11:20:47 | ERROR    | extractors.pdf_extractor | OCR extraction failed
+Traceback (most recent call last):
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\pdf2image\pdf2image.py", line 581, in pdfinfo_from_path
+    proc = Popen(command, env=env, stdout=PIPE, stderr=PIPE)
+  File "C:\Users\kamalesh.saksoft\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 1039, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        pass_fds, cwd, env,
+                        ^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+                        gid, gids, uid, umask,
+                        ^^^^^^^^^^^^^^^^^^^^^^
+                        start_new_session, process_group)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kamalesh.saksoft\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 1554, in _execute_child
+    hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+                       ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+                             # no special security
+                             ^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+                             cwd,
+                             ^^^^
+                             startupinfo)
+                             ^^^^^^^^^^^^
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\extractors\pdf_extractor.py", line 61, in extract_text
+    images = convert_from_path(file_path)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\pdf2image\pdf2image.py", line 127, in convert_from_path
+    page_count = pdfinfo_from_path(
+                 ~~~~~~~~~~~~~~~~~^
+        pdf_path, userpw, ownerpw, poppler_path=poppler_path
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )["Pages"]
+    ^
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\pdf2image\pdf2image.py", line 607, in pdfinfo_from_path
+    raise PDFInfoNotInstalledError(
+        "Unable to get page count. Is poppler installed and in PATH?"
+    )
+pdf2image.exceptions.PDFInfoNotInstalledError: Unable to get page count. Is poppler installed and in PATH?
+2026-05-21 11:20:47 | INFO     | extractors.pdf_extractor | PDF extraction completed successfully: data\CrowdStrike Scheduled Search.pdf
+2026-05-21 11:20:47 | INFO     | extractors.factory | Selecting extractor for file type: pdf
+2026-05-21 11:20:47 | INFO     | extractors.factory | Extractor selected: PDFExtractor
+2026-05-21 11:20:47 | INFO     | extractors.pdf_extractor | Starting PDF extraction: data\cortex-xdr.pdf
+2026-05-21 11:20:47 | INFO     | extractors.pdf_extractor | Attempting PyMuPDF text extraction
+2026-05-21 11:20:47 | INFO     | extractors.pdf_extractor | PyMuPDF extraction completed
+2026-05-21 11:20:47 | INFO     | extractors.pdf_extractor | PDF extraction completed successfully: data\cortex-xdr.pdf
+2026-05-21 11:20:47 | INFO     | extractors.factory | Selecting extractor for file type: txt1
+2026-05-21 11:20:47 | WARNING  | extractors.factory | Unsupported extractor type requested: txt1
+2026-05-21 11:20:47 | INFO     | extractors.factory | Selecting extractor for file type: pdf
+2026-05-21 11:20:47 | INFO     | extractors.factory | Extractor selected: PDFExtractor
+2026-05-21 11:20:47 | INFO     | extractors.pdf_extractor | Starting PDF extraction: data\test.pdf
+2026-05-21 11:20:47 | INFO     | extractors.pdf_extractor | Attempting PyMuPDF text extraction
+2026-05-21 11:20:47 | INFO     | extractors.pdf_extractor | PyMuPDF extraction completed
+2026-05-21 11:20:47 | INFO     | extractors.pdf_extractor | PDF extraction completed successfully: data\test.pdf
+2026-05-21 11:20:47 | INFO     | __main__ | extract_documents execution completed successfully
+2026-05-21 11:20:47 | INFO     | __main__ | extract_documents execution completed in 1.1675 seconds
+2026-05-21 11:20:47 | INFO     | __main__ | chunk_documents execution started
+2026-05-21 11:20:47 | INFO     | chunking.factory | create execution started
+2026-05-21 11:20:47 | INFO     | chunking.factory | Initializing chunking configuration
+2026-05-21 11:20:47 | INFO     | chunking.factory | Chunking strategy selected: sentence
+2026-05-21 11:20:47 | INFO     | chunking.factory | _import_class execution started
+2026-05-21 11:20:47 | INFO     | chunking.providers.sentence_splitter | DEBUG logging DISABLED
+2026-05-21 11:20:47 | INFO     | chunking.providers.token_splitter | DEBUG logging DISABLED
+2026-05-21 11:20:47 | INFO     | chunking.providers.character_splitter | DEBUG logging DISABLED
+2026-05-21 11:20:47 | INFO     | chunking.providers.recursive_splitter | DEBUG logging DISABLED
+2026-05-21 11:20:47 | INFO     | chunking.providers.semantic_splitter | DEBUG logging DISABLED
+2026-05-21 11:20:47 | INFO     | chunking.factory | _import_class execution completed successfully
+2026-05-21 11:20:47 | INFO     | chunking.factory | _import_class execution completed in 0.0140 seconds
+2026-05-21 11:20:47 | INFO     | chunking.factory | Creating chunker: SentenceChunker
+2026-05-21 11:20:47 | INFO     | chunking.factory | Chunker initialized successfully: SentenceChunker
+2026-05-21 11:20:47 | INFO     | chunking.providers.sentence_splitter | Initializing SentenceChunker
+2026-05-21 11:20:47 | INFO     | chunking.factory | create execution completed successfully
+2026-05-21 11:20:47 | INFO     | chunking.factory | create execution completed in 0.2764 seconds
+2026-05-21 11:20:47 | INFO     | chunking.providers.sentence_splitter | Starting sentence chunking for 2 document(s)
+2026-05-21 11:20:54 | INFO     | chunking.providers.sentence_splitter | Sentence chunking completed successfully
+2026-05-21 11:20:54 | INFO     | __main__ | chunk_documents execution completed successfully
+2026-05-21 11:20:54 | INFO     | __main__ | chunk_documents execution completed in 6.3804 seconds
+2026-05-21 11:20:54 | INFO     | __main__ | build_vector_index execution started
+2026-05-21 11:20:54 | INFO     | embedding.providers.openai_embedder | DEBUG logging DISABLED
+2026-05-21 11:20:54 | INFO     | embedding.providers.azure_openai_embedder | DEBUG logging DISABLED
+2026-05-21 11:20:54 | INFO     | embedding.providers.bedrock_embedder | DEBUG logging DISABLED
+2026-05-21 11:20:54 | INFO     | embedding.providers.google_vertex_embedder | DEBUG logging DISABLED
+2026-05-21 11:20:54 | INFO     | embedding.providers.cohere_embedder | DEBUG logging DISABLED
+2026-05-21 11:20:54 | INFO     | embedding.providers.voyage_embedder | DEBUG logging DISABLED
+2026-05-21 11:20:54 | INFO     | embedding.providers.jina_embedder | DEBUG logging DISABLED
+2026-05-21 11:20:54 | INFO     | embedding.providers.huggingface_embedder | DEBUG logging DISABLED
+2026-05-21 11:20:54 | INFO     | embedding.providers.sentence_transformer_embedder | DEBUG logging DISABLED
+2026-05-21 11:20:54 | INFO     | embedding.providers.instructor_embedder | DEBUG logging DISABLED
+2026-05-21 11:20:54 | INFO     | embedding.providers.fastembed_embedder | DEBUG logging DISABLED
+2026-05-21 11:20:54 | INFO     | embedding.providers.ollama_embedder | DEBUG logging DISABLED
+2026-05-21 11:20:54 | INFO     | embedding.providers.splade_embedder | DEBUG logging DISABLED
+2026-05-21 11:20:54 | INFO     | embedding.providers.bm25_embedder | DEBUG logging DISABLED
+2026-05-21 11:20:54 | INFO     | embedding.providers.colbert_embedder | DEBUG logging DISABLED
+2026-05-21 11:20:54 | INFO     | embedding.providers.hybrid_embedder | DEBUG logging DISABLED
+2026-05-21 11:20:54 | INFO     | embedding.providers.clip_embedder | DEBUG logging DISABLED
+2026-05-21 11:20:54 | INFO     | embedding.providers.bedrock_embedder | -------START Initializing BedrockEmbedder-----------
+2026-05-21 11:20:54 | INFO     | embedding.providers.bedrock_embedder | -------END Bedrock client initialized successfully---------------
+2026-05-21 11:20:55 | ERROR    | __main__ | build_vector_index execution failed: Can't instantiate abstract class _BaseEmbedderAdapter without an implementation for abstract method '_aget_query_embedding'
+Traceback (most recent call last):
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\config\timer.py", line 19, in wrapper
+    result = func(*args, **kwargs)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\main.py", line 273, in build_vector_index
+    llama_embed_model = _BaseEmbedderAdapter(embedder)
+TypeError: Can't instantiate abstract class _BaseEmbedderAdapter without an implementation for abstract method '_aget_query_embedding'
+2026-05-21 11:20:55 | INFO     | __main__ | build_vector_index execution completed in 1.3807 seconds
+2026-05-21 11:20:55 | ERROR    | __main__ | run_pipeline execution failed: Can't instantiate abstract class _BaseEmbedderAdapter without an implementation for abstract method '_aget_query_embedding'
+Traceback (most recent call last):
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\config\timer.py", line 19, in wrapper
+    result = func(*args, **kwargs)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\main.py", line 342, in run_pipeline
+    index = build_vector_index(nodes, config)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\config\timer.py", line 19, in wrapper
+    result = func(*args, **kwargs)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\main.py", line 273, in build_vector_index
+    llama_embed_model = _BaseEmbedderAdapter(embedder)
+TypeError: Can't instantiate abstract class _BaseEmbedderAdapter without an implementation for abstract method '_aget_query_embedding'
+2026-05-21 11:20:55 | INFO     | __main__ | run_pipeline execution completed in 12.8080 seconds
+2026-05-21 11:20:55 | ERROR    | __main__ | main execution failed: Can't instantiate abstract class _BaseEmbedderAdapter without an implementation for abstract method '_aget_query_embedding'
+Traceback (most recent call last):
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\config\timer.py", line 19, in wrapper
+    result = func(*args, **kwargs)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\main.py", line 364, in main
+    run_pipeline(config)
+    ~~~~~~~~~~~~^^^^^^^^
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\config\timer.py", line 19, in wrapper
+    result = func(*args, **kwargs)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\main.py", line 342, in run_pipeline
+    index = build_vector_index(nodes, config)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\config\timer.py", line 19, in wrapper
+    result = func(*args, **kwargs)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\main.py", line 273, in build_vector_index
+    llama_embed_model = _BaseEmbedderAdapter(embedder)
+TypeError: Can't instantiate abstract class _BaseEmbedderAdapter without an implementation for abstract method '_aget_query_embedding'
+2026-05-21 11:20:55 | INFO     | __main__ | main execution completed in 12.8483 seconds
+2026-05-21 11:22:01 | INFO     | __main__ | DEBUG logging DISABLED
+2026-05-21 11:22:01 | INFO     | source.factory | DEBUG logging DISABLED
+2026-05-21 11:22:01 | INFO     | chunking.factory | DEBUG logging DISABLED
+2026-05-21 11:22:03 | INFO     | embedding.factory | DEBUG logging DISABLED
+2026-05-21 11:22:03 | INFO     | extractors.factory | DEBUG logging DISABLED
+2026-05-21 11:22:03 | INFO     | extractors.pdf_extractor | DEBUG logging DISABLED
+2026-05-21 11:22:04 | INFO     | extractors.excel_extractor | DEBUG logging DISABLED
+2026-05-21 11:22:04 | INFO     | extractors.word_extractor | DEBUG logging DISABLED
+2026-05-21 11:22:04 | INFO     | extractors.ppt_extractor | DEBUG logging DISABLED
+2026-05-21 11:22:05 | INFO     | extractors.image_extractor | DEBUG logging DISABLED
+2026-05-21 11:22:05 | INFO     | vector_store.factory | DEBUG logging DISABLED
+2026-05-21 11:22:05 | INFO     | extractors.ocr_config | DEBUG logging DISABLED
+2026-05-21 11:22:05 | INFO     | extractors.ocr_config | configure_tesseract execution started
+2026-05-21 11:22:05 | INFO     | extractors.ocr_config | Configuring Tesseract OCR
+2026-05-21 11:22:05 | INFO     | extractors.ocr_config | Tesseract path configured: D:\Tesseract\tesseract.exe
+2026-05-21 11:22:05 | INFO     | extractors.ocr_config | configure_tesseract execution completed successfully
+2026-05-21 11:22:05 | INFO     | extractors.ocr_config | configure_tesseract execution completed in 0.0007 seconds
+2026-05-21 11:22:05 | INFO     | __main__ | main execution started
+2026-05-21 11:22:05 | INFO     | __main__ | load_config execution started
+2026-05-21 11:22:05 | INFO     | __main__ | load_config execution completed successfully
+2026-05-21 11:22:05 | INFO     | __main__ | load_config execution completed in 0.0159 seconds
+2026-05-21 11:22:05 | INFO     | __main__ | run_pipeline execution started
+2026-05-21 11:22:05 | INFO     | __main__ | download_source_files execution started
+2026-05-21 11:22:05 | INFO     | source.factory | create execution started
+2026-05-21 11:22:05 | INFO     | source.factory | _import_class execution started
+2026-05-21 11:22:05 | INFO     | source.s3_source | DEBUG logging DISABLED
+2026-05-21 11:22:05 | INFO     | source.utils | DEBUG logging DISABLED
+2026-05-21 11:22:05 | INFO     | source.factory | _import_class execution completed successfully
+2026-05-21 11:22:05 | INFO     | source.factory | _import_class execution completed in 0.1544 seconds
+2026-05-21 11:22:05 | INFO     | source.factory | Creating source provider: S3Source
+2026-05-21 11:22:05 | INFO     | source.s3_source | Initializing S3 source
+2026-05-21 11:22:05 | INFO     | source.utils | ensure_dir execution started
+2026-05-21 11:22:05 | INFO     | source.utils | ensure_dir execution completed successfully
+2026-05-21 11:22:05 | INFO     | source.utils | ensure_dir execution completed in 0.0008 seconds
+2026-05-21 11:22:05 | INFO     | source.s3_source | S3 client initialized successfully
+2026-05-21 11:22:05 | INFO     | source.factory | create execution completed successfully
+2026-05-21 11:22:05 | INFO     | source.factory | create execution completed in 0.3369 seconds
+2026-05-21 11:22:05 | INFO     | source.s3_source | Starting S3 file download process
+2026-05-21 11:22:06 | INFO     | source.s3_source | Downloading S3 object: raw-documents/CrowdStrike Scheduled Search.pdf
+2026-05-21 11:22:07 | INFO     | source.s3_source | S3 file downloaded successfully: data\CrowdStrike Scheduled Search.pdf
+2026-05-21 11:22:07 | INFO     | source.s3_source | Downloading S3 object: raw-documents/cortex-xdr.pdf
+2026-05-21 11:22:07 | INFO     | source.s3_source | S3 file downloaded successfully: data\cortex-xdr.pdf
+2026-05-21 11:22:07 | INFO     | source.s3_source | Downloading S3 object: raw-documents/sample.txt1
+2026-05-21 11:22:07 | INFO     | source.s3_source | S3 file downloaded successfully: data\sample.txt1
+2026-05-21 11:22:07 | INFO     | source.s3_source | Downloading S3 object: raw-documents/test.pdf
+2026-05-21 11:22:08 | INFO     | source.s3_source | S3 file downloaded successfully: data\test.pdf
+2026-05-21 11:22:08 | INFO     | source.s3_source | Total S3 files downloaded: 4
+2026-05-21 11:22:08 | INFO     | __main__ | download_source_files execution completed successfully
+2026-05-21 11:22:08 | INFO     | __main__ | download_source_files execution completed in 3.2073 seconds
+2026-05-21 11:22:08 | INFO     | __main__ | extract_documents execution started
+2026-05-21 11:22:08 | INFO     | extractors.factory | Selecting extractor for file type: pdf
+2026-05-21 11:22:08 | INFO     | extractors.factory | Extractor selected: PDFExtractor
+2026-05-21 11:22:08 | INFO     | extractors.pdf_extractor | Starting PDF extraction: data\CrowdStrike Scheduled Search.pdf
+2026-05-21 11:22:08 | INFO     | extractors.pdf_extractor | Attempting PyMuPDF text extraction
+2026-05-21 11:22:09 | INFO     | extractors.pdf_extractor | PyMuPDF extraction completed
+2026-05-21 11:22:09 | WARNING  | extractors.pdf_extractor | OCR fallback triggered for PDF: data\CrowdStrike Scheduled Search.pdf
+2026-05-21 11:22:09 | ERROR    | extractors.pdf_extractor | OCR extraction failed
+Traceback (most recent call last):
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\pdf2image\pdf2image.py", line 581, in pdfinfo_from_path
+    proc = Popen(command, env=env, stdout=PIPE, stderr=PIPE)
+  File "C:\Users\kamalesh.saksoft\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 1039, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        pass_fds, cwd, env,
+                        ^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+                        gid, gids, uid, umask,
+                        ^^^^^^^^^^^^^^^^^^^^^^
+                        start_new_session, process_group)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kamalesh.saksoft\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 1554, in _execute_child
+    hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+                       ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+                             # no special security
+                             ^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+                             cwd,
+                             ^^^^
+                             startupinfo)
+                             ^^^^^^^^^^^^
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\extractors\pdf_extractor.py", line 61, in extract_text
+    images = convert_from_path(file_path)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\pdf2image\pdf2image.py", line 127, in convert_from_path
+    page_count = pdfinfo_from_path(
+                 ~~~~~~~~~~~~~~~~~^
+        pdf_path, userpw, ownerpw, poppler_path=poppler_path
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )["Pages"]
+    ^
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\pdf2image\pdf2image.py", line 607, in pdfinfo_from_path
+    raise PDFInfoNotInstalledError(
+        "Unable to get page count. Is poppler installed and in PATH?"
+    )
+pdf2image.exceptions.PDFInfoNotInstalledError: Unable to get page count. Is poppler installed and in PATH?
+2026-05-21 11:22:09 | INFO     | extractors.pdf_extractor | PDF extraction completed successfully: data\CrowdStrike Scheduled Search.pdf
+2026-05-21 11:22:09 | INFO     | extractors.factory | Selecting extractor for file type: pdf
+2026-05-21 11:22:09 | INFO     | extractors.factory | Extractor selected: PDFExtractor
+2026-05-21 11:22:09 | INFO     | extractors.pdf_extractor | Starting PDF extraction: data\cortex-xdr.pdf
+2026-05-21 11:22:09 | INFO     | extractors.pdf_extractor | Attempting PyMuPDF text extraction
+2026-05-21 11:22:09 | INFO     | extractors.pdf_extractor | PyMuPDF extraction completed
+2026-05-21 11:22:09 | INFO     | extractors.pdf_extractor | PDF extraction completed successfully: data\cortex-xdr.pdf
+2026-05-21 11:22:09 | INFO     | extractors.factory | Selecting extractor for file type: txt1
+2026-05-21 11:22:09 | WARNING  | extractors.factory | Unsupported extractor type requested: txt1
+2026-05-21 11:22:09 | INFO     | extractors.factory | Selecting extractor for file type: pdf
+2026-05-21 11:22:09 | INFO     | extractors.factory | Extractor selected: PDFExtractor
+2026-05-21 11:22:09 | INFO     | extractors.pdf_extractor | Starting PDF extraction: data\test.pdf
+2026-05-21 11:22:09 | INFO     | extractors.pdf_extractor | Attempting PyMuPDF text extraction
+2026-05-21 11:22:09 | INFO     | extractors.pdf_extractor | PyMuPDF extraction completed
+2026-05-21 11:22:09 | INFO     | extractors.pdf_extractor | PDF extraction completed successfully: data\test.pdf
+2026-05-21 11:22:09 | INFO     | __main__ | extract_documents execution completed successfully
+2026-05-21 11:22:09 | INFO     | __main__ | extract_documents execution completed in 1.1209 seconds
+2026-05-21 11:22:09 | INFO     | __main__ | chunk_documents execution started
+2026-05-21 11:22:09 | INFO     | chunking.factory | create execution started
+2026-05-21 11:22:09 | INFO     | chunking.factory | Initializing chunking configuration
+2026-05-21 11:22:09 | INFO     | chunking.factory | Chunking strategy selected: sentence
+2026-05-21 11:22:09 | INFO     | chunking.factory | _import_class execution started
+2026-05-21 11:22:09 | INFO     | chunking.providers.sentence_splitter | DEBUG logging DISABLED
+2026-05-21 11:22:09 | INFO     | chunking.providers.token_splitter | DEBUG logging DISABLED
+2026-05-21 11:22:09 | INFO     | chunking.providers.character_splitter | DEBUG logging DISABLED
+2026-05-21 11:22:09 | INFO     | chunking.providers.recursive_splitter | DEBUG logging DISABLED
+2026-05-21 11:22:09 | INFO     | chunking.providers.semantic_splitter | DEBUG logging DISABLED
+2026-05-21 11:22:09 | INFO     | chunking.factory | _import_class execution completed successfully
+2026-05-21 11:22:09 | INFO     | chunking.factory | _import_class execution completed in 0.0116 seconds
+2026-05-21 11:22:09 | INFO     | chunking.factory | Creating chunker: SentenceChunker
+2026-05-21 11:22:09 | INFO     | chunking.factory | Chunker initialized successfully: SentenceChunker
+2026-05-21 11:22:09 | INFO     | chunking.providers.sentence_splitter | Initializing SentenceChunker
+2026-05-21 11:22:09 | INFO     | chunking.factory | create execution completed successfully
+2026-05-21 11:22:09 | INFO     | chunking.factory | create execution completed in 0.1439 seconds
+2026-05-21 11:22:09 | INFO     | chunking.providers.sentence_splitter | Starting sentence chunking for 2 document(s)
+2026-05-21 11:22:10 | INFO     | chunking.providers.sentence_splitter | Sentence chunking completed successfully
+2026-05-21 11:22:10 | INFO     | __main__ | chunk_documents execution completed successfully
+2026-05-21 11:22:10 | INFO     | __main__ | chunk_documents execution completed in 1.5788 seconds
+2026-05-21 11:22:10 | INFO     | __main__ | build_vector_index execution started
+2026-05-21 11:22:10 | INFO     | embedding.providers.openai_embedder | DEBUG logging DISABLED
+2026-05-21 11:22:10 | INFO     | embedding.providers.azure_openai_embedder | DEBUG logging DISABLED
+2026-05-21 11:22:10 | INFO     | embedding.providers.bedrock_embedder | DEBUG logging DISABLED
+2026-05-21 11:22:10 | INFO     | embedding.providers.google_vertex_embedder | DEBUG logging DISABLED
+2026-05-21 11:22:10 | INFO     | embedding.providers.cohere_embedder | DEBUG logging DISABLED
+2026-05-21 11:22:10 | INFO     | embedding.providers.voyage_embedder | DEBUG logging DISABLED
+2026-05-21 11:22:10 | INFO     | embedding.providers.jina_embedder | DEBUG logging DISABLED
+2026-05-21 11:22:10 | INFO     | embedding.providers.huggingface_embedder | DEBUG logging DISABLED
+2026-05-21 11:22:10 | INFO     | embedding.providers.sentence_transformer_embedder | DEBUG logging DISABLED
+2026-05-21 11:22:10 | INFO     | embedding.providers.instructor_embedder | DEBUG logging DISABLED
+2026-05-21 11:22:10 | INFO     | embedding.providers.fastembed_embedder | DEBUG logging DISABLED
+2026-05-21 11:22:10 | INFO     | embedding.providers.ollama_embedder | DEBUG logging DISABLED
+2026-05-21 11:22:10 | INFO     | embedding.providers.splade_embedder | DEBUG logging DISABLED
+2026-05-21 11:22:10 | INFO     | embedding.providers.bm25_embedder | DEBUG logging DISABLED
+2026-05-21 11:22:10 | INFO     | embedding.providers.colbert_embedder | DEBUG logging DISABLED
+2026-05-21 11:22:10 | INFO     | embedding.providers.hybrid_embedder | DEBUG logging DISABLED
+2026-05-21 11:22:10 | INFO     | embedding.providers.clip_embedder | DEBUG logging DISABLED
+2026-05-21 11:22:10 | INFO     | embedding.providers.bedrock_embedder | -------START Initializing BedrockEmbedder-----------
+2026-05-21 11:22:11 | INFO     | embedding.providers.bedrock_embedder | -------END Bedrock client initialized successfully---------------
+2026-05-21 11:22:11 | INFO     | vector_store.factory | create execution started
+2026-05-21 11:22:11 | INFO     | vector_store.factory | Vector store provider selected: s3_vector
+2026-05-21 11:22:11 | INFO     | vector_store.factory | _import_class execution started
+2026-05-21 11:22:11 | INFO     | vector_store.stores.pgvector_store | DEBUG logging DISABLED
+2026-05-21 11:22:11 | INFO     | vector_store.stores.pinecone_store | DEBUG logging DISABLED
+2026-05-21 11:22:11 | INFO     | vector_store.stores.weaviate_store | DEBUG logging DISABLED
+2026-05-21 11:22:11 | INFO     | vector_store.stores.qdrant_store | DEBUG logging DISABLED
+2026-05-21 11:22:11 | INFO     | vector_store.stores.milvus_store | DEBUG logging DISABLED
+2026-05-21 11:22:11 | INFO     | vector_store.stores.elasticsearch_store | DEBUG logging DISABLED
+2026-05-21 11:22:11 | INFO     | vector_store.stores.faiss_store | DEBUG logging DISABLED
+2026-05-21 11:22:11 | INFO     | vector_store.stores.chroma_store | DEBUG logging DISABLED
+2026-05-21 11:22:11 | INFO     | vector_store.stores.s3_vector_store | DEBUG logging DISABLED
+2026-05-21 11:22:11 | INFO     | vector_store.stores.gcs_vector_store | DEBUG logging DISABLED
+2026-05-21 11:22:11 | INFO     | vector_store.stores.azure_blob_vector_store | DEBUG logging DISABLED
+2026-05-21 11:22:11 | INFO     | vector_store.factory | _import_class execution completed successfully
+2026-05-21 11:22:11 | INFO     | vector_store.factory | _import_class execution completed in 0.0316 seconds
+2026-05-21 11:22:11 | INFO     | vector_store.factory | Creating vector store: S3VectorStore
+2026-05-21 11:22:11 | INFO     | vector_store.stores.s3_vector_store | Initializing S3VectorStore
+2026-05-21 11:22:11 | INFO     | vector_store.factory | create execution completed successfully
+2026-05-21 11:22:11 | INFO     | vector_store.factory | create execution completed in 0.0338 seconds
+2026-05-21 11:22:11 | INFO     | vector_store.stores.s3_vector_store | Connecting to S3 Vector Store
+2026-05-21 11:22:11 | INFO     | vector_store.stores.s3_vector_store | Connected to S3 Vector Store successfully
+2026-05-21 11:22:11 | INFO     | embedding.providers.bedrock_embedder | Starting Bedrock embedding generation for 29 text(s)
+2026-05-21 11:22:13 | ERROR    | embedding.providers.bedrock_embedder | Bedrock embedding generation failed
+Traceback (most recent call last):
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\embedding\providers\bedrock_embedder.py", line 124, in embed_texts
+    all_vectors.append(self._embed_titan(text))
+                       ~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\embedding\providers\bedrock_embedder.py", line 63, in _embed_titan
+    response = self._client.invoke_model(
+        modelId=self.config.model,
+        body=json.dumps(payload),
+        contentType="application/json",
+    )
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\botocore\client.py", line 606, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\botocore\context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\botocore\client.py", line 1094, in _make_api_call
+    raise error_class(parsed_response, operation_name)
+botocore.errorfactory.ValidationException: An error occurred (ValidationException) when calling the InvokeModel operation: Malformed input request: #: only 1 subschema matches out of 2, please reformat your input and try again.
+2026-05-21 11:22:13 | ERROR    | __main__ | build_vector_index execution failed: An error occurred (ValidationException) when calling the InvokeModel operation: Malformed input request: #: only 1 subschema matches out of 2, please reformat your input and try again.
+Traceback (most recent call last):
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\config\timer.py", line 19, in wrapper
+    result = func(*args, **kwargs)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\main.py", line 285, in build_vector_index
+    index = VectorStoreIndex(
+        nodes,
+        embed_model=llama_embed_model,
+        vector_store=vector_store,
+    )
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\llama_index\core\indices\vector_store\base.py", line 75, in __init__
+    super().__init__(
+    ~~~~~~~~~~~~~~~~^
+        nodes=nodes,
+        ^^^^^^^^^^^^
+    ...<6 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\llama_index\core\indices\base.py", line 79, in __init__
+    index_struct = self.build_index_from_nodes(
+        nodes + objects,  # type: ignore
+        **kwargs,  # type: ignore
+    )
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\llama_index\core\indices\vector_store\base.py", line 309, in build_index_from_nodes
+    return self._build_index_from_nodes(content_nodes, **insert_kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\llama_index\core\indices\vector_store\base.py", line 278, in _build_index_from_nodes
+    self._add_nodes_to_index(
+    ~~~~~~~~~~~~~~~~~~~~~~~~^
+        index_struct,
+        ^^^^^^^^^^^^^
+    ...<2 lines>...
+        **insert_kwargs,
+        ^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\llama_index\core\indices\vector_store\base.py", line 231, in _add_nodes_to_index
+    nodes_batch = self._get_node_with_embedding(nodes_batch, show_progress)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\llama_index\core\indices\vector_store\base.py", line 138, in _get_node_with_embedding
+    id_to_embed_map = embed_nodes(
+        nodes, self._embed_model, show_progress=show_progress
+    )
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\llama_index\core\indices\utils.py", line 196, in embed_nodes
+    new_embeddings = embed_model.get_text_embedding_batch(
+        texts_to_embed, show_progress=show_progress
+    )
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\llama_index_instrumentation\dispatcher.py", line 413, in wrapper
+    result = func(*args, **kwargs)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\main.py", line 208, in get_text_embedding_batch
+    return self._embedder.embed_texts(texts)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\embedding\providers\bedrock_embedder.py", line 124, in embed_texts
+    all_vectors.append(self._embed_titan(text))
+                       ~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\embedding\providers\bedrock_embedder.py", line 63, in _embed_titan
+    response = self._client.invoke_model(
+        modelId=self.config.model,
+        body=json.dumps(payload),
+        contentType="application/json",
+    )
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\botocore\client.py", line 606, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\botocore\context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\botocore\client.py", line 1094, in _make_api_call
+    raise error_class(parsed_response, operation_name)
+botocore.errorfactory.ValidationException: An error occurred (ValidationException) when calling the InvokeModel operation: Malformed input request: #: only 1 subschema matches out of 2, please reformat your input and try again.
+2026-05-21 11:22:13 | INFO     | __main__ | build_vector_index execution completed in 2.4442 seconds
+2026-05-21 11:22:13 | ERROR    | __main__ | run_pipeline execution failed: An error occurred (ValidationException) when calling the InvokeModel operation: Malformed input request: #: only 1 subschema matches out of 2, please reformat your input and try again.
+Traceback (most recent call last):
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\config\timer.py", line 19, in wrapper
+    result = func(*args, **kwargs)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\main.py", line 344, in run_pipeline
+    index = build_vector_index(nodes, config)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\config\timer.py", line 19, in wrapper
+    result = func(*args, **kwargs)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\main.py", line 285, in build_vector_index
+    index = VectorStoreIndex(
+        nodes,
+        embed_model=llama_embed_model,
+        vector_store=vector_store,
+    )
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\llama_index\core\indices\vector_store\base.py", line 75, in __init__
+    super().__init__(
+    ~~~~~~~~~~~~~~~~^
+        nodes=nodes,
+        ^^^^^^^^^^^^
+    ...<6 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\llama_index\core\indices\base.py", line 79, in __init__
+    index_struct = self.build_index_from_nodes(
+        nodes + objects,  # type: ignore
+        **kwargs,  # type: ignore
+    )
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\llama_index\core\indices\vector_store\base.py", line 309, in build_index_from_nodes
+    return self._build_index_from_nodes(content_nodes, **insert_kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\llama_index\core\indices\vector_store\base.py", line 278, in _build_index_from_nodes
+    self._add_nodes_to_index(
+    ~~~~~~~~~~~~~~~~~~~~~~~~^
+        index_struct,
+        ^^^^^^^^^^^^^
+    ...<2 lines>...
+        **insert_kwargs,
+        ^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\llama_index\core\indices\vector_store\base.py", line 231, in _add_nodes_to_index
+    nodes_batch = self._get_node_with_embedding(nodes_batch, show_progress)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\llama_index\core\indices\vector_store\base.py", line 138, in _get_node_with_embedding
+    id_to_embed_map = embed_nodes(
+        nodes, self._embed_model, show_progress=show_progress
+    )
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\llama_index\core\indices\utils.py", line 196, in embed_nodes
+    new_embeddings = embed_model.get_text_embedding_batch(
+        texts_to_embed, show_progress=show_progress
+    )
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\llama_index_instrumentation\dispatcher.py", line 413, in wrapper
+    result = func(*args, **kwargs)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\main.py", line 208, in get_text_embedding_batch
+    return self._embedder.embed_texts(texts)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\embedding\providers\bedrock_embedder.py", line 124, in embed_texts
+    all_vectors.append(self._embed_titan(text))
+                       ~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\embedding\providers\bedrock_embedder.py", line 63, in _embed_titan
+    response = self._client.invoke_model(
+        modelId=self.config.model,
+        body=json.dumps(payload),
+        contentType="application/json",
+    )
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\botocore\client.py", line 606, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\botocore\context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\botocore\client.py", line 1094, in _make_api_call
+    raise error_class(parsed_response, operation_name)
+botocore.errorfactory.ValidationException: An error occurred (ValidationException) when calling the InvokeModel operation: Malformed input request: #: only 1 subschema matches out of 2, please reformat your input and try again.
+2026-05-21 11:22:13 | INFO     | __main__ | run_pipeline execution completed in 8.3644 seconds
+2026-05-21 11:22:13 | ERROR    | __main__ | main execution failed: An error occurred (ValidationException) when calling the InvokeModel operation: Malformed input request: #: only 1 subschema matches out of 2, please reformat your input and try again.
+Traceback (most recent call last):
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\config\timer.py", line 19, in wrapper
+    result = func(*args, **kwargs)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\main.py", line 366, in main
+    run_pipeline(config)
+    ~~~~~~~~~~~~^^^^^^^^
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\config\timer.py", line 19, in wrapper
+    result = func(*args, **kwargs)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\main.py", line 344, in run_pipeline
+    index = build_vector_index(nodes, config)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\config\timer.py", line 19, in wrapper
+    result = func(*args, **kwargs)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\main.py", line 285, in build_vector_index
+    index = VectorStoreIndex(
+        nodes,
+        embed_model=llama_embed_model,
+        vector_store=vector_store,
+    )
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\llama_index\core\indices\vector_store\base.py", line 75, in __init__
+    super().__init__(
+    ~~~~~~~~~~~~~~~~^
+        nodes=nodes,
+        ^^^^^^^^^^^^
+    ...<6 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\llama_index\core\indices\base.py", line 79, in __init__
+    index_struct = self.build_index_from_nodes(
+        nodes + objects,  # type: ignore
+        **kwargs,  # type: ignore
+    )
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\llama_index\core\indices\vector_store\base.py", line 309, in build_index_from_nodes
+    return self._build_index_from_nodes(content_nodes, **insert_kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\llama_index\core\indices\vector_store\base.py", line 278, in _build_index_from_nodes
+    self._add_nodes_to_index(
+    ~~~~~~~~~~~~~~~~~~~~~~~~^
+        index_struct,
+        ^^^^^^^^^^^^^
+    ...<2 lines>...
+        **insert_kwargs,
+        ^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\llama_index\core\indices\vector_store\base.py", line 231, in _add_nodes_to_index
+    nodes_batch = self._get_node_with_embedding(nodes_batch, show_progress)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\llama_index\core\indices\vector_store\base.py", line 138, in _get_node_with_embedding
+    id_to_embed_map = embed_nodes(
+        nodes, self._embed_model, show_progress=show_progress
+    )
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\llama_index\core\indices\utils.py", line 196, in embed_nodes
+    new_embeddings = embed_model.get_text_embedding_batch(
+        texts_to_embed, show_progress=show_progress
+    )
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\llama_index_instrumentation\dispatcher.py", line 413, in wrapper
+    result = func(*args, **kwargs)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\main.py", line 208, in get_text_embedding_batch
+    return self._embedder.embed_texts(texts)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\embedding\providers\bedrock_embedder.py", line 124, in embed_texts
+    all_vectors.append(self._embed_titan(text))
+                       ~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\embedding\providers\bedrock_embedder.py", line 63, in _embed_titan
+    response = self._client.invoke_model(
+        modelId=self.config.model,
+        body=json.dumps(payload),
+        contentType="application/json",
+    )
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\botocore\client.py", line 606, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\botocore\context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\botocore\client.py", line 1094, in _make_api_call
+    raise error_class(parsed_response, operation_name)
+botocore.errorfactory.ValidationException: An error occurred (ValidationException) when calling the InvokeModel operation: Malformed input request: #: only 1 subschema matches out of 2, please reformat your input and try again.
+2026-05-21 11:22:13 | INFO     | __main__ | main execution completed in 8.3901 seconds
+2026-05-21 11:31:46 | INFO     | __main__ | DEBUG logging DISABLED
+2026-05-21 11:31:46 | INFO     | source.factory | DEBUG logging DISABLED
+2026-05-21 11:31:46 | INFO     | chunking.factory | DEBUG logging DISABLED
+2026-05-21 11:31:54 | INFO     | __main__ | DEBUG logging DISABLED
+2026-05-21 11:31:54 | INFO     | source.factory | DEBUG logging DISABLED
+2026-05-21 11:31:54 | INFO     | chunking.factory | DEBUG logging DISABLED
+2026-05-21 11:31:56 | INFO     | embedding.factory | DEBUG logging DISABLED
+2026-05-21 11:31:56 | INFO     | extractors.factory | DEBUG logging DISABLED
+2026-05-21 11:31:56 | INFO     | extractors.pdf_extractor | DEBUG logging DISABLED
+2026-05-21 11:32:00 | INFO     | extractors.excel_extractor | DEBUG logging DISABLED
+2026-05-21 11:32:00 | INFO     | extractors.word_extractor | DEBUG logging DISABLED
+2026-05-21 11:32:00 | INFO     | extractors.ppt_extractor | DEBUG logging DISABLED
+2026-05-21 11:32:01 | INFO     | extractors.image_extractor | DEBUG logging DISABLED
+2026-05-21 11:32:01 | INFO     | vector_store.factory | DEBUG logging DISABLED
+2026-05-21 11:32:01 | INFO     | extractors.ocr_config | DEBUG logging DISABLED
+2026-05-21 11:32:01 | INFO     | extractors.ocr_config | configure_tesseract execution started
+2026-05-21 11:32:01 | INFO     | extractors.ocr_config | Configuring Tesseract OCR
+2026-05-21 11:32:01 | INFO     | extractors.ocr_config | Tesseract path configured: D:\Tesseract\tesseract.exe
+2026-05-21 11:32:01 | INFO     | extractors.ocr_config | configure_tesseract execution completed successfully
+2026-05-21 11:32:01 | INFO     | extractors.ocr_config | configure_tesseract execution completed in 0.0015 seconds
+2026-05-21 11:32:01 | INFO     | __main__ | load_config execution started
+2026-05-21 11:32:01 | INFO     | __main__ | Loading config: D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\config.yaml
+2026-05-21 11:32:01 | INFO     | __main__ | load_config execution completed successfully
+2026-05-21 11:32:01 | INFO     | __main__ | load_config execution completed in 0.0083 seconds
+2026-05-21 11:32:01 | INFO     | __main__ | Starting ingestion pipeline
+2026-05-21 11:32:01 | INFO     | __main__ | run_pipeline execution started
+2026-05-21 11:32:01 | INFO     | __main__ | download_source_files execution started
+2026-05-21 11:32:01 | INFO     | __main__ | Downloading files from source: s3
+2026-05-21 11:32:01 | INFO     | source.factory | create execution started
+2026-05-21 11:32:01 | INFO     | source.factory | _import_class execution started
+2026-05-21 11:32:01 | INFO     | source.s3_source | DEBUG logging DISABLED
+2026-05-21 11:32:01 | INFO     | source.utils | DEBUG logging DISABLED
+2026-05-21 11:32:01 | INFO     | source.factory | _import_class execution completed successfully
+2026-05-21 11:32:01 | INFO     | source.factory | _import_class execution completed in 0.1826 seconds
+2026-05-21 11:32:01 | INFO     | source.factory | Creating source provider: S3Source
+2026-05-21 11:32:01 | INFO     | source.s3_source | Initializing S3 source
+2026-05-21 11:32:01 | INFO     | source.utils | ensure_dir execution started
+2026-05-21 11:32:01 | INFO     | source.utils | ensure_dir execution completed successfully
+2026-05-21 11:32:01 | INFO     | source.utils | ensure_dir execution completed in 0.0012 seconds
+2026-05-21 11:32:01 | INFO     | source.s3_source | S3 client initialized successfully
+2026-05-21 11:32:01 | INFO     | source.factory | create execution completed successfully
+2026-05-21 11:32:01 | INFO     | source.factory | create execution completed in 0.6807 seconds
+2026-05-21 11:32:01 | INFO     | source.s3_source | Starting S3 file download process
+2026-05-21 11:32:03 | INFO     | source.s3_source | Downloading S3 object: raw-documents/CrowdStrike Scheduled Search.pdf
+2026-05-21 11:32:06 | INFO     | source.s3_source | S3 file downloaded successfully: data\CrowdStrike Scheduled Search.pdf
+2026-05-21 11:32:06 | INFO     | source.s3_source | Downloading S3 object: raw-documents/cortex-xdr.pdf
+2026-05-21 11:32:06 | INFO     | source.s3_source | S3 file downloaded successfully: data\cortex-xdr.pdf
+2026-05-21 11:32:06 | INFO     | source.s3_source | Downloading S3 object: raw-documents/sample.txt1
+2026-05-21 11:32:06 | INFO     | source.s3_source | S3 file downloaded successfully: data\sample.txt1
+2026-05-21 11:32:06 | INFO     | source.s3_source | Downloading S3 object: raw-documents/test.pdf
+2026-05-21 11:32:07 | INFO     | source.s3_source | S3 file downloaded successfully: data\test.pdf
+2026-05-21 11:32:07 | INFO     | source.s3_source | Total S3 files downloaded: 4
+2026-05-21 11:32:07 | INFO     | __main__ | Downloaded 4 files
+2026-05-21 11:32:07 | INFO     | __main__ | download_source_files execution completed successfully
+2026-05-21 11:32:07 | INFO     | __main__ | download_source_files execution completed in 5.8777 seconds
+2026-05-21 11:32:07 | INFO     | __main__ | extract_documents execution started
+2026-05-21 11:32:07 | INFO     | __main__ | Extracting: data\CrowdStrike Scheduled Search.pdf
+2026-05-21 11:32:07 | INFO     | extractors.factory | Selecting extractor for file type: pdf
+2026-05-21 11:32:07 | INFO     | extractors.factory | Extractor selected: PDFExtractor
+2026-05-21 11:32:07 | INFO     | extractors.pdf_extractor | Starting PDF extraction: data\CrowdStrike Scheduled Search.pdf
+2026-05-21 11:32:07 | INFO     | extractors.pdf_extractor | Attempting PyMuPDF text extraction
+2026-05-21 11:32:10 | INFO     | extractors.pdf_extractor | PyMuPDF extraction completed
+2026-05-21 11:32:10 | WARNING  | extractors.pdf_extractor | OCR fallback triggered for PDF: data\CrowdStrike Scheduled Search.pdf
+2026-05-21 11:32:10 | ERROR    | extractors.pdf_extractor | OCR extraction failed
+Traceback (most recent call last):
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\pdf2image\pdf2image.py", line 581, in pdfinfo_from_path
+    proc = Popen(command, env=env, stdout=PIPE, stderr=PIPE)
+  File "C:\Users\kamalesh.saksoft\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 1039, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        pass_fds, cwd, env,
+                        ^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+                        gid, gids, uid, umask,
+                        ^^^^^^^^^^^^^^^^^^^^^^
+                        start_new_session, process_group)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kamalesh.saksoft\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 1554, in _execute_child
+    hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+                       ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+                             # no special security
+                             ^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+                             cwd,
+                             ^^^^
+                             startupinfo)
+                             ^^^^^^^^^^^^
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\extractors\pdf_extractor.py", line 61, in extract_text
+    images = convert_from_path(file_path)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\pdf2image\pdf2image.py", line 127, in convert_from_path
+    page_count = pdfinfo_from_path(
+                 ~~~~~~~~~~~~~~~~~^
+        pdf_path, userpw, ownerpw, poppler_path=poppler_path
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )["Pages"]
+    ^
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\pdf2image\pdf2image.py", line 607, in pdfinfo_from_path
+    raise PDFInfoNotInstalledError(
+        "Unable to get page count. Is poppler installed and in PATH?"
+    )
+pdf2image.exceptions.PDFInfoNotInstalledError: Unable to get page count. Is poppler installed and in PATH?
+2026-05-21 11:32:10 | INFO     | extractors.pdf_extractor | PDF extraction completed successfully: data\CrowdStrike Scheduled Search.pdf
+2026-05-21 11:32:10 | WARNING  | __main__ | Skipping empty document: data\CrowdStrike Scheduled Search.pdf
+2026-05-21 11:32:10 | INFO     | __main__ | Extracting: data\cortex-xdr.pdf
+2026-05-21 11:32:10 | INFO     | extractors.factory | Selecting extractor for file type: pdf
+2026-05-21 11:32:10 | INFO     | extractors.factory | Extractor selected: PDFExtractor
+2026-05-21 11:32:10 | INFO     | extractors.pdf_extractor | Starting PDF extraction: data\cortex-xdr.pdf
+2026-05-21 11:32:10 | INFO     | extractors.pdf_extractor | Attempting PyMuPDF text extraction
+2026-05-21 11:32:10 | INFO     | extractors.pdf_extractor | PyMuPDF extraction completed
+2026-05-21 11:32:10 | INFO     | extractors.pdf_extractor | PDF extraction completed successfully: data\cortex-xdr.pdf
+2026-05-21 11:32:10 | INFO     | __main__ | Extracting: data\sample.txt1
+2026-05-21 11:32:10 | INFO     | extractors.factory | Selecting extractor for file type: txt1
+2026-05-21 11:32:10 | WARNING  | extractors.factory | Unsupported extractor type requested: txt1
+2026-05-21 11:32:10 | ERROR    | __main__ | Failed extracting file: data\sample.txt1
+Traceback (most recent call last):
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\main1.py", line 95, in extract_documents
+    extractor = ExtractorFactory.get_extractor(file_path)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\extractors\factory.py", line 36, in get_extractor
+    raise ValueError(f"Unsupported file type: {suffix}")
+ValueError: Unsupported file type: txt1
+2026-05-21 11:32:10 | INFO     | __main__ | Extracting: data\test.pdf
+2026-05-21 11:32:10 | INFO     | extractors.factory | Selecting extractor for file type: pdf
+2026-05-21 11:32:10 | INFO     | extractors.factory | Extractor selected: PDFExtractor
+2026-05-21 11:32:10 | INFO     | extractors.pdf_extractor | Starting PDF extraction: data\test.pdf
+2026-05-21 11:32:10 | INFO     | extractors.pdf_extractor | Attempting PyMuPDF text extraction
+2026-05-21 11:32:10 | INFO     | extractors.pdf_extractor | PyMuPDF extraction completed
+2026-05-21 11:32:10 | INFO     | extractors.pdf_extractor | PDF extraction completed successfully: data\test.pdf
+2026-05-21 11:32:10 | INFO     | __main__ | Valid documents extracted: 2
+2026-05-21 11:32:10 | INFO     | __main__ | extract_documents execution completed successfully
+2026-05-21 11:32:10 | INFO     | __main__ | extract_documents execution completed in 3.3677 seconds
+2026-05-21 11:32:10 | INFO     | __main__ | chunk_documents execution started
+2026-05-21 11:32:10 | INFO     | __main__ | Chunking strategy: sentence
+2026-05-21 11:32:10 | INFO     | chunking.factory | create execution started
+2026-05-21 11:32:10 | INFO     | chunking.factory | Initializing chunking configuration
+2026-05-21 11:32:10 | INFO     | chunking.factory | Chunking strategy selected: sentence
+2026-05-21 11:32:10 | INFO     | chunking.factory | _import_class execution started
+2026-05-21 11:32:10 | INFO     | chunking.providers.sentence_splitter | DEBUG logging DISABLED
+2026-05-21 11:32:10 | INFO     | chunking.providers.token_splitter | DEBUG logging DISABLED
+2026-05-21 11:32:10 | INFO     | chunking.providers.character_splitter | DEBUG logging DISABLED
+2026-05-21 11:32:10 | INFO     | chunking.providers.recursive_splitter | DEBUG logging DISABLED
+2026-05-21 11:32:10 | INFO     | chunking.providers.semantic_splitter | DEBUG logging DISABLED
+2026-05-21 11:32:10 | INFO     | chunking.factory | _import_class execution completed successfully
+2026-05-21 11:32:10 | INFO     | chunking.factory | _import_class execution completed in 0.0262 seconds
+2026-05-21 11:32:10 | INFO     | chunking.factory | Creating chunker: SentenceChunker
+2026-05-21 11:32:10 | INFO     | chunking.factory | Chunker initialized successfully: SentenceChunker
+2026-05-21 11:32:10 | INFO     | chunking.providers.sentence_splitter | Initializing SentenceChunker
+2026-05-21 11:32:11 | INFO     | chunking.factory | create execution completed successfully
+2026-05-21 11:32:11 | INFO     | chunking.factory | create execution completed in 0.6805 seconds
+2026-05-21 11:32:11 | INFO     | chunking.providers.sentence_splitter | Starting sentence chunking for 2 document(s)
+2026-05-21 11:32:20 | INFO     | chunking.providers.sentence_splitter | Sentence chunking completed successfully
+2026-05-21 11:32:20 | INFO     | __main__ | Total chunks created: 29
+2026-05-21 11:32:20 | INFO     | __main__ | chunk_documents execution completed successfully
+2026-05-21 11:32:20 | INFO     | __main__ | chunk_documents execution completed in 9.9764 seconds
+2026-05-21 11:32:20 | INFO     | __main__ | build_vector_index execution started
+2026-05-21 11:32:20 | INFO     | __main__ | Embedding provider: bedrock
+2026-05-21 11:32:20 | INFO     | embedding.providers.openai_embedder | DEBUG logging DISABLED
+2026-05-21 11:32:20 | INFO     | embedding.providers.azure_openai_embedder | DEBUG logging DISABLED
+2026-05-21 11:32:20 | INFO     | embedding.providers.bedrock_embedder | DEBUG logging DISABLED
+2026-05-21 11:32:20 | INFO     | embedding.providers.google_vertex_embedder | DEBUG logging DISABLED
+2026-05-21 11:32:20 | INFO     | embedding.providers.cohere_embedder | DEBUG logging DISABLED
+2026-05-21 11:32:20 | INFO     | embedding.providers.voyage_embedder | DEBUG logging DISABLED
+2026-05-21 11:32:20 | INFO     | embedding.providers.jina_embedder | DEBUG logging DISABLED
+2026-05-21 11:32:20 | INFO     | embedding.providers.huggingface_embedder | DEBUG logging DISABLED
+2026-05-21 11:32:20 | INFO     | embedding.providers.sentence_transformer_embedder | DEBUG logging DISABLED
+2026-05-21 11:32:20 | INFO     | embedding.providers.instructor_embedder | DEBUG logging DISABLED
+2026-05-21 11:32:20 | INFO     | embedding.providers.fastembed_embedder | DEBUG logging DISABLED
+2026-05-21 11:32:20 | INFO     | embedding.providers.ollama_embedder | DEBUG logging DISABLED
+2026-05-21 11:32:20 | INFO     | embedding.providers.splade_embedder | DEBUG logging DISABLED
+2026-05-21 11:32:20 | INFO     | embedding.providers.bm25_embedder | DEBUG logging DISABLED
+2026-05-21 11:32:20 | INFO     | embedding.providers.colbert_embedder | DEBUG logging DISABLED
+2026-05-21 11:32:20 | INFO     | embedding.providers.hybrid_embedder | DEBUG logging DISABLED
+2026-05-21 11:32:20 | INFO     | embedding.providers.clip_embedder | DEBUG logging DISABLED
+2026-05-21 11:32:20 | INFO     | embedding.providers.bedrock_embedder | -------START Initializing BedrockEmbedder-----------
+2026-05-21 11:32:20 | INFO     | embedding.providers.bedrock_embedder | -------END Bedrock client initialized successfully---------------
+2026-05-21 11:32:20 | INFO     | __main__ | Embedder created: BedrockEmbedder
+2026-05-21 11:32:21 | INFO     | __main__ | Embedder adapter initialized: BedrockEmbedder
+2026-05-21 11:32:21 | INFO     | vector_store.factory | create execution started
+2026-05-21 11:32:21 | INFO     | vector_store.factory | Vector store provider selected: s3_vector
+2026-05-21 11:32:21 | INFO     | vector_store.factory | _import_class execution started
+2026-05-21 11:32:21 | INFO     | vector_store.stores.pgvector_store | DEBUG logging DISABLED
+2026-05-21 11:32:21 | INFO     | vector_store.stores.pinecone_store | DEBUG logging DISABLED
+2026-05-21 11:32:21 | INFO     | vector_store.stores.weaviate_store | DEBUG logging DISABLED
+2026-05-21 11:32:21 | INFO     | vector_store.stores.qdrant_store | DEBUG logging DISABLED
+2026-05-21 11:32:21 | INFO     | vector_store.stores.milvus_store | DEBUG logging DISABLED
+2026-05-21 11:32:21 | INFO     | vector_store.stores.elasticsearch_store | DEBUG logging DISABLED
+2026-05-21 11:32:21 | INFO     | vector_store.stores.faiss_store | DEBUG logging DISABLED
+2026-05-21 11:32:21 | INFO     | vector_store.stores.chroma_store | DEBUG logging DISABLED
+2026-05-21 11:32:21 | INFO     | vector_store.stores.s3_vector_store | DEBUG logging DISABLED
+2026-05-21 11:32:21 | INFO     | vector_store.stores.gcs_vector_store | DEBUG logging DISABLED
+2026-05-21 11:32:21 | INFO     | vector_store.stores.azure_blob_vector_store | DEBUG logging DISABLED
+2026-05-21 11:32:21 | INFO     | vector_store.factory | _import_class execution completed successfully
+2026-05-21 11:32:21 | INFO     | vector_store.factory | _import_class execution completed in 0.0240 seconds
+2026-05-21 11:32:21 | INFO     | vector_store.factory | Creating vector store: S3VectorStore
+2026-05-21 11:32:21 | INFO     | vector_store.stores.s3_vector_store | Initializing S3VectorStore
+2026-05-21 11:32:21 | INFO     | vector_store.factory | create execution completed successfully
+2026-05-21 11:32:21 | INFO     | vector_store.factory | create execution completed in 0.0254 seconds
+2026-05-21 11:32:21 | INFO     | vector_store.stores.s3_vector_store | Connecting to S3 Vector Store
+2026-05-21 11:32:21 | INFO     | vector_store.stores.s3_vector_store | Connected to S3 Vector Store successfully
+2026-05-21 11:32:21 | INFO     | __main__ | Vector store connected: S3VectorStore
+2026-05-21 11:32:21 | INFO     | embedding.providers.bedrock_embedder | Starting Bedrock embedding generation for 10 text(s)
+2026-05-21 11:32:23 | ERROR    | embedding.providers.bedrock_embedder | Bedrock embedding generation failed
+Traceback (most recent call last):
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\embedding\providers\bedrock_embedder.py", line 124, in embed_texts
+    all_vectors.append(self._embed_titan(text))
+                       ~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\embedding\providers\bedrock_embedder.py", line 63, in _embed_titan
+    response = self._client.invoke_model(
+        modelId=self.config.model,
+        body=json.dumps(payload),
+        contentType="application/json",
+    )
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\botocore\client.py", line 606, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\botocore\context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\botocore\client.py", line 1094, in _make_api_call
+    raise error_class(parsed_response, operation_name)
+botocore.errorfactory.ValidationException: An error occurred (ValidationException) when calling the InvokeModel operation: Malformed input request: #: only 1 subschema matches out of 2, please reformat your input and try again.
+2026-05-21 11:32:23 | ERROR    | __main__ | build_vector_index execution failed: An error occurred (ValidationException) when calling the InvokeModel operation: Malformed input request: #: only 1 subschema matches out of 2, please reformat your input and try again.
+Traceback (most recent call last):
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\config\timer.py", line 19, in wrapper
+    result = func(*args, **kwargs)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\main1.py", line 262, in build_vector_index
+    index = VectorStoreIndex(
+        nodes,
+        embed_model=llama_embed_model,
+        vector_store=vector_store,
+    )
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\llama_index\core\indices\vector_store\base.py", line 75, in __init__
+    super().__init__(
+    ~~~~~~~~~~~~~~~~^
+        nodes=nodes,
+        ^^^^^^^^^^^^
+    ...<6 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\llama_index\core\indices\base.py", line 79, in __init__
+    index_struct = self.build_index_from_nodes(
+        nodes + objects,  # type: ignore
+        **kwargs,  # type: ignore
+    )
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\llama_index\core\indices\vector_store\base.py", line 309, in build_index_from_nodes
+    return self._build_index_from_nodes(content_nodes, **insert_kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\llama_index\core\indices\vector_store\base.py", line 278, in _build_index_from_nodes
+    self._add_nodes_to_index(
+    ~~~~~~~~~~~~~~~~~~~~~~~~^
+        index_struct,
+        ^^^^^^^^^^^^^
+    ...<2 lines>...
+        **insert_kwargs,
+        ^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\llama_index\core\indices\vector_store\base.py", line 231, in _add_nodes_to_index
+    nodes_batch = self._get_node_with_embedding(nodes_batch, show_progress)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\llama_index\core\indices\vector_store\base.py", line 138, in _get_node_with_embedding
+    id_to_embed_map = embed_nodes(
+        nodes, self._embed_model, show_progress=show_progress
+    )
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\llama_index\core\indices\utils.py", line 196, in embed_nodes
+    new_embeddings = embed_model.get_text_embedding_batch(
+        texts_to_embed, show_progress=show_progress
+    )
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\llama_index_instrumentation\dispatcher.py", line 413, in wrapper
+    result = func(*args, **kwargs)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\llama_index\core\base\embeddings\base.py", line 508, in get_text_embedding_batch
+    embeddings = self._get_text_embeddings(cur_batch)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\main1.py", line 198, in _get_text_embeddings
+    return self._embedder.embed_texts(texts)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\embedding\providers\bedrock_embedder.py", line 124, in embed_texts
+    all_vectors.append(self._embed_titan(text))
+                       ~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\embedding\providers\bedrock_embedder.py", line 63, in _embed_titan
+    response = self._client.invoke_model(
+        modelId=self.config.model,
+        body=json.dumps(payload),
+        contentType="application/json",
+    )
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\botocore\client.py", line 606, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\botocore\context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\botocore\client.py", line 1094, in _make_api_call
+    raise error_class(parsed_response, operation_name)
+botocore.errorfactory.ValidationException: An error occurred (ValidationException) when calling the InvokeModel operation: Malformed input request: #: only 1 subschema matches out of 2, please reformat your input and try again.
+2026-05-21 11:32:23 | INFO     | __main__ | build_vector_index execution completed in 2.8258 seconds
+2026-05-21 11:32:23 | ERROR    | __main__ | run_pipeline execution failed: An error occurred (ValidationException) when calling the InvokeModel operation: Malformed input request: #: only 1 subschema matches out of 2, please reformat your input and try again.
+Traceback (most recent call last):
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\config\timer.py", line 19, in wrapper
+    result = func(*args, **kwargs)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\main1.py", line 296, in run_pipeline
+    build_vector_index(nodes, config)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\config\timer.py", line 19, in wrapper
+    result = func(*args, **kwargs)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\main1.py", line 262, in build_vector_index
+    index = VectorStoreIndex(
+        nodes,
+        embed_model=llama_embed_model,
+        vector_store=vector_store,
+    )
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\llama_index\core\indices\vector_store\base.py", line 75, in __init__
+    super().__init__(
+    ~~~~~~~~~~~~~~~~^
+        nodes=nodes,
+        ^^^^^^^^^^^^
+    ...<6 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\llama_index\core\indices\base.py", line 79, in __init__
+    index_struct = self.build_index_from_nodes(
+        nodes + objects,  # type: ignore
+        **kwargs,  # type: ignore
+    )
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\llama_index\core\indices\vector_store\base.py", line 309, in build_index_from_nodes
+    return self._build_index_from_nodes(content_nodes, **insert_kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\llama_index\core\indices\vector_store\base.py", line 278, in _build_index_from_nodes
+    self._add_nodes_to_index(
+    ~~~~~~~~~~~~~~~~~~~~~~~~^
+        index_struct,
+        ^^^^^^^^^^^^^
+    ...<2 lines>...
+        **insert_kwargs,
+        ^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\llama_index\core\indices\vector_store\base.py", line 231, in _add_nodes_to_index
+    nodes_batch = self._get_node_with_embedding(nodes_batch, show_progress)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\llama_index\core\indices\vector_store\base.py", line 138, in _get_node_with_embedding
+    id_to_embed_map = embed_nodes(
+        nodes, self._embed_model, show_progress=show_progress
+    )
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\llama_index\core\indices\utils.py", line 196, in embed_nodes
+    new_embeddings = embed_model.get_text_embedding_batch(
+        texts_to_embed, show_progress=show_progress
+    )
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\llama_index_instrumentation\dispatcher.py", line 413, in wrapper
+    result = func(*args, **kwargs)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\llama_index\core\base\embeddings\base.py", line 508, in get_text_embedding_batch
+    embeddings = self._get_text_embeddings(cur_batch)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\main1.py", line 198, in _get_text_embeddings
+    return self._embedder.embed_texts(texts)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\embedding\providers\bedrock_embedder.py", line 124, in embed_texts
+    all_vectors.append(self._embed_titan(text))
+                       ~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\embedding\providers\bedrock_embedder.py", line 63, in _embed_titan
+    response = self._client.invoke_model(
+        modelId=self.config.model,
+        body=json.dumps(payload),
+        contentType="application/json",
+    )
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\botocore\client.py", line 606, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\botocore\context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\botocore\client.py", line 1094, in _make_api_call
+    raise error_class(parsed_response, operation_name)
+botocore.errorfactory.ValidationException: An error occurred (ValidationException) when calling the InvokeModel operation: Malformed input request: #: only 1 subschema matches out of 2, please reformat your input and try again.
+2026-05-21 11:32:23 | INFO     | __main__ | run_pipeline execution completed in 22.0535 seconds
+2026-05-21 11:38:03 | INFO     | source.factory | DEBUG logging DISABLED
+2026-05-21 11:38:03 | INFO     | chunking.factory | DEBUG logging DISABLED
+2026-05-21 11:38:07 | INFO     | embedding.factory | DEBUG logging DISABLED
+2026-05-21 11:38:07 | INFO     | extractors.factory | DEBUG logging DISABLED
+2026-05-21 11:38:07 | INFO     | extractors.pdf_extractor | DEBUG logging DISABLED
+2026-05-21 11:38:12 | INFO     | extractors.excel_extractor | DEBUG logging DISABLED
+2026-05-21 11:38:12 | INFO     | extractors.word_extractor | DEBUG logging DISABLED
+2026-05-21 11:38:12 | INFO     | extractors.ppt_extractor | DEBUG logging DISABLED
+2026-05-21 11:38:12 | INFO     | extractors.image_extractor | DEBUG logging DISABLED
+2026-05-21 11:38:12 | INFO     | vector_store.factory | DEBUG logging DISABLED
+2026-05-21 11:38:12 | INFO     | extractors.ocr_config | DEBUG logging DISABLED
+2026-05-21 11:38:12 | INFO     | extractors.ocr_config | configure_tesseract execution started
+2026-05-21 11:38:12 | INFO     | extractors.ocr_config | Configuring Tesseract OCR
+2026-05-21 11:38:12 | INFO     | extractors.ocr_config | Tesseract path configured: D:\Tesseract\tesseract.exe
+2026-05-21 11:38:12 | INFO     | extractors.ocr_config | configure_tesseract execution completed successfully
+2026-05-21 11:38:12 | INFO     | extractors.ocr_config | configure_tesseract execution completed in 0.0010 seconds
+2026-05-21 11:38:12 | INFO     | source.factory | create execution started
+2026-05-21 11:38:12 | INFO     | source.factory | _import_class execution started
+2026-05-21 11:38:12 | INFO     | source.s3_source | DEBUG logging DISABLED
+2026-05-21 11:38:12 | INFO     | source.utils | DEBUG logging DISABLED
+2026-05-21 11:38:12 | INFO     | source.factory | _import_class execution completed successfully
+2026-05-21 11:38:12 | INFO     | source.factory | _import_class execution completed in 0.2361 seconds
+2026-05-21 11:38:12 | INFO     | source.factory | Creating source provider: S3Source
+2026-05-21 11:38:12 | INFO     | source.s3_source | Initializing S3 source
+2026-05-21 11:38:12 | INFO     | source.utils | ensure_dir execution started
+2026-05-21 11:38:12 | INFO     | source.utils | ensure_dir execution completed successfully
+2026-05-21 11:38:12 | INFO     | source.utils | ensure_dir execution completed in 0.0026 seconds
+2026-05-21 11:38:13 | INFO     | source.s3_source | S3 client initialized successfully
+2026-05-21 11:38:13 | INFO     | source.factory | create execution completed successfully
+2026-05-21 11:38:13 | INFO     | source.factory | create execution completed in 0.6208 seconds
+2026-05-21 11:38:13 | INFO     | source.s3_source | Starting S3 file download process
+2026-05-21 11:38:14 | INFO     | source.s3_source | Downloading S3 object: raw-documents/CrowdStrike Scheduled Search.pdf
+2026-05-21 11:38:15 | INFO     | source.s3_source | S3 file downloaded successfully: data\CrowdStrike Scheduled Search.pdf
+2026-05-21 11:38:15 | INFO     | source.s3_source | Downloading S3 object: raw-documents/cortex-xdr.pdf
+2026-05-21 11:38:15 | INFO     | source.s3_source | S3 file downloaded successfully: data\cortex-xdr.pdf
+2026-05-21 11:38:15 | INFO     | source.s3_source | Downloading S3 object: raw-documents/sample.txt1
+2026-05-21 11:38:15 | INFO     | source.s3_source | S3 file downloaded successfully: data\sample.txt1
+2026-05-21 11:38:15 | INFO     | source.s3_source | Downloading S3 object: raw-documents/test.pdf
+2026-05-21 11:38:15 | INFO     | source.s3_source | S3 file downloaded successfully: data\test.pdf
+2026-05-21 11:38:15 | INFO     | source.s3_source | Total S3 files downloaded: 4
+2026-05-21 11:38:15 | INFO     | extractors.factory | Selecting extractor for file type: pdf
+2026-05-21 11:38:15 | INFO     | extractors.factory | Extractor selected: PDFExtractor
+2026-05-21 11:38:15 | INFO     | extractors.pdf_extractor | Starting PDF extraction: data\CrowdStrike Scheduled Search.pdf
+2026-05-21 11:38:15 | INFO     | extractors.pdf_extractor | Attempting PyMuPDF text extraction
+2026-05-21 11:38:17 | INFO     | extractors.pdf_extractor | PyMuPDF extraction completed
+2026-05-21 11:38:17 | WARNING  | extractors.pdf_extractor | OCR fallback triggered for PDF: data\CrowdStrike Scheduled Search.pdf
+2026-05-21 11:38:17 | ERROR    | extractors.pdf_extractor | OCR extraction failed
+Traceback (most recent call last):
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\pdf2image\pdf2image.py", line 581, in pdfinfo_from_path
+    proc = Popen(command, env=env, stdout=PIPE, stderr=PIPE)
+  File "C:\Users\kamalesh.saksoft\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 1039, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        pass_fds, cwd, env,
+                        ^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+                        gid, gids, uid, umask,
+                        ^^^^^^^^^^^^^^^^^^^^^^
+                        start_new_session, process_group)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kamalesh.saksoft\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 1554, in _execute_child
+    hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+                       ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+                             # no special security
+                             ^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+                             cwd,
+                             ^^^^
+                             startupinfo)
+                             ^^^^^^^^^^^^
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\extractors\pdf_extractor.py", line 61, in extract_text
+    images = convert_from_path(file_path)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\pdf2image\pdf2image.py", line 127, in convert_from_path
+    page_count = pdfinfo_from_path(
+                 ~~~~~~~~~~~~~~~~~^
+        pdf_path, userpw, ownerpw, poppler_path=poppler_path
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )["Pages"]
+    ^
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\pdf2image\pdf2image.py", line 607, in pdfinfo_from_path
+    raise PDFInfoNotInstalledError(
+        "Unable to get page count. Is poppler installed and in PATH?"
+    )
+pdf2image.exceptions.PDFInfoNotInstalledError: Unable to get page count. Is poppler installed and in PATH?
+2026-05-21 11:38:17 | INFO     | extractors.pdf_extractor | PDF extraction completed successfully: data\CrowdStrike Scheduled Search.pdf
+2026-05-21 11:38:17 | INFO     | extractors.factory | Selecting extractor for file type: pdf
+2026-05-21 11:38:17 | INFO     | extractors.factory | Extractor selected: PDFExtractor
+2026-05-21 11:38:17 | INFO     | extractors.pdf_extractor | Starting PDF extraction: data\cortex-xdr.pdf
+2026-05-21 11:38:17 | INFO     | extractors.pdf_extractor | Attempting PyMuPDF text extraction
+2026-05-21 11:38:17 | INFO     | extractors.pdf_extractor | PyMuPDF extraction completed
+2026-05-21 11:38:17 | INFO     | extractors.pdf_extractor | PDF extraction completed successfully: data\cortex-xdr.pdf
+2026-05-21 11:38:17 | INFO     | extractors.factory | Selecting extractor for file type: txt1
+2026-05-21 11:38:17 | WARNING  | extractors.factory | Unsupported extractor type requested: txt1
+2026-05-21 11:38:17 | INFO     | extractors.factory | Selecting extractor for file type: pdf
+2026-05-21 11:38:17 | INFO     | extractors.factory | Extractor selected: PDFExtractor
+2026-05-21 11:38:17 | INFO     | extractors.pdf_extractor | Starting PDF extraction: data\test.pdf
+2026-05-21 11:38:17 | INFO     | extractors.pdf_extractor | Attempting PyMuPDF text extraction
+2026-05-21 11:38:17 | INFO     | extractors.pdf_extractor | PyMuPDF extraction completed
+2026-05-21 11:38:17 | INFO     | extractors.pdf_extractor | PDF extraction completed successfully: data\test.pdf
+2026-05-21 11:38:17 | INFO     | chunking.factory | create execution started
+2026-05-21 11:38:17 | INFO     | chunking.factory | Initializing chunking configuration
+2026-05-21 11:38:17 | INFO     | chunking.factory | Chunking strategy selected: sentence
+2026-05-21 11:38:17 | INFO     | chunking.factory | _import_class execution started
+2026-05-21 11:38:17 | INFO     | chunking.providers.sentence_splitter | DEBUG logging DISABLED
+2026-05-21 11:38:17 | INFO     | chunking.providers.token_splitter | DEBUG logging DISABLED
+2026-05-21 11:38:17 | INFO     | chunking.providers.character_splitter | DEBUG logging DISABLED
+2026-05-21 11:38:17 | INFO     | chunking.providers.recursive_splitter | DEBUG logging DISABLED
+2026-05-21 11:38:17 | INFO     | chunking.providers.semantic_splitter | DEBUG logging DISABLED
+2026-05-21 11:38:17 | INFO     | chunking.factory | _import_class execution completed successfully
+2026-05-21 11:38:17 | INFO     | chunking.factory | _import_class execution completed in 0.0102 seconds
+2026-05-21 11:38:17 | INFO     | chunking.factory | Creating chunker: SentenceChunker
+2026-05-21 11:38:17 | INFO     | chunking.factory | Chunker initialized successfully: SentenceChunker
+2026-05-21 11:38:17 | INFO     | chunking.providers.sentence_splitter | Initializing SentenceChunker
+2026-05-21 11:38:17 | INFO     | chunking.factory | create execution completed successfully
+2026-05-21 11:38:17 | INFO     | chunking.factory | create execution completed in 0.2288 seconds
+2026-05-21 11:38:17 | INFO     | chunking.providers.sentence_splitter | Starting sentence chunking for 2 document(s)
+2026-05-21 11:38:23 | INFO     | chunking.providers.sentence_splitter | Sentence chunking completed successfully
+2026-05-21 11:38:23 | INFO     | embedding.providers.openai_embedder | DEBUG logging DISABLED
+2026-05-21 11:38:23 | INFO     | embedding.providers.azure_openai_embedder | DEBUG logging DISABLED
+2026-05-21 11:38:23 | INFO     | embedding.providers.bedrock_embedder | DEBUG logging DISABLED
+2026-05-21 11:38:23 | INFO     | embedding.providers.google_vertex_embedder | DEBUG logging DISABLED
+2026-05-21 11:38:23 | INFO     | embedding.providers.cohere_embedder | DEBUG logging DISABLED
+2026-05-21 11:38:23 | INFO     | embedding.providers.voyage_embedder | DEBUG logging DISABLED
+2026-05-21 11:38:23 | INFO     | embedding.providers.jina_embedder | DEBUG logging DISABLED
+2026-05-21 11:38:23 | INFO     | embedding.providers.huggingface_embedder | DEBUG logging DISABLED
+2026-05-21 11:38:23 | INFO     | embedding.providers.sentence_transformer_embedder | DEBUG logging DISABLED
+2026-05-21 11:38:23 | INFO     | embedding.providers.instructor_embedder | DEBUG logging DISABLED
+2026-05-21 11:38:23 | INFO     | embedding.providers.fastembed_embedder | DEBUG logging DISABLED
+2026-05-21 11:38:23 | INFO     | embedding.providers.ollama_embedder | DEBUG logging DISABLED
+2026-05-21 11:38:23 | INFO     | embedding.providers.splade_embedder | DEBUG logging DISABLED
+2026-05-21 11:38:23 | INFO     | embedding.providers.bm25_embedder | DEBUG logging DISABLED
+2026-05-21 11:38:23 | INFO     | embedding.providers.colbert_embedder | DEBUG logging DISABLED
+2026-05-21 11:38:23 | INFO     | embedding.providers.hybrid_embedder | DEBUG logging DISABLED
+2026-05-21 11:38:23 | INFO     | embedding.providers.clip_embedder | DEBUG logging DISABLED
+2026-05-21 11:38:23 | INFO     | embedding.providers.bedrock_embedder | -------START Initializing BedrockEmbedder-----------
+2026-05-21 11:38:23 | INFO     | embedding.providers.bedrock_embedder | -------END Bedrock client initialized successfully---------------
+2026-05-21 11:38:23 | INFO     | vector_store.factory | create execution started
+2026-05-21 11:38:23 | INFO     | vector_store.factory | Vector store provider selected: s3_vector
+2026-05-21 11:38:23 | INFO     | vector_store.factory | _import_class execution started
+2026-05-21 11:38:23 | INFO     | vector_store.stores.pgvector_store | DEBUG logging DISABLED
+2026-05-21 11:38:23 | INFO     | vector_store.stores.pinecone_store | DEBUG logging DISABLED
+2026-05-21 11:38:23 | INFO     | vector_store.stores.weaviate_store | DEBUG logging DISABLED
+2026-05-21 11:38:23 | INFO     | vector_store.stores.qdrant_store | DEBUG logging DISABLED
+2026-05-21 11:38:23 | INFO     | vector_store.stores.milvus_store | DEBUG logging DISABLED
+2026-05-21 11:38:23 | INFO     | vector_store.stores.elasticsearch_store | DEBUG logging DISABLED
+2026-05-21 11:38:23 | INFO     | vector_store.stores.faiss_store | DEBUG logging DISABLED
+2026-05-21 11:38:23 | INFO     | vector_store.stores.chroma_store | DEBUG logging DISABLED
+2026-05-21 11:38:23 | INFO     | vector_store.stores.s3_vector_store | DEBUG logging DISABLED
+2026-05-21 11:38:23 | INFO     | vector_store.stores.gcs_vector_store | DEBUG logging DISABLED
+2026-05-21 11:38:23 | INFO     | vector_store.stores.azure_blob_vector_store | DEBUG logging DISABLED
+2026-05-21 11:38:23 | INFO     | vector_store.factory | _import_class execution completed successfully
+2026-05-21 11:38:23 | INFO     | vector_store.factory | _import_class execution completed in 0.0264 seconds
+2026-05-21 11:38:23 | INFO     | vector_store.factory | Creating vector store: S3VectorStore
+2026-05-21 11:38:23 | INFO     | vector_store.stores.s3_vector_store | Initializing S3VectorStore
+2026-05-21 11:38:23 | INFO     | vector_store.factory | create execution completed successfully
+2026-05-21 11:38:23 | INFO     | vector_store.factory | create execution completed in 0.0281 seconds
+2026-05-21 11:38:23 | INFO     | vector_store.stores.s3_vector_store | Connecting to S3 Vector Store
+2026-05-21 11:38:23 | INFO     | vector_store.stores.s3_vector_store | Connected to S3 Vector Store successfully
+2026-05-21 11:38:23 | INFO     | embedding.providers.bedrock_embedder | Starting Bedrock embedding generation for 1 text(s)
+2026-05-21 11:38:25 | ERROR    | embedding.providers.bedrock_embedder | Bedrock embedding generation failed
+Traceback (most recent call last):
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\embedding\providers\bedrock_embedder.py", line 124, in embed_texts
+    all_vectors.append(self._embed_titan(text))
+                       ~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\embedding\providers\bedrock_embedder.py", line 63, in _embed_titan
+    response = self._client.invoke_model(
+        modelId=self.config.model,
+        body=json.dumps(payload),
+        contentType="application/json",
+    )
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\botocore\client.py", line 606, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\botocore\context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\botocore\client.py", line 1094, in _make_api_call
+    raise error_class(parsed_response, operation_name)
+botocore.errorfactory.ValidationException: An error occurred (ValidationException) when calling the InvokeModel operation: Malformed input request: #: only 1 subschema matches out of 2, please reformat your input and try again.
+2026-05-21 11:40:01 | INFO     | source.factory | DEBUG logging DISABLED
+2026-05-21 11:40:01 | INFO     | chunking.factory | DEBUG logging DISABLED
+2026-05-21 11:40:03 | INFO     | embedding.factory | DEBUG logging DISABLED
+2026-05-21 11:40:03 | INFO     | extractors.factory | DEBUG logging DISABLED
+2026-05-21 11:40:03 | INFO     | extractors.pdf_extractor | DEBUG logging DISABLED
+2026-05-21 11:40:03 | INFO     | extractors.excel_extractor | DEBUG logging DISABLED
+2026-05-21 11:40:03 | INFO     | extractors.word_extractor | DEBUG logging DISABLED
+2026-05-21 11:40:04 | INFO     | extractors.ppt_extractor | DEBUG logging DISABLED
+2026-05-21 11:40:04 | INFO     | extractors.image_extractor | DEBUG logging DISABLED
+2026-05-21 11:40:04 | INFO     | vector_store.factory | DEBUG logging DISABLED
+2026-05-21 11:40:04 | INFO     | extractors.ocr_config | DEBUG logging DISABLED
+2026-05-21 11:40:04 | INFO     | extractors.ocr_config | configure_tesseract execution started
+2026-05-21 11:40:04 | INFO     | extractors.ocr_config | Configuring Tesseract OCR
+2026-05-21 11:40:04 | INFO     | extractors.ocr_config | Tesseract path configured: D:\Tesseract\tesseract.exe
+2026-05-21 11:40:04 | INFO     | extractors.ocr_config | configure_tesseract execution completed successfully
+2026-05-21 11:40:04 | INFO     | extractors.ocr_config | configure_tesseract execution completed in 0.0012 seconds
+2026-05-21 11:40:04 | INFO     | source.factory | create execution started
+2026-05-21 11:40:04 | INFO     | source.factory | _import_class execution started
+2026-05-21 11:40:04 | INFO     | source.s3_source | DEBUG logging DISABLED
+2026-05-21 11:40:04 | INFO     | source.utils | DEBUG logging DISABLED
+2026-05-21 11:40:04 | INFO     | source.factory | _import_class execution completed successfully
+2026-05-21 11:40:04 | INFO     | source.factory | _import_class execution completed in 0.1053 seconds
+2026-05-21 11:40:04 | INFO     | source.factory | Creating source provider: S3Source
+2026-05-21 11:40:04 | INFO     | source.s3_source | Initializing S3 source
+2026-05-21 11:40:04 | INFO     | source.utils | ensure_dir execution started
+2026-05-21 11:40:04 | INFO     | source.utils | ensure_dir execution completed successfully
+2026-05-21 11:40:04 | INFO     | source.utils | ensure_dir execution completed in 0.0008 seconds
+2026-05-21 11:40:04 | INFO     | source.s3_source | S3 client initialized successfully
+2026-05-21 11:40:04 | INFO     | source.factory | create execution completed successfully
+2026-05-21 11:40:04 | INFO     | source.factory | create execution completed in 0.2986 seconds
+2026-05-21 11:40:04 | INFO     | source.s3_source | Starting S3 file download process
+2026-05-21 11:40:05 | INFO     | source.s3_source | Downloading S3 object: raw-documents/CrowdStrike Scheduled Search.pdf
+2026-05-21 11:40:06 | INFO     | source.s3_source | S3 file downloaded successfully: data\CrowdStrike Scheduled Search.pdf
+2026-05-21 11:40:06 | INFO     | source.s3_source | Downloading S3 object: raw-documents/cortex-xdr.pdf
+2026-05-21 11:40:06 | INFO     | source.s3_source | S3 file downloaded successfully: data\cortex-xdr.pdf
+2026-05-21 11:40:06 | INFO     | source.s3_source | Downloading S3 object: raw-documents/sample.txt1
+2026-05-21 11:40:06 | INFO     | source.s3_source | S3 file downloaded successfully: data\sample.txt1
+2026-05-21 11:40:06 | INFO     | source.s3_source | Downloading S3 object: raw-documents/test.pdf
+2026-05-21 11:40:07 | INFO     | source.s3_source | S3 file downloaded successfully: data\test.pdf
+2026-05-21 11:40:07 | INFO     | source.s3_source | Total S3 files downloaded: 4
+2026-05-21 11:40:07 | INFO     | extractors.factory | Selecting extractor for file type: pdf
+2026-05-21 11:40:07 | INFO     | extractors.factory | Extractor selected: PDFExtractor
+2026-05-21 11:40:07 | INFO     | extractors.pdf_extractor | Starting PDF extraction: data\CrowdStrike Scheduled Search.pdf
+2026-05-21 11:40:07 | INFO     | extractors.pdf_extractor | Attempting PyMuPDF text extraction
+2026-05-21 11:40:08 | INFO     | extractors.pdf_extractor | PyMuPDF extraction completed
+2026-05-21 11:40:08 | WARNING  | extractors.pdf_extractor | OCR fallback triggered for PDF: data\CrowdStrike Scheduled Search.pdf
+2026-05-21 11:40:08 | ERROR    | extractors.pdf_extractor | OCR extraction failed
+Traceback (most recent call last):
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\pdf2image\pdf2image.py", line 581, in pdfinfo_from_path
+    proc = Popen(command, env=env, stdout=PIPE, stderr=PIPE)
+  File "C:\Users\kamalesh.saksoft\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 1039, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        pass_fds, cwd, env,
+                        ^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+                        gid, gids, uid, umask,
+                        ^^^^^^^^^^^^^^^^^^^^^^
+                        start_new_session, process_group)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kamalesh.saksoft\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 1554, in _execute_child
+    hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+                       ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+                             # no special security
+                             ^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+                             cwd,
+                             ^^^^
+                             startupinfo)
+                             ^^^^^^^^^^^^
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\extractors\pdf_extractor.py", line 61, in extract_text
+    images = convert_from_path(file_path)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\pdf2image\pdf2image.py", line 127, in convert_from_path
+    page_count = pdfinfo_from_path(
+                 ~~~~~~~~~~~~~~~~~^
+        pdf_path, userpw, ownerpw, poppler_path=poppler_path
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )["Pages"]
+    ^
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\pdf2image\pdf2image.py", line 607, in pdfinfo_from_path
+    raise PDFInfoNotInstalledError(
+        "Unable to get page count. Is poppler installed and in PATH?"
+    )
+pdf2image.exceptions.PDFInfoNotInstalledError: Unable to get page count. Is poppler installed and in PATH?
+2026-05-21 11:40:08 | INFO     | extractors.pdf_extractor | PDF extraction completed successfully: data\CrowdStrike Scheduled Search.pdf
+2026-05-21 11:40:08 | INFO     | extractors.factory | Selecting extractor for file type: pdf
+2026-05-21 11:40:08 | INFO     | extractors.factory | Extractor selected: PDFExtractor
+2026-05-21 11:40:08 | INFO     | extractors.pdf_extractor | Starting PDF extraction: data\cortex-xdr.pdf
+2026-05-21 11:40:08 | INFO     | extractors.pdf_extractor | Attempting PyMuPDF text extraction
+2026-05-21 11:40:08 | INFO     | extractors.pdf_extractor | PyMuPDF extraction completed
+2026-05-21 11:40:08 | INFO     | extractors.pdf_extractor | PDF extraction completed successfully: data\cortex-xdr.pdf
+2026-05-21 11:40:08 | INFO     | extractors.factory | Selecting extractor for file type: txt1
+2026-05-21 11:40:08 | WARNING  | extractors.factory | Unsupported extractor type requested: txt1
+2026-05-21 11:40:08 | INFO     | extractors.factory | Selecting extractor for file type: pdf
+2026-05-21 11:40:08 | INFO     | extractors.factory | Extractor selected: PDFExtractor
+2026-05-21 11:40:08 | INFO     | extractors.pdf_extractor | Starting PDF extraction: data\test.pdf
+2026-05-21 11:40:08 | INFO     | extractors.pdf_extractor | Attempting PyMuPDF text extraction
+2026-05-21 11:40:08 | INFO     | extractors.pdf_extractor | PyMuPDF extraction completed
+2026-05-21 11:40:08 | INFO     | extractors.pdf_extractor | PDF extraction completed successfully: data\test.pdf
+2026-05-21 11:40:08 | INFO     | chunking.factory | create execution started
+2026-05-21 11:40:08 | INFO     | chunking.factory | Initializing chunking configuration
+2026-05-21 11:40:08 | INFO     | chunking.factory | Chunking strategy selected: sentence
+2026-05-21 11:40:08 | INFO     | chunking.factory | _import_class execution started
+2026-05-21 11:40:08 | INFO     | chunking.providers.sentence_splitter | DEBUG logging DISABLED
+2026-05-21 11:40:08 | INFO     | chunking.providers.token_splitter | DEBUG logging DISABLED
+2026-05-21 11:40:08 | INFO     | chunking.providers.character_splitter | DEBUG logging DISABLED
+2026-05-21 11:40:08 | INFO     | chunking.providers.recursive_splitter | DEBUG logging DISABLED
+2026-05-21 11:40:08 | INFO     | chunking.providers.semantic_splitter | DEBUG logging DISABLED
+2026-05-21 11:40:08 | INFO     | chunking.factory | _import_class execution completed successfully
+2026-05-21 11:40:08 | INFO     | chunking.factory | _import_class execution completed in 0.0076 seconds
+2026-05-21 11:40:08 | INFO     | chunking.factory | Creating chunker: SentenceChunker
+2026-05-21 11:40:08 | INFO     | chunking.factory | Chunker initialized successfully: SentenceChunker
+2026-05-21 11:40:08 | INFO     | chunking.providers.sentence_splitter | Initializing SentenceChunker
+2026-05-21 11:40:08 | INFO     | chunking.factory | create execution completed successfully
+2026-05-21 11:40:08 | INFO     | chunking.factory | create execution completed in 0.1691 seconds
+2026-05-21 11:40:08 | INFO     | chunking.providers.sentence_splitter | Starting sentence chunking for 2 document(s)
+2026-05-21 11:40:09 | INFO     | chunking.providers.sentence_splitter | Sentence chunking completed successfully
+2026-05-21 11:40:09 | INFO     | embedding.providers.openai_embedder | DEBUG logging DISABLED
+2026-05-21 11:40:09 | INFO     | embedding.providers.azure_openai_embedder | DEBUG logging DISABLED
+2026-05-21 11:40:09 | INFO     | embedding.providers.bedrock_embedder | DEBUG logging DISABLED
+2026-05-21 11:40:09 | INFO     | embedding.providers.google_vertex_embedder | DEBUG logging DISABLED
+2026-05-21 11:40:09 | INFO     | embedding.providers.cohere_embedder | DEBUG logging DISABLED
+2026-05-21 11:40:09 | INFO     | embedding.providers.voyage_embedder | DEBUG logging DISABLED
+2026-05-21 11:40:09 | INFO     | embedding.providers.jina_embedder | DEBUG logging DISABLED
+2026-05-21 11:40:09 | INFO     | embedding.providers.huggingface_embedder | DEBUG logging DISABLED
+2026-05-21 11:40:09 | INFO     | embedding.providers.sentence_transformer_embedder | DEBUG logging DISABLED
+2026-05-21 11:40:09 | INFO     | embedding.providers.instructor_embedder | DEBUG logging DISABLED
+2026-05-21 11:40:09 | INFO     | embedding.providers.fastembed_embedder | DEBUG logging DISABLED
+2026-05-21 11:40:09 | INFO     | embedding.providers.ollama_embedder | DEBUG logging DISABLED
+2026-05-21 11:40:09 | INFO     | embedding.providers.splade_embedder | DEBUG logging DISABLED
+2026-05-21 11:40:09 | INFO     | embedding.providers.bm25_embedder | DEBUG logging DISABLED
+2026-05-21 11:40:09 | INFO     | embedding.providers.colbert_embedder | DEBUG logging DISABLED
+2026-05-21 11:40:09 | INFO     | embedding.providers.hybrid_embedder | DEBUG logging DISABLED
+2026-05-21 11:40:09 | INFO     | embedding.providers.clip_embedder | DEBUG logging DISABLED
+2026-05-21 11:40:09 | INFO     | embedding.providers.bedrock_embedder | -------START Initializing BedrockEmbedder-----------
+2026-05-21 11:40:10 | INFO     | embedding.providers.bedrock_embedder | -------END Bedrock client initialized successfully---------------
+2026-05-21 11:40:10 | INFO     | vector_store.factory | create execution started
+2026-05-21 11:40:10 | INFO     | vector_store.factory | Vector store provider selected: s3_vector
+2026-05-21 11:40:10 | INFO     | vector_store.factory | _import_class execution started
+2026-05-21 11:40:10 | INFO     | vector_store.stores.pgvector_store | DEBUG logging DISABLED
+2026-05-21 11:40:10 | INFO     | vector_store.stores.pinecone_store | DEBUG logging DISABLED
+2026-05-21 11:40:10 | INFO     | vector_store.stores.weaviate_store | DEBUG logging DISABLED
+2026-05-21 11:40:10 | INFO     | vector_store.stores.qdrant_store | DEBUG logging DISABLED
+2026-05-21 11:40:10 | INFO     | vector_store.stores.milvus_store | DEBUG logging DISABLED
+2026-05-21 11:40:10 | INFO     | vector_store.stores.elasticsearch_store | DEBUG logging DISABLED
+2026-05-21 11:40:10 | INFO     | vector_store.stores.faiss_store | DEBUG logging DISABLED
+2026-05-21 11:40:10 | INFO     | vector_store.stores.chroma_store | DEBUG logging DISABLED
+2026-05-21 11:40:10 | INFO     | vector_store.stores.s3_vector_store | DEBUG logging DISABLED
+2026-05-21 11:40:10 | INFO     | vector_store.stores.gcs_vector_store | DEBUG logging DISABLED
+2026-05-21 11:40:10 | INFO     | vector_store.stores.azure_blob_vector_store | DEBUG logging DISABLED
+2026-05-21 11:40:10 | INFO     | vector_store.factory | _import_class execution completed successfully
+2026-05-21 11:40:10 | INFO     | vector_store.factory | _import_class execution completed in 0.0188 seconds
+2026-05-21 11:40:10 | INFO     | vector_store.factory | Creating vector store: S3VectorStore
+2026-05-21 11:40:10 | INFO     | vector_store.stores.s3_vector_store | Initializing S3VectorStore
+2026-05-21 11:40:10 | INFO     | vector_store.factory | create execution completed successfully
+2026-05-21 11:40:10 | INFO     | vector_store.factory | create execution completed in 0.0207 seconds
+2026-05-21 11:40:10 | INFO     | vector_store.stores.s3_vector_store | Connecting to S3 Vector Store
+2026-05-21 11:40:10 | INFO     | vector_store.stores.s3_vector_store | Connected to S3 Vector Store successfully
+2026-05-21 11:40:10 | INFO     | embedding.providers.bedrock_embedder | Starting Bedrock embedding generation for 1 text(s)
+2026-05-21 11:40:11 | ERROR    | embedding.providers.bedrock_embedder | Bedrock embedding generation failed
+Traceback (most recent call last):
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\embedding\providers\bedrock_embedder.py", line 124, in embed_texts
+    all_vectors.append(self._embed_titan(text))
+                       ~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\embedding\providers\bedrock_embedder.py", line 63, in _embed_titan
+    response = self._client.invoke_model(
+        modelId=self.config.model,
+        body=json.dumps(payload),
+        contentType="application/json",
+    )
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\botocore\client.py", line 606, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\botocore\context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\botocore\client.py", line 1094, in _make_api_call
+    raise error_class(parsed_response, operation_name)
+botocore.errorfactory.ValidationException: An error occurred (ValidationException) when calling the InvokeModel operation: Malformed input request: #: only 1 subschema matches out of 2, please reformat your input and try again.
+2026-05-21 11:42:58 | INFO     | source.factory | DEBUG logging DISABLED
+2026-05-21 11:42:58 | INFO     | chunking.factory | DEBUG logging DISABLED
+2026-05-21 11:43:00 | INFO     | embedding.factory | DEBUG logging DISABLED
+2026-05-21 11:43:00 | INFO     | extractors.factory | DEBUG logging DISABLED
+2026-05-21 11:43:00 | INFO     | extractors.pdf_extractor | DEBUG logging DISABLED
+2026-05-21 11:43:01 | INFO     | extractors.excel_extractor | DEBUG logging DISABLED
+2026-05-21 11:43:01 | INFO     | extractors.word_extractor | DEBUG logging DISABLED
+2026-05-21 11:43:01 | INFO     | extractors.ppt_extractor | DEBUG logging DISABLED
+2026-05-21 11:43:01 | INFO     | extractors.image_extractor | DEBUG logging DISABLED
+2026-05-21 11:43:01 | INFO     | vector_store.factory | DEBUG logging DISABLED
+2026-05-21 11:43:01 | INFO     | extractors.ocr_config | DEBUG logging DISABLED
+2026-05-21 11:43:01 | INFO     | extractors.ocr_config | configure_tesseract execution started
+2026-05-21 11:43:01 | INFO     | extractors.ocr_config | Configuring Tesseract OCR
+2026-05-21 11:43:01 | INFO     | extractors.ocr_config | Tesseract path configured: D:\Tesseract\tesseract.exe
+2026-05-21 11:43:01 | INFO     | extractors.ocr_config | configure_tesseract execution completed successfully
+2026-05-21 11:43:01 | INFO     | extractors.ocr_config | configure_tesseract execution completed in 0.0011 seconds
+2026-05-21 11:43:01 | INFO     | source.factory | create execution started
+2026-05-21 11:43:01 | INFO     | source.factory | _import_class execution started
+2026-05-21 11:43:01 | INFO     | source.s3_source | DEBUG logging DISABLED
+2026-05-21 11:43:01 | INFO     | source.utils | DEBUG logging DISABLED
+2026-05-21 11:43:01 | INFO     | source.factory | _import_class execution completed successfully
+2026-05-21 11:43:01 | INFO     | source.factory | _import_class execution completed in 0.1057 seconds
+2026-05-21 11:43:01 | INFO     | source.factory | Creating source provider: S3Source
+2026-05-21 11:43:01 | INFO     | source.s3_source | Initializing S3 source
+2026-05-21 11:43:01 | INFO     | source.utils | ensure_dir execution started
+2026-05-21 11:43:01 | INFO     | source.utils | ensure_dir execution completed successfully
+2026-05-21 11:43:01 | INFO     | source.utils | ensure_dir execution completed in 0.0009 seconds
+2026-05-21 11:43:01 | INFO     | source.s3_source | S3 client initialized successfully
+2026-05-21 11:43:01 | INFO     | source.factory | create execution completed successfully
+2026-05-21 11:43:01 | INFO     | source.factory | create execution completed in 0.3313 seconds
+2026-05-21 11:43:01 | INFO     | source.s3_source | Starting S3 file download process
+2026-05-21 11:43:13 | INFO     | __main__ | DEBUG logging DISABLED
+2026-05-21 11:43:13 | INFO     | source.factory | DEBUG logging DISABLED
+2026-05-21 11:43:13 | INFO     | chunking.factory | DEBUG logging DISABLED
+2026-05-21 11:43:15 | INFO     | embedding.factory | DEBUG logging DISABLED
+2026-05-21 11:43:15 | INFO     | extractors.factory | DEBUG logging DISABLED
+2026-05-21 11:43:15 | INFO     | extractors.pdf_extractor | DEBUG logging DISABLED
+2026-05-21 11:43:15 | INFO     | extractors.excel_extractor | DEBUG logging DISABLED
+2026-05-21 11:43:15 | INFO     | extractors.word_extractor | DEBUG logging DISABLED
+2026-05-21 11:43:15 | INFO     | extractors.ppt_extractor | DEBUG logging DISABLED
+2026-05-21 11:43:15 | INFO     | extractors.image_extractor | DEBUG logging DISABLED
+2026-05-21 11:43:15 | INFO     | vector_store.factory | DEBUG logging DISABLED
+2026-05-21 11:43:15 | INFO     | extractors.ocr_config | DEBUG logging DISABLED
+2026-05-21 11:43:15 | INFO     | extractors.ocr_config | configure_tesseract execution started
+2026-05-21 11:43:15 | INFO     | extractors.ocr_config | Configuring Tesseract OCR
+2026-05-21 11:43:15 | INFO     | extractors.ocr_config | Tesseract path configured: D:\Tesseract\tesseract.exe
+2026-05-21 11:43:15 | INFO     | extractors.ocr_config | configure_tesseract execution completed successfully
+2026-05-21 11:43:15 | INFO     | extractors.ocr_config | configure_tesseract execution completed in 0.0009 seconds
+2026-05-21 11:43:15 | INFO     | __main__ | main execution started
+2026-05-21 11:43:15 | INFO     | __main__ | load_config execution started
+2026-05-21 11:43:15 | INFO     | __main__ | load_config execution completed successfully
+2026-05-21 11:43:15 | INFO     | __main__ | load_config execution completed in 0.0138 seconds
+2026-05-21 11:43:15 | INFO     | __main__ | run_pipeline execution started
+2026-05-21 11:43:15 | INFO     | __main__ | download_source_files execution started
+2026-05-21 11:43:15 | INFO     | source.factory | create execution started
+2026-05-21 11:43:15 | INFO     | source.factory | _import_class execution started
+2026-05-21 11:43:15 | INFO     | source.s3_source | DEBUG logging DISABLED
+2026-05-21 11:43:16 | INFO     | source.utils | DEBUG logging DISABLED
+2026-05-21 11:43:16 | INFO     | source.factory | _import_class execution completed successfully
+2026-05-21 11:43:16 | INFO     | source.factory | _import_class execution completed in 0.1042 seconds
+2026-05-21 11:43:16 | INFO     | source.factory | Creating source provider: S3Source
+2026-05-21 11:43:16 | INFO     | source.s3_source | Initializing S3 source
+2026-05-21 11:43:16 | INFO     | source.utils | ensure_dir execution started
+2026-05-21 11:43:16 | INFO     | source.utils | ensure_dir execution completed successfully
+2026-05-21 11:43:16 | INFO     | source.utils | ensure_dir execution completed in 0.0008 seconds
+2026-05-21 11:43:16 | INFO     | source.s3_source | S3 client initialized successfully
+2026-05-21 11:43:16 | INFO     | source.factory | create execution completed successfully
+2026-05-21 11:43:16 | INFO     | source.factory | create execution completed in 0.2991 seconds
+2026-05-21 11:43:16 | INFO     | source.s3_source | Starting S3 file download process
+2026-05-21 11:43:16 | INFO     | source.s3_source | Downloading S3 object: raw-documents/CrowdStrike Scheduled Search.pdf
+2026-05-21 11:43:18 | INFO     | source.s3_source | S3 file downloaded successfully: data\CrowdStrike Scheduled Search.pdf
+2026-05-21 11:43:18 | INFO     | source.s3_source | Downloading S3 object: raw-documents/cortex-xdr.pdf
+2026-05-21 11:43:18 | INFO     | source.s3_source | S3 file downloaded successfully: data\cortex-xdr.pdf
+2026-05-21 11:43:18 | INFO     | source.s3_source | Downloading S3 object: raw-documents/sample.txt1
+2026-05-21 11:43:18 | INFO     | source.s3_source | S3 file downloaded successfully: data\sample.txt1
+2026-05-21 11:43:18 | INFO     | source.s3_source | Downloading S3 object: raw-documents/test.pdf
+2026-05-21 11:43:19 | INFO     | source.s3_source | S3 file downloaded successfully: data\test.pdf
+2026-05-21 11:43:19 | INFO     | source.s3_source | Total S3 files downloaded: 4
+2026-05-21 11:43:19 | INFO     | __main__ | download_source_files execution completed successfully
+2026-05-21 11:43:19 | INFO     | __main__ | download_source_files execution completed in 3.1434 seconds
+2026-05-21 11:43:19 | INFO     | __main__ | extract_documents execution started
+2026-05-21 11:43:19 | INFO     | extractors.factory | Selecting extractor for file type: pdf
+2026-05-21 11:43:19 | INFO     | extractors.factory | Extractor selected: PDFExtractor
+2026-05-21 11:43:19 | INFO     | extractors.pdf_extractor | Starting PDF extraction: data\CrowdStrike Scheduled Search.pdf
+2026-05-21 11:43:19 | INFO     | extractors.pdf_extractor | Attempting PyMuPDF text extraction
+2026-05-21 11:43:20 | INFO     | extractors.pdf_extractor | PyMuPDF extraction completed
+2026-05-21 11:43:20 | WARNING  | extractors.pdf_extractor | OCR fallback triggered for PDF: data\CrowdStrike Scheduled Search.pdf
+2026-05-21 11:43:20 | ERROR    | extractors.pdf_extractor | OCR extraction failed
+Traceback (most recent call last):
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\pdf2image\pdf2image.py", line 581, in pdfinfo_from_path
+    proc = Popen(command, env=env, stdout=PIPE, stderr=PIPE)
+  File "C:\Users\kamalesh.saksoft\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 1039, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        pass_fds, cwd, env,
+                        ^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+                        gid, gids, uid, umask,
+                        ^^^^^^^^^^^^^^^^^^^^^^
+                        start_new_session, process_group)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kamalesh.saksoft\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 1554, in _execute_child
+    hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+                       ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+                             # no special security
+                             ^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+                             cwd,
+                             ^^^^
+                             startupinfo)
+                             ^^^^^^^^^^^^
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\extractors\pdf_extractor.py", line 61, in extract_text
+    images = convert_from_path(file_path)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\pdf2image\pdf2image.py", line 127, in convert_from_path
+    page_count = pdfinfo_from_path(
+                 ~~~~~~~~~~~~~~~~~^
+        pdf_path, userpw, ownerpw, poppler_path=poppler_path
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )["Pages"]
+    ^
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\pdf2image\pdf2image.py", line 607, in pdfinfo_from_path
+    raise PDFInfoNotInstalledError(
+        "Unable to get page count. Is poppler installed and in PATH?"
+    )
+pdf2image.exceptions.PDFInfoNotInstalledError: Unable to get page count. Is poppler installed and in PATH?
+2026-05-21 11:43:20 | INFO     | extractors.pdf_extractor | PDF extraction completed successfully: data\CrowdStrike Scheduled Search.pdf
+2026-05-21 11:43:20 | INFO     | extractors.factory | Selecting extractor for file type: pdf
+2026-05-21 11:43:20 | INFO     | extractors.factory | Extractor selected: PDFExtractor
+2026-05-21 11:43:20 | INFO     | extractors.pdf_extractor | Starting PDF extraction: data\cortex-xdr.pdf
+2026-05-21 11:43:20 | INFO     | extractors.pdf_extractor | Attempting PyMuPDF text extraction
+2026-05-21 11:43:20 | INFO     | extractors.pdf_extractor | PyMuPDF extraction completed
+2026-05-21 11:43:20 | INFO     | extractors.pdf_extractor | PDF extraction completed successfully: data\cortex-xdr.pdf
+2026-05-21 11:43:20 | INFO     | extractors.factory | Selecting extractor for file type: txt1
+2026-05-21 11:43:20 | WARNING  | extractors.factory | Unsupported extractor type requested: txt1
+2026-05-21 11:43:20 | INFO     | extractors.factory | Selecting extractor for file type: pdf
+2026-05-21 11:43:20 | INFO     | extractors.factory | Extractor selected: PDFExtractor
+2026-05-21 11:43:20 | INFO     | extractors.pdf_extractor | Starting PDF extraction: data\test.pdf
+2026-05-21 11:43:20 | INFO     | extractors.pdf_extractor | Attempting PyMuPDF text extraction
+2026-05-21 11:43:20 | INFO     | extractors.pdf_extractor | PyMuPDF extraction completed
+2026-05-21 11:43:20 | INFO     | extractors.pdf_extractor | PDF extraction completed successfully: data\test.pdf
+2026-05-21 11:43:20 | INFO     | __main__ | extract_documents execution completed successfully
+2026-05-21 11:43:20 | INFO     | __main__ | extract_documents execution completed in 1.1719 seconds
+2026-05-21 11:43:20 | INFO     | __main__ | chunk_documents execution started
+2026-05-21 11:43:20 | INFO     | chunking.factory | create execution started
+2026-05-21 11:43:20 | INFO     | chunking.factory | Initializing chunking configuration
+2026-05-21 11:43:20 | INFO     | chunking.factory | Chunking strategy selected: sentence
+2026-05-21 11:43:20 | INFO     | chunking.factory | _import_class execution started
+2026-05-21 11:43:20 | INFO     | chunking.providers.sentence_splitter | DEBUG logging DISABLED
+2026-05-21 11:43:20 | INFO     | chunking.providers.token_splitter | DEBUG logging DISABLED
+2026-05-21 11:43:20 | INFO     | chunking.providers.character_splitter | DEBUG logging DISABLED
+2026-05-21 11:43:20 | INFO     | chunking.providers.recursive_splitter | DEBUG logging DISABLED
+2026-05-21 11:43:20 | INFO     | chunking.providers.semantic_splitter | DEBUG logging DISABLED
+2026-05-21 11:43:20 | INFO     | chunking.factory | _import_class execution completed successfully
+2026-05-21 11:43:20 | INFO     | chunking.factory | _import_class execution completed in 0.0104 seconds
+2026-05-21 11:43:20 | INFO     | chunking.factory | Creating chunker: SentenceChunker
+2026-05-21 11:43:20 | INFO     | chunking.factory | Chunker initialized successfully: SentenceChunker
+2026-05-21 11:43:20 | INFO     | chunking.providers.sentence_splitter | Initializing SentenceChunker
+2026-05-21 11:43:20 | INFO     | chunking.factory | create execution completed successfully
+2026-05-21 11:43:20 | INFO     | chunking.factory | create execution completed in 0.1837 seconds
+2026-05-21 11:43:20 | INFO     | chunking.providers.sentence_splitter | Starting sentence chunking for 2 document(s)
+2026-05-21 11:43:22 | INFO     | chunking.providers.sentence_splitter | Sentence chunking completed successfully
+2026-05-21 11:43:22 | INFO     | __main__ | chunk_documents execution completed successfully
+2026-05-21 11:43:22 | INFO     | __main__ | chunk_documents execution completed in 1.8185 seconds
+2026-05-21 11:43:22 | INFO     | __main__ | build_vector_index execution started
+2026-05-21 11:43:22 | INFO     | embedding.providers.openai_embedder | DEBUG logging DISABLED
+2026-05-21 11:43:22 | INFO     | embedding.providers.azure_openai_embedder | DEBUG logging DISABLED
+2026-05-21 11:43:22 | INFO     | embedding.providers.bedrock_embedder | DEBUG logging DISABLED
+2026-05-21 11:43:22 | INFO     | embedding.providers.google_vertex_embedder | DEBUG logging DISABLED
+2026-05-21 11:43:22 | INFO     | embedding.providers.cohere_embedder | DEBUG logging DISABLED
+2026-05-21 11:43:22 | INFO     | embedding.providers.voyage_embedder | DEBUG logging DISABLED
+2026-05-21 11:43:22 | INFO     | embedding.providers.jina_embedder | DEBUG logging DISABLED
+2026-05-21 11:43:22 | INFO     | embedding.providers.huggingface_embedder | DEBUG logging DISABLED
+2026-05-21 11:43:22 | INFO     | embedding.providers.sentence_transformer_embedder | DEBUG logging DISABLED
+2026-05-21 11:43:22 | INFO     | embedding.providers.instructor_embedder | DEBUG logging DISABLED
+2026-05-21 11:43:22 | INFO     | embedding.providers.fastembed_embedder | DEBUG logging DISABLED
+2026-05-21 11:43:22 | INFO     | embedding.providers.ollama_embedder | DEBUG logging DISABLED
+2026-05-21 11:43:22 | INFO     | embedding.providers.splade_embedder | DEBUG logging DISABLED
+2026-05-21 11:43:22 | INFO     | embedding.providers.bm25_embedder | DEBUG logging DISABLED
+2026-05-21 11:43:22 | INFO     | embedding.providers.colbert_embedder | DEBUG logging DISABLED
+2026-05-21 11:43:22 | INFO     | embedding.providers.hybrid_embedder | DEBUG logging DISABLED
+2026-05-21 11:43:22 | INFO     | embedding.providers.clip_embedder | DEBUG logging DISABLED
+2026-05-21 11:43:22 | INFO     | embedding.providers.bedrock_embedder | -------START Initializing BedrockEmbedder-----------
+2026-05-21 11:43:22 | INFO     | embedding.providers.bedrock_embedder | -------END Bedrock client initialized successfully---------------
+2026-05-21 11:43:23 | INFO     | vector_store.factory | create execution started
+2026-05-21 11:43:23 | INFO     | vector_store.factory | Vector store provider selected: s3_vector
+2026-05-21 11:43:23 | INFO     | vector_store.factory | _import_class execution started
+2026-05-21 11:43:23 | INFO     | vector_store.stores.pgvector_store | DEBUG logging DISABLED
+2026-05-21 11:43:23 | INFO     | vector_store.stores.pinecone_store | DEBUG logging DISABLED
+2026-05-21 11:43:23 | INFO     | vector_store.stores.weaviate_store | DEBUG logging DISABLED
+2026-05-21 11:43:23 | INFO     | vector_store.stores.qdrant_store | DEBUG logging DISABLED
+2026-05-21 11:43:23 | INFO     | vector_store.stores.milvus_store | DEBUG logging DISABLED
+2026-05-21 11:43:23 | INFO     | vector_store.stores.elasticsearch_store | DEBUG logging DISABLED
+2026-05-21 11:43:23 | INFO     | vector_store.stores.faiss_store | DEBUG logging DISABLED
+2026-05-21 11:43:23 | INFO     | vector_store.stores.chroma_store | DEBUG logging DISABLED
+2026-05-21 11:43:23 | INFO     | vector_store.stores.s3_vector_store | DEBUG logging DISABLED
+2026-05-21 11:43:23 | INFO     | vector_store.stores.gcs_vector_store | DEBUG logging DISABLED
+2026-05-21 11:43:23 | INFO     | vector_store.stores.azure_blob_vector_store | DEBUG logging DISABLED
+2026-05-21 11:43:23 | INFO     | vector_store.factory | _import_class execution completed successfully
+2026-05-21 11:43:23 | INFO     | vector_store.factory | _import_class execution completed in 0.0250 seconds
+2026-05-21 11:43:23 | INFO     | vector_store.factory | Creating vector store: S3VectorStore
+2026-05-21 11:43:23 | INFO     | vector_store.stores.s3_vector_store | Initializing S3VectorStore
+2026-05-21 11:43:23 | INFO     | vector_store.factory | create execution completed successfully
+2026-05-21 11:43:23 | INFO     | vector_store.factory | create execution completed in 0.0274 seconds
+2026-05-21 11:43:23 | INFO     | vector_store.stores.s3_vector_store | Connecting to S3 Vector Store
+2026-05-21 11:43:23 | INFO     | vector_store.stores.s3_vector_store | Connected to S3 Vector Store successfully
+2026-05-21 11:43:23 | INFO     | embedding.providers.bedrock_embedder | Starting Bedrock embedding generation for 29 text(s)
+2026-05-21 11:43:35 | INFO     | embedding.providers.bedrock_embedder | Bedrock embedding generation completed successfully
+2026-05-21 11:43:35 | INFO     | __main__ | build_vector_index execution completed successfully
+2026-05-21 11:43:35 | INFO     | __main__ | build_vector_index execution completed in 13.7965 seconds
+2026-05-21 11:43:35 | INFO     | __main__ | run_pipeline execution completed successfully
+2026-05-21 11:43:35 | INFO     | __main__ | run_pipeline execution completed in 19.9333 seconds
+2026-05-21 11:43:35 | INFO     | __main__ | main execution completed successfully
+2026-05-21 11:43:35 | INFO     | __main__ | main execution completed in 19.9493 seconds
+2026-05-21 11:51:24 | INFO     | __main__ | DEBUG logging DISABLED
+2026-05-21 11:51:24 | INFO     | source.factory | DEBUG logging DISABLED
+2026-05-21 11:51:24 | INFO     | chunking.factory | DEBUG logging DISABLED
+2026-05-21 11:51:27 | INFO     | embedding.factory | DEBUG logging DISABLED
+2026-05-21 11:51:27 | INFO     | extractors.factory | DEBUG logging DISABLED
+2026-05-21 11:51:27 | INFO     | extractors.pdf_extractor | DEBUG logging DISABLED
+2026-05-21 11:51:32 | INFO     | extractors.excel_extractor | DEBUG logging DISABLED
+2026-05-21 11:51:32 | INFO     | extractors.word_extractor | DEBUG logging DISABLED
+2026-05-21 11:51:32 | INFO     | extractors.ppt_extractor | DEBUG logging DISABLED
+2026-05-21 11:51:33 | INFO     | extractors.image_extractor | DEBUG logging DISABLED
+2026-05-21 11:51:33 | INFO     | vector_store.factory | DEBUG logging DISABLED
+2026-05-21 11:51:33 | INFO     | extractors.ocr_config | DEBUG logging DISABLED
+2026-05-21 11:51:33 | INFO     | extractors.ocr_config | configure_tesseract execution started
+2026-05-21 11:51:33 | INFO     | extractors.ocr_config | Configuring Tesseract OCR
+2026-05-21 11:51:33 | INFO     | extractors.ocr_config | Tesseract path configured: D:\Tesseract\tesseract.exe
+2026-05-21 11:51:33 | INFO     | extractors.ocr_config | configure_tesseract execution completed successfully
+2026-05-21 11:51:33 | INFO     | extractors.ocr_config | configure_tesseract execution completed in 0.0027 seconds
+2026-05-21 11:51:33 | INFO     | __main__ | main execution started
+2026-05-21 11:51:33 | INFO     | __main__ | load_config execution started
+2026-05-21 11:51:33 | INFO     | __main__ | load_config execution completed successfully
+2026-05-21 11:51:33 | INFO     | __main__ | load_config execution completed in 0.0301 seconds
+2026-05-21 11:51:33 | INFO     | __main__ | run_pipeline execution started
+2026-05-21 11:51:33 | INFO     | __main__ | download_source_files execution started
+2026-05-21 11:51:33 | INFO     | source.factory | create execution started
+2026-05-21 11:51:33 | INFO     | source.factory | _import_class execution started
+2026-05-21 11:51:33 | INFO     | source.s3_source | DEBUG logging DISABLED
+2026-05-21 11:51:33 | INFO     | source.utils | DEBUG logging DISABLED
+2026-05-21 11:51:33 | INFO     | source.factory | _import_class execution completed successfully
+2026-05-21 11:51:33 | INFO     | source.factory | _import_class execution completed in 0.2413 seconds
+2026-05-21 11:51:33 | INFO     | source.factory | Creating source provider: S3Source
+2026-05-21 11:51:33 | INFO     | source.s3_source | Initializing S3 source
+2026-05-21 11:51:33 | INFO     | source.utils | ensure_dir execution started
+2026-05-21 11:51:33 | INFO     | source.utils | ensure_dir execution completed successfully
+2026-05-21 11:51:33 | INFO     | source.utils | ensure_dir execution completed in 0.0007 seconds
+2026-05-21 11:51:34 | INFO     | source.s3_source | S3 client initialized successfully
+2026-05-21 11:51:34 | INFO     | source.factory | create execution completed successfully
+2026-05-21 11:51:34 | INFO     | source.factory | create execution completed in 0.7480 seconds
+2026-05-21 11:51:34 | INFO     | source.s3_source | Starting S3 file download process
+2026-05-21 11:51:35 | INFO     | source.s3_source | Downloading S3 object: raw-documents/CrowdStrike Scheduled Search.pdf
+2026-05-21 11:51:36 | INFO     | source.s3_source | S3 file downloaded successfully: data\CrowdStrike Scheduled Search.pdf
+2026-05-21 11:51:36 | INFO     | source.s3_source | Downloading S3 object: raw-documents/cortex-xdr.pdf
+2026-05-21 11:51:37 | INFO     | source.s3_source | S3 file downloaded successfully: data\cortex-xdr.pdf
+2026-05-21 11:51:37 | INFO     | source.s3_source | Downloading S3 object: raw-documents/sample.txt1
+2026-05-21 11:51:37 | INFO     | source.s3_source | S3 file downloaded successfully: data\sample.txt1
+2026-05-21 11:51:37 | INFO     | source.s3_source | Downloading S3 object: raw-documents/test.pdf
+2026-05-21 11:51:37 | INFO     | source.s3_source | S3 file downloaded successfully: data\test.pdf
+2026-05-21 11:51:37 | INFO     | source.s3_source | Total S3 files downloaded: 4
+2026-05-21 11:51:37 | INFO     | __main__ | download_source_files execution completed successfully
+2026-05-21 11:51:37 | INFO     | __main__ | download_source_files execution completed in 4.3138 seconds
+2026-05-21 11:51:37 | INFO     | __main__ | extract_documents execution started
+2026-05-21 11:51:37 | INFO     | extractors.factory | Selecting extractor for file type: pdf
+2026-05-21 11:51:37 | INFO     | extractors.factory | Extractor selected: PDFExtractor
+2026-05-21 11:51:37 | INFO     | extractors.pdf_extractor | Starting PDF extraction: data\CrowdStrike Scheduled Search.pdf
+2026-05-21 11:51:37 | INFO     | extractors.pdf_extractor | Attempting PyMuPDF text extraction
+2026-05-21 11:51:38 | INFO     | extractors.pdf_extractor | PyMuPDF extraction completed
+2026-05-21 11:51:38 | WARNING  | extractors.pdf_extractor | OCR fallback triggered for PDF: data\CrowdStrike Scheduled Search.pdf
+2026-05-21 11:51:38 | ERROR    | extractors.pdf_extractor | OCR extraction failed
+Traceback (most recent call last):
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\pdf2image\pdf2image.py", line 581, in pdfinfo_from_path
+    proc = Popen(command, env=env, stdout=PIPE, stderr=PIPE)
+  File "C:\Users\kamalesh.saksoft\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 1039, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        pass_fds, cwd, env,
+                        ^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+                        gid, gids, uid, umask,
+                        ^^^^^^^^^^^^^^^^^^^^^^
+                        start_new_session, process_group)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kamalesh.saksoft\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 1554, in _execute_child
+    hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+                       ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+                             # no special security
+                             ^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+                             cwd,
+                             ^^^^
+                             startupinfo)
+                             ^^^^^^^^^^^^
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\extractors\pdf_extractor.py", line 61, in extract_text
+    images = convert_from_path(file_path)
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\pdf2image\pdf2image.py", line 127, in convert_from_path
+    page_count = pdfinfo_from_path(
+                 ~~~~~~~~~~~~~~~~~^
+        pdf_path, userpw, ownerpw, poppler_path=poppler_path
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )["Pages"]
+    ^
+  File "D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\venv\Lib\site-packages\pdf2image\pdf2image.py", line 607, in pdfinfo_from_path
+    raise PDFInfoNotInstalledError(
+        "Unable to get page count. Is poppler installed and in PATH?"
+    )
+pdf2image.exceptions.PDFInfoNotInstalledError: Unable to get page count. Is poppler installed and in PATH?
+2026-05-21 11:51:38 | INFO     | extractors.pdf_extractor | PDF extraction completed successfully: data\CrowdStrike Scheduled Search.pdf
+2026-05-21 11:51:38 | INFO     | extractors.factory | Selecting extractor for file type: pdf
+2026-05-21 11:51:38 | INFO     | extractors.factory | Extractor selected: PDFExtractor
+2026-05-21 11:51:38 | INFO     | extractors.pdf_extractor | Starting PDF extraction: data\cortex-xdr.pdf
+2026-05-21 11:51:38 | INFO     | extractors.pdf_extractor | Attempting PyMuPDF text extraction
+2026-05-21 11:51:38 | INFO     | extractors.pdf_extractor | PyMuPDF extraction completed
+2026-05-21 11:51:38 | INFO     | extractors.pdf_extractor | PDF extraction completed successfully: data\cortex-xdr.pdf
+2026-05-21 11:51:38 | INFO     | extractors.factory | Selecting extractor for file type: txt1
+2026-05-21 11:51:38 | WARNING  | extractors.factory | Unsupported extractor type requested: txt1
+2026-05-21 11:51:38 | INFO     | extractors.factory | Selecting extractor for file type: pdf
+2026-05-21 11:51:38 | INFO     | extractors.factory | Extractor selected: PDFExtractor
+2026-05-21 11:51:38 | INFO     | extractors.pdf_extractor | Starting PDF extraction: data\test.pdf
+2026-05-21 11:51:38 | INFO     | extractors.pdf_extractor | Attempting PyMuPDF text extraction
+2026-05-21 11:51:38 | INFO     | extractors.pdf_extractor | PyMuPDF extraction completed
+2026-05-21 11:51:38 | INFO     | extractors.pdf_extractor | PDF extraction completed successfully: data\test.pdf
+2026-05-21 11:51:38 | INFO     | __main__ | extract_documents execution completed successfully
+2026-05-21 11:51:38 | INFO     | __main__ | extract_documents execution completed in 1.2790 seconds
+2026-05-21 11:51:38 | INFO     | __main__ | chunk_documents execution started
+2026-05-21 11:51:38 | INFO     | chunking.factory | create execution started
+2026-05-21 11:51:38 | INFO     | chunking.factory | Initializing chunking configuration
+2026-05-21 11:51:38 | INFO     | chunking.factory | Chunking strategy selected: sentence
+2026-05-21 11:51:38 | INFO     | chunking.factory | _import_class execution started
+2026-05-21 11:51:38 | INFO     | chunking.providers.sentence_splitter | DEBUG logging DISABLED
+2026-05-21 11:51:38 | INFO     | chunking.providers.token_splitter | DEBUG logging DISABLED
+2026-05-21 11:51:38 | INFO     | chunking.providers.character_splitter | DEBUG logging DISABLED
+2026-05-21 11:51:38 | INFO     | chunking.providers.recursive_splitter | DEBUG logging DISABLED
+2026-05-21 11:51:38 | INFO     | chunking.providers.semantic_splitter | DEBUG logging DISABLED
+2026-05-21 11:51:38 | INFO     | chunking.factory | _import_class execution completed successfully
+2026-05-21 11:51:38 | INFO     | chunking.factory | _import_class execution completed in 0.0110 seconds
+2026-05-21 11:51:38 | INFO     | chunking.factory | Creating chunker: SentenceChunker
+2026-05-21 11:51:38 | INFO     | chunking.factory | Chunker initialized successfully: SentenceChunker
+2026-05-21 11:51:38 | INFO     | chunking.providers.sentence_splitter | Initializing SentenceChunker
+2026-05-21 11:51:39 | INFO     | chunking.factory | create execution completed successfully
+2026-05-21 11:51:39 | INFO     | chunking.factory | create execution completed in 0.2533 seconds
+2026-05-21 11:51:39 | INFO     | chunking.providers.sentence_splitter | Starting sentence chunking for 2 document(s)
+2026-05-21 11:51:46 | INFO     | chunking.providers.sentence_splitter | Sentence chunking completed successfully
+2026-05-21 11:51:46 | INFO     | __main__ | chunk_documents execution completed successfully
+2026-05-21 11:51:46 | INFO     | __main__ | chunk_documents execution completed in 7.2566 seconds
+2026-05-21 11:51:46 | INFO     | __main__ | build_vector_index execution started
+2026-05-21 11:51:46 | INFO     | embedding.providers.openai_embedder | DEBUG logging DISABLED
+2026-05-21 11:51:46 | INFO     | embedding.providers.azure_openai_embedder | DEBUG logging DISABLED
+2026-05-21 11:51:46 | INFO     | embedding.providers.bedrock_embedder | DEBUG logging DISABLED
+2026-05-21 11:51:46 | INFO     | embedding.providers.google_vertex_embedder | DEBUG logging DISABLED
+2026-05-21 11:51:46 | INFO     | embedding.providers.cohere_embedder | DEBUG logging DISABLED
+2026-05-21 11:51:46 | INFO     | embedding.providers.voyage_embedder | DEBUG logging DISABLED
+2026-05-21 11:51:46 | INFO     | embedding.providers.jina_embedder | DEBUG logging DISABLED
+2026-05-21 11:51:46 | INFO     | embedding.providers.huggingface_embedder | DEBUG logging DISABLED
+2026-05-21 11:51:46 | INFO     | embedding.providers.sentence_transformer_embedder | DEBUG logging DISABLED
+2026-05-21 11:51:46 | INFO     | embedding.providers.instructor_embedder | DEBUG logging DISABLED
+2026-05-21 11:51:46 | INFO     | embedding.providers.fastembed_embedder | DEBUG logging DISABLED
+2026-05-21 11:51:46 | INFO     | embedding.providers.ollama_embedder | DEBUG logging DISABLED
+2026-05-21 11:51:46 | INFO     | embedding.providers.splade_embedder | DEBUG logging DISABLED
+2026-05-21 11:51:46 | INFO     | embedding.providers.bm25_embedder | DEBUG logging DISABLED
+2026-05-21 11:51:46 | INFO     | embedding.providers.colbert_embedder | DEBUG logging DISABLED
+2026-05-21 11:51:46 | INFO     | embedding.providers.hybrid_embedder | DEBUG logging DISABLED
+2026-05-21 11:51:46 | INFO     | embedding.providers.clip_embedder | DEBUG logging DISABLED
+2026-05-21 11:51:46 | INFO     | embedding.providers.bedrock_embedder | -------START Initializing BedrockEmbedder-----------
+2026-05-21 11:51:46 | INFO     | embedding.providers.bedrock_embedder | -------END Bedrock client initialized successfully---------------
+2026-05-21 11:51:50 | INFO     | vector_store.factory | create execution started
+2026-05-21 11:51:50 | INFO     | vector_store.factory | Vector store provider selected: s3_vector
+2026-05-21 11:51:50 | INFO     | vector_store.factory | _import_class execution started
+2026-05-21 11:51:50 | INFO     | vector_store.stores.pgvector_store | DEBUG logging DISABLED
+2026-05-21 11:51:50 | INFO     | vector_store.stores.pinecone_store | DEBUG logging DISABLED
+2026-05-21 11:51:50 | INFO     | vector_store.stores.weaviate_store | DEBUG logging DISABLED
+2026-05-21 11:51:50 | INFO     | vector_store.stores.qdrant_store | DEBUG logging DISABLED
+2026-05-21 11:51:50 | INFO     | vector_store.stores.milvus_store | DEBUG logging DISABLED
+2026-05-21 11:51:50 | INFO     | vector_store.stores.elasticsearch_store | DEBUG logging DISABLED
+2026-05-21 11:51:50 | INFO     | vector_store.stores.faiss_store | DEBUG logging DISABLED
+2026-05-21 11:51:50 | INFO     | vector_store.stores.chroma_store | DEBUG logging DISABLED
+2026-05-21 11:51:50 | INFO     | vector_store.stores.s3_vector_store | DEBUG logging DISABLED
+2026-05-21 11:51:50 | INFO     | vector_store.stores.gcs_vector_store | DEBUG logging DISABLED
+2026-05-21 11:51:50 | INFO     | vector_store.stores.azure_blob_vector_store | DEBUG logging DISABLED
+2026-05-21 11:51:50 | INFO     | vector_store.factory | _import_class execution completed successfully
+2026-05-21 11:51:50 | INFO     | vector_store.factory | _import_class execution completed in 0.1880 seconds
+2026-05-21 11:51:50 | INFO     | vector_store.factory | Creating vector store: S3VectorStore
+2026-05-21 11:51:50 | INFO     | vector_store.stores.s3_vector_store | Initializing S3VectorStore
+2026-05-21 11:51:50 | INFO     | vector_store.factory | create execution completed successfully
+2026-05-21 11:51:50 | INFO     | vector_store.factory | create execution completed in 0.2344 seconds
+2026-05-21 11:51:50 | INFO     | vector_store.stores.s3_vector_store | Connecting to S3 Vector Store
+2026-05-21 11:51:50 | INFO     | vector_store.stores.s3_vector_store | Connected to S3 Vector Store successfully
+2026-05-21 11:51:50 | INFO     | embedding.providers.bedrock_embedder | Starting Bedrock embedding generation for 29 text(s)
+2026-05-21 11:52:05 | INFO     | embedding.providers.bedrock_embedder | Bedrock embedding generation completed successfully
+2026-05-21 11:52:05 | INFO     | __main__ | build_vector_index execution completed successfully
+2026-05-21 11:52:05 | INFO     | __main__ | build_vector_index execution completed in 19.6616 seconds
+2026-05-21 11:52:05 | INFO     | __main__ | run_pipeline execution completed successfully
+2026-05-21 11:52:05 | INFO     | __main__ | run_pipeline execution completed in 32.5138 seconds
+2026-05-21 11:52:05 | INFO     | __main__ | main execution completed successfully
+2026-05-21 11:52:05 | INFO     | __main__ | main execution completed in 32.5602 seconds
+2026-05-21 11:56:54 | INFO     | __main__ | DEBUG logging DISABLED
+2026-05-21 11:56:54 | INFO     | source.factory | DEBUG logging DISABLED
+2026-05-21 11:56:54 | INFO     | chunking.factory | DEBUG logging DISABLED
+2026-05-21 11:56:57 | INFO     | embedding.factory | DEBUG logging DISABLED
+2026-05-21 11:56:57 | INFO     | extractors.factory | DEBUG logging DISABLED
+2026-05-21 11:56:57 | INFO     | extractors.pdf_extractor | DEBUG logging DISABLED
+2026-05-21 11:57:01 | INFO     | extractors.excel_extractor | DEBUG logging DISABLED
+2026-05-21 11:57:01 | INFO     | extractors.word_extractor | DEBUG logging DISABLED
+2026-05-21 11:57:01 | INFO     | extractors.ppt_extractor | DEBUG logging DISABLED
+2026-05-21 11:57:01 | INFO     | extractors.image_extractor | DEBUG logging DISABLED
+2026-05-21 11:57:01 | INFO     | vector_store.factory | DEBUG logging DISABLED
+2026-05-21 11:57:01 | INFO     | extractors.ocr_config | DEBUG logging DISABLED
+2026-05-21 11:57:01 | INFO     | extractors.ocr_config | configure_tesseract execution started
+2026-05-21 11:57:01 | INFO     | extractors.ocr_config | Configuring Tesseract OCR
+2026-05-21 11:57:01 | INFO     | extractors.ocr_config | Tesseract path configured: D:\Tesseract\tesseract.exe
+2026-05-21 11:57:01 | INFO     | extractors.ocr_config | configure_tesseract execution completed successfully
+2026-05-21 11:57:01 | INFO     | extractors.ocr_config | configure_tesseract execution completed in 0.0011 seconds
+2026-05-21 11:57:01 | INFO     | __main__ | main execution started
+2026-05-21 11:57:01 | INFO     | __main__ | load_config execution started
+2026-05-21 11:57:01 | INFO     | __main__ | load_config execution completed successfully
+2026-05-21 11:57:01 | INFO     | __main__ | load_config execution completed in 0.0081 seconds
+2026-05-21 11:57:01 | INFO     | __main__ | run_pipeline execution started
+2026-05-21 11:57:01 | INFO     | __main__ | download_source_files execution started
+2026-05-21 11:57:01 | INFO     | source.factory | create execution started
+2026-05-21 11:57:01 | INFO     | source.factory | _import_class execution started
+2026-05-21 11:57:01 | INFO     | source.s3_source | DEBUG logging DISABLED
+2026-05-21 11:57:01 | INFO     | source.utils | DEBUG logging DISABLED
+2026-05-21 11:57:01 | INFO     | source.factory | _import_class execution completed successfully
+2026-05-21 11:57:01 | INFO     | source.factory | _import_class execution completed in 0.1693 seconds
+2026-05-21 11:57:01 | INFO     | source.factory | Creating source provider: S3Source
+2026-05-21 11:57:01 | INFO     | source.s3_source | Initializing S3 source
+2026-05-21 11:57:01 | INFO     | source.utils | ensure_dir execution started
+2026-05-21 11:57:01 | INFO     | source.utils | ensure_dir execution completed successfully
+2026-05-21 11:57:01 | INFO     | source.utils | ensure_dir execution completed in 0.0005 seconds
+2026-05-21 11:57:02 | INFO     | source.s3_source | S3 client initialized successfully
+2026-05-21 11:57:02 | INFO     | source.factory | create execution completed successfully
+2026-05-21 11:57:02 | INFO     | source.factory | create execution completed in 0.4571 seconds
+2026-05-21 11:57:02 | INFO     | source.s3_source | Starting S3 file download process
+2026-05-21 11:57:02 | INFO     | source.s3_source | Downloading S3 object: raw-documents/test.pdf
+2026-05-21 11:57:03 | INFO     | source.s3_source | S3 file downloaded successfully: data\test.pdf
+2026-05-21 11:57:03 | INFO     | source.s3_source | Total S3 files downloaded: 1
+2026-05-21 11:57:03 | INFO     | __main__ | download_source_files execution completed successfully
+2026-05-21 11:57:03 | INFO     | __main__ | download_source_files execution completed in 1.5555 seconds
+2026-05-21 11:57:03 | INFO     | __main__ | extract_documents execution started
+2026-05-21 11:57:03 | INFO     | extractors.factory | Selecting extractor for file type: pdf
+2026-05-21 11:57:03 | INFO     | extractors.factory | Extractor selected: PDFExtractor
+2026-05-21 11:57:03 | INFO     | extractors.pdf_extractor | Starting PDF extraction: data\test.pdf
+2026-05-21 11:57:03 | INFO     | extractors.pdf_extractor | Attempting PyMuPDF text extraction
+2026-05-21 11:57:03 | INFO     | extractors.pdf_extractor | PyMuPDF extraction completed
+2026-05-21 11:57:03 | INFO     | extractors.pdf_extractor | PDF extraction completed successfully: data\test.pdf
+2026-05-21 11:57:03 | INFO     | __main__ | extract_documents execution completed successfully
+2026-05-21 11:57:03 | INFO     | __main__ | extract_documents execution completed in 0.0714 seconds
+2026-05-21 11:57:03 | INFO     | __main__ | chunk_documents execution started
+2026-05-21 11:57:03 | INFO     | chunking.factory | create execution started
+2026-05-21 11:57:03 | INFO     | chunking.factory | Initializing chunking configuration
+2026-05-21 11:57:03 | INFO     | chunking.factory | Chunking strategy selected: sentence
+2026-05-21 11:57:03 | INFO     | chunking.factory | _import_class execution started
+2026-05-21 11:57:03 | INFO     | chunking.providers.sentence_splitter | DEBUG logging DISABLED
+2026-05-21 11:57:03 | INFO     | chunking.providers.token_splitter | DEBUG logging DISABLED
+2026-05-21 11:57:03 | INFO     | chunking.providers.character_splitter | DEBUG logging DISABLED
+2026-05-21 11:57:03 | INFO     | chunking.providers.recursive_splitter | DEBUG logging DISABLED
+2026-05-21 11:57:03 | INFO     | chunking.providers.semantic_splitter | DEBUG logging DISABLED
+2026-05-21 11:57:03 | INFO     | chunking.factory | _import_class execution completed successfully
+2026-05-21 11:57:03 | INFO     | chunking.factory | _import_class execution completed in 0.0136 seconds
+2026-05-21 11:57:03 | INFO     | chunking.factory | Creating chunker: SentenceChunker
+2026-05-21 11:57:03 | INFO     | chunking.factory | Chunker initialized successfully: SentenceChunker
+2026-05-21 11:57:03 | INFO     | chunking.providers.sentence_splitter | Initializing SentenceChunker
+2026-05-21 11:57:03 | INFO     | chunking.factory | create execution completed successfully
+2026-05-21 11:57:03 | INFO     | chunking.factory | create execution completed in 0.2291 seconds
+2026-05-21 11:57:03 | INFO     | chunking.providers.sentence_splitter | Starting sentence chunking for 1 document(s)
+2026-05-21 11:57:08 | INFO     | chunking.providers.sentence_splitter | Sentence chunking completed successfully
+2026-05-21 11:57:08 | INFO     | __main__ | chunk_documents execution completed successfully
+2026-05-21 11:57:08 | INFO     | __main__ | chunk_documents execution completed in 5.4724 seconds
+2026-05-21 11:57:08 | INFO     | __main__ | build_vector_index execution started
+2026-05-21 11:57:08 | INFO     | embedding.providers.openai_embedder | DEBUG logging DISABLED
+2026-05-21 11:57:08 | INFO     | embedding.providers.azure_openai_embedder | DEBUG logging DISABLED
+2026-05-21 11:57:08 | INFO     | embedding.providers.bedrock_embedder | DEBUG logging DISABLED
+2026-05-21 11:57:08 | INFO     | embedding.providers.google_vertex_embedder | DEBUG logging DISABLED
+2026-05-21 11:57:08 | INFO     | embedding.providers.cohere_embedder | DEBUG logging DISABLED
+2026-05-21 11:57:08 | INFO     | embedding.providers.voyage_embedder | DEBUG logging DISABLED
+2026-05-21 11:57:08 | INFO     | embedding.providers.jina_embedder | DEBUG logging DISABLED
+2026-05-21 11:57:08 | INFO     | embedding.providers.huggingface_embedder | DEBUG logging DISABLED
+2026-05-21 11:57:08 | INFO     | embedding.providers.sentence_transformer_embedder | DEBUG logging DISABLED
+2026-05-21 11:57:08 | INFO     | embedding.providers.instructor_embedder | DEBUG logging DISABLED
+2026-05-21 11:57:08 | INFO     | embedding.providers.fastembed_embedder | DEBUG logging DISABLED
+2026-05-21 11:57:08 | INFO     | embedding.providers.ollama_embedder | DEBUG logging DISABLED
+2026-05-21 11:57:08 | INFO     | embedding.providers.splade_embedder | DEBUG logging DISABLED
+2026-05-21 11:57:08 | INFO     | embedding.providers.bm25_embedder | DEBUG logging DISABLED
+2026-05-21 11:57:08 | INFO     | embedding.providers.colbert_embedder | DEBUG logging DISABLED
+2026-05-21 11:57:08 | INFO     | embedding.providers.hybrid_embedder | DEBUG logging DISABLED
+2026-05-21 11:57:08 | INFO     | embedding.providers.clip_embedder | DEBUG logging DISABLED
+2026-05-21 11:57:08 | INFO     | embedding.providers.bedrock_embedder | -------START Initializing BedrockEmbedder-----------
+2026-05-21 11:57:08 | INFO     | embedding.providers.bedrock_embedder | -------END Bedrock client initialized successfully---------------
+2026-05-21 11:57:09 | INFO     | vector_store.factory | create execution started
+2026-05-21 11:57:09 | INFO     | vector_store.factory | Vector store provider selected: s3_vector
+2026-05-21 11:57:09 | INFO     | vector_store.factory | _import_class execution started
+2026-05-21 11:57:09 | INFO     | vector_store.stores.pgvector_store | DEBUG logging DISABLED
+2026-05-21 11:57:09 | INFO     | vector_store.stores.pinecone_store | DEBUG logging DISABLED
+2026-05-21 11:57:09 | INFO     | vector_store.stores.weaviate_store | DEBUG logging DISABLED
+2026-05-21 11:57:09 | INFO     | vector_store.stores.qdrant_store | DEBUG logging DISABLED
+2026-05-21 11:57:09 | INFO     | vector_store.stores.milvus_store | DEBUG logging DISABLED
+2026-05-21 11:57:09 | INFO     | vector_store.stores.elasticsearch_store | DEBUG logging DISABLED
+2026-05-21 11:57:09 | INFO     | vector_store.stores.faiss_store | DEBUG logging DISABLED
+2026-05-21 11:57:09 | INFO     | vector_store.stores.chroma_store | DEBUG logging DISABLED
+2026-05-21 11:57:09 | INFO     | vector_store.stores.s3_vector_store | DEBUG logging DISABLED
+2026-05-21 11:57:09 | INFO     | vector_store.stores.gcs_vector_store | DEBUG logging DISABLED
+2026-05-21 11:57:09 | INFO     | vector_store.stores.azure_blob_vector_store | DEBUG logging DISABLED
+2026-05-21 11:57:09 | INFO     | vector_store.factory | _import_class execution completed successfully
+2026-05-21 11:57:09 | INFO     | vector_store.factory | _import_class execution completed in 0.0189 seconds
+2026-05-21 11:57:09 | INFO     | vector_store.factory | Creating vector store: S3VectorStore
+2026-05-21 11:57:09 | INFO     | vector_store.stores.s3_vector_store | Initializing S3VectorStore
+2026-05-21 11:57:09 | INFO     | vector_store.factory | create execution completed successfully
+2026-05-21 11:57:09 | INFO     | vector_store.factory | create execution completed in 0.0202 seconds
+2026-05-21 11:57:09 | INFO     | vector_store.stores.s3_vector_store | Connecting to S3 Vector Store
+2026-05-21 11:57:09 | INFO     | vector_store.stores.s3_vector_store | Connected to S3 Vector Store successfully
+2026-05-21 11:57:09 | INFO     | embedding.providers.bedrock_embedder | Starting Bedrock embedding generation for 19 text(s)
+2026-05-21 11:57:18 | INFO     | embedding.providers.bedrock_embedder | Bedrock embedding generation completed successfully
+2026-05-21 11:57:18 | INFO     | __main__ | build_vector_index execution completed successfully
+2026-05-21 11:57:18 | INFO     | __main__ | build_vector_index execution completed in 9.9079 seconds
+2026-05-21 11:57:18 | INFO     | __main__ | run_pipeline execution completed successfully
+2026-05-21 11:57:18 | INFO     | __main__ | run_pipeline execution completed in 17.0092 seconds
+2026-05-21 11:57:18 | INFO     | __main__ | main execution completed successfully
+2026-05-21 11:57:18 | INFO     | __main__ | main execution completed in 17.0187 seconds

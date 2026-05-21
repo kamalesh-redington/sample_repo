@@ -1,6 +1,7 @@
 from sqlalchemy.orm import sessionmaker
 
 from app.config.logger import setup_logger
+from app.config.timer import log_execution_time
 from app.db.base import engine
 
 logger = setup_logger(__name__)
@@ -23,6 +24,7 @@ except Exception as e:
     raise
 
 
+@log_execution_time(logger)
 def get_session():
     logger.debug("Database session requested")
 

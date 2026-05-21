@@ -56,8 +56,6 @@ class BedrockEmbedder(BaseEmbedder):
 
         payload = {
             "inputText": text,
-            "dimensions": self.config.dimensions,
-            "normalize": self.config.normalize,
         }
 
         response = self._client.invoke_model(

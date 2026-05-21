@@ -6,6 +6,7 @@ from fastapi import HTTPException, status
 from sqlalchemy.orm import joinedload
 
 from app.config.logger import setup_logger
+from app.config.timer import log_execution_time
 from app.db.session import get_session
 from app.models.tables import User
 
@@ -14,6 +15,7 @@ logger = setup_logger(__name__)
 _token_store: Dict[str, int] = {}
 
 
+@log_execution_time(logger)
 def hash_password(password: str) -> str:
     logger.debug("Password hashing initiated")
 
@@ -34,6 +36,7 @@ def hash_password(password: str) -> str:
         raise
 
 
+@log_execution_time(logger)
 def verify_password(password: str, password_hash: str) -> bool:
     logger.debug("Password verification initiated")
 
@@ -55,6 +58,7 @@ def verify_password(password: str, password_hash: str) -> bool:
         raise
 
 
+@log_execution_time(logger)
 def create_access_token(user_id: int) -> str:
     logger.debug(f"Access token creation initiated for user_id: {user_id}")
 
@@ -76,6 +80,7 @@ def create_access_token(user_id: int) -> str:
         raise
 
 
+@log_execution_time(logger)
 def get_user_id_from_token(token: str) -> Optional[int]:
     logger.debug("Fetching user_id from access token")
 
@@ -94,6 +99,7 @@ def get_user_id_from_token(token: str) -> Optional[int]:
         raise
 
 
+@log_execution_time(logger)
 def get_user_by_token(token: str) -> User:
     logger.info("User authentication via token initiated")
 
@@ -150,6 +156,7 @@ def get_user_by_token(token: str) -> User:
         logger.debug("Authentication database session closed")
 
 
+@log_execution_time(logger)
 def logout_token(token: str) -> None:
     logger.info("Logout token invalidation initiated")
 

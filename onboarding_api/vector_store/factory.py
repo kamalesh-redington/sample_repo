@@ -33,6 +33,7 @@ Plugin hook
 from config.logger import setup_logger
 
 logger = setup_logger(__name__)
+from config.timer import log_execution_time
 
 from typing import Optional, Type
 
@@ -65,6 +66,7 @@ _REGISTRY: dict[str, str] = {
 _OBJECT_STORE_TYPES = {"s3_vector", "gcs_vector", "azure_blob_vector"}
 
 
+@log_execution_time(logger)
 def _import_class(dotted_path: str) -> Type[BaseVectorStore]:
     """Lazily import a class from a dotted module path."""
     import importlib
@@ -83,6 +85,7 @@ class VectorStoreFactory:
     """
 
     @staticmethod
+    @log_execution_time(logger)
     def create(config: dict) -> BaseVectorStore:
         """
         Instantiate a vector store from a raw config dict (parsed YAML).
@@ -130,6 +133,7 @@ class VectorStoreFactory:
         return store_class(vs_config)
 
     @staticmethod
+    @log_execution_time(logger)
     def create_from_yaml(yaml_path: str) -> BaseVectorStore:
         """
         Load config.yaml from disk and instantiate the store.
@@ -151,11 +155,13 @@ class VectorStoreFactory:
         return VectorStoreFactory.create(config)
 
     @staticmethod
+    @log_execution_time(logger)
     def list_types() -> list[str]:
         """Return a sorted list of all registered store type keys."""
         return sorted(_REGISTRY.keys())
 
     @staticmethod
+    @log_execution_time(logger)
     def register(type_key: str, dotted_class_path: str) -> None:
         """
         Register a custom/third-party store backend at runtime.

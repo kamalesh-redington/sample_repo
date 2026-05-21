@@ -9,7 +9,7 @@ tenant:
 source:
   type: s3
   bucket: rag-engine-datasource
-  prefix: raw-documents/
+  prefix: raw-documents/test.pdf
   region: ap-south-1
 
   # ── Azure Blob Storage ── (type: azure_blob) ────────────────────────────────
@@ -71,9 +71,9 @@ embedding:
   # Providers: openai | azure_openai | bedrock | google | cohere | voyage | jina
   #            huggingface | sentence_transformers | instructor | fastembed | ollama
   #            splade | bm25 | hybrid | colbert | clip
-  provider: openai
+  provider: bedrock
 
-  model: text-embedding-3-small
+  model: amazon.titan-embed-text-v2:0 # model name as per provider docs
 
   # Strategy type: dense | sparse | hybrid | late_interaction | instructor
   type: dense

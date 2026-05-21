@@ -29,6 +29,10 @@ sys.stdout.reconfigure(encoding='utf-8')
 
 import yaml
 from dotenv import load_dotenv
+from config.logger import setup_logger
+from config.timer import log_execution_time
+
+logger = setup_logger(__name__)
 
 # ── Factory imports ────────────────────────────────────────────────────────────
 from source.factory import DataSourceFactory
@@ -64,6 +68,7 @@ else:
     load_dotenv()
 
 # ── Config loader ──────────────────────────────────────────────────────────────
+@log_execution_time(logger)
 def load_config(config_path: str) -> dict:
     """
     Load tenant-specific YAML configuration.
@@ -100,6 +105,7 @@ def load_config() -> dict:
 
 # ── Step 1: Download source files ─────────────────────────────────────────────
 
+@log_execution_time(logger)
 def download_source_files(config: dict) -> list[str]:
     """
     Download files from configured source.
@@ -116,6 +122,7 @@ def download_source_files(config: dict) -> list[str]:
 
 # ── Step 2: Extract documents ─────────────────────────────────────────────────
 
+@log_execution_time(logger)
 def extract_documents(file_paths: list[str], source_type: str) -> list[Document]:
     """
     Extract text from downloaded documents.
@@ -155,6 +162,7 @@ def extract_documents(file_paths: list[str], source_type: str) -> list[Document]
 
 # ── Step 3: Chunk documents ───────────────────────────────────────────────────
 
+@log_execution_time(logger)
 def chunk_documents(documents: list[Document], config: dict) -> list[BaseNode]:
     """
     Chunk documents using configured strategy.
@@ -180,16 +188,16 @@ def chunk_documents(documents: list[Document], config: dict) -> list[BaseNode]:
     return nodes
 
 # ── Embedder Adapter ───────────────────────────────────────────────────────────
-
 class _BaseEmbedderAdapter(BaseEmbedding):
     """
     Adapter for custom embedders to work with LlamaIndex.
     """
 
     def __init__(self, embedder):
+        super().__init__()
         self._embedder = embedder
 
-    def get_text_embedding(self, text: str) -> list[float]:
+    def _get_text_embedding(self, text: str) -> list[float]:
         return self._embedder.embed_query(text)
 
     def get_text_embedding_batch(
@@ -199,12 +207,15 @@ class _BaseEmbedderAdapter(BaseEmbedding):
     ) -> list[list[float]]:
         return self._embedder.embed_texts(texts)
 
-    def get_query_embedding(self, query: str) -> list[float]:
+    def _get_query_embedding(self, query: str) -> list[float]:
+        return self._embedder.embed_query(query)
+
+    async def _aget_query_embedding(self, query: str) -> list[float]:
         return self._embedder.embed_query(query)
 
     def get_agg_embedding_from_queries(self, queries, agg_fn=None):
 
-        vecs = [self.get_query_embedding(q) for q in queries]
+        vecs = [self._get_query_embedding(q) for q in queries]
 
         if agg_fn:
             return agg_fn(vecs)
@@ -220,9 +231,9 @@ class _BaseEmbedderAdapter(BaseEmbedding):
         ]
 
         return avg
-
 # ── Step 4: Build vector index ────────────────────────────────────────────────
 
+@log_execution_time(logger)
 def build_vector_index(
     nodes: list[BaseNode],
     config: dict
@@ -283,6 +294,7 @@ def build_vector_index(
 
 # ── Pipeline orchestrator ─────────────────────────────────────────────────────
 
+@log_execution_time(logger)
 def run_pipeline(config: dict) -> VectorStoreIndex:
     """
     Full ingestion pipeline:
@@ -337,9 +349,10 @@ def run_pipeline(config: dict) -> VectorStoreIndex:
 
 # ── Main entry point ──────────────────────────────────────────────────────────
 
+@log_execution_time(logger)
 def main():
 
-    config = load_config()
+    config = load_config("D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\config.yaml")
 
     print("\n" + "=" * 60)
     print("ONBOARDING + INGESTION PIPELINE")

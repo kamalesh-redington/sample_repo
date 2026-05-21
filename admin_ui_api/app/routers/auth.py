@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException, Header, status
 
 from app.config.logger import setup_logger
+from app.config.timer import log_execution_time
 from app.schemas.schemas import LoginRequest, MessageResponse, TokenResponse, UserSchema
 from app.services.auth_service import authenticate_user, get_current_user, login_user
 
@@ -10,6 +11,7 @@ router = APIRouter()
 
 
 @router.post("/login", response_model=TokenResponse)
+@log_execution_time(logger)
 def login(credentials: LoginRequest):
 
     logger.info(f"Login API invoked for username: {credentials.username}")
@@ -54,6 +56,7 @@ def login(credentials: LoginRequest):
 
 
 @router.post("/logout", response_model=MessageResponse)
+@log_execution_time(logger)
 def logout(authorization: str = Header(None)):
 
     logger.info("Logout API invoked")
@@ -91,6 +94,7 @@ def logout(authorization: str = Header(None)):
 
 
 @router.get("/me", response_model=UserSchema)
+@log_execution_time(logger)
 def read_me(current_user=Depends(get_current_user)):
 
     logger.info(f"Current user endpoint invoked for user_id: {current_user.id}")

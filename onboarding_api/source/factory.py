@@ -25,6 +25,7 @@ from source.base import DataSource
 from config.logger import setup_logger
 
 logger = setup_logger(__name__)
+from config.timer import log_execution_time
 
 # ── Registry: source type key → dotted class path ─────────────────────────────
 # Classes are imported lazily so heavy SDKs (azure, google, boto3) are only
@@ -40,6 +41,7 @@ _REGISTRY: dict[str, str] = {
 }
 
 
+@log_execution_time(logger)
 def _import_class(dotted_path: str) -> Type[DataSource]:
     """Lazily import a DataSource subclass from a dotted module path."""
     module_path, class_name = dotted_path.rsplit(".", 1)
@@ -56,6 +58,7 @@ class DataSourceFactory:
     """
 
     @staticmethod
+    @log_execution_time(logger)
     def create(config: dict) -> DataSource:
         """
         Instantiate the appropriate DataSource from a raw config dict.
@@ -95,16 +98,19 @@ class DataSourceFactory:
 
     # Keep backward-compatible alias used by the old main.py
     @staticmethod
+    @log_execution_time(logger)
     def create_source(config: dict) -> DataSource:
         """Alias for :meth:`create` — kept for backward compatibility."""
         return DataSourceFactory.create(config)
 
     @staticmethod
+    @log_execution_time(logger)
     def list_sources() -> list[str]:
         """Return a sorted list of all registered source type keys."""
         return sorted(_REGISTRY.keys())
 
     @staticmethod
+    @log_execution_time(logger)
     def register(source_key: str, dotted_class_path: str) -> None:
         """
         Register a custom / third-party DataSource at runtime.
