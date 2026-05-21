@@ -1,10 +1,47 @@
 import logging
 import os
+import contextvars
 from logging.handlers import RotatingFileHandler
+from typing import Optional
 
 from dotenv import load_dotenv
 
 load_dotenv()  # load .env file
+
+# Context variable to hold current request trace id
+current_trace_id: contextvars.ContextVar[Optional[str]] = contextvars.ContextVar("trace_id", default=None)
+
+
+def set_trace_id(trace_id: Optional[str]):
+    try:
+        current_trace_id.set(trace_id)
+    except Exception:
+        pass
+
+
+def get_trace_id() -> Optional[str]:
+    try:
+        return current_trace_id.get()
+    except Exception:
+        return None
+
+
+def clear_trace_id():
+    try:
+        current_trace_id.set(None)
+    except Exception:
+        pass
+
+
+class TraceIdFilter(logging.Filter):
+    def filter(self, record):
+        try:
+            trace = current_trace_id.get()
+        except Exception:
+            trace = None
+
+        record.trace_id = trace or "-"
+        return True
 
 
 def setup_logger(name: str) -> logging.Logger:
@@ -21,11 +58,15 @@ def setup_logger(name: str) -> logging.Logger:
     logger.propagate = False
 
     formatter = logging.Formatter(
-        fmt="%(asctime)s | %(levelname)-8s | %(name)s | %(message)s",
-        datefmt="%Y-%m-%d %H:%M:%S"
+        fmt="%(asctime)s | %(levelname)-8s | %(name)s | trace=%(trace_id)s | %(message)s",
+        datefmt="%Y-%m-%d %H:%M:%S",
     )
 
     try:
+        # attach trace-id filter globally for this logger
+        trace_filter = TraceIdFilter()
+        logger.addFilter(trace_filter)
+
         # ── Handler 1: Console (INFO always on) ─────────────
         console_handler = logging.StreamHandler()
         console_handler.setLevel(logging.INFO)
@@ -39,7 +80,7 @@ def setup_logger(name: str) -> logging.Logger:
         info_handler = RotatingFileHandler(
             "logs/info.log",
             maxBytes=5 * 1024 * 1024,
-            backupCount=3
+            backupCount=3,
         )
 
         info_handler.setLevel(logging.INFO)
@@ -59,7 +100,7 @@ def setup_logger(name: str) -> logging.Logger:
             debug_handler = RotatingFileHandler(
                 "logs/debug.log",
                 maxBytes=5 * 1024 * 1024,
-                backupCount=3
+                backupCount=3,
             )
 
             debug_handler.setLevel(logging.DEBUG)

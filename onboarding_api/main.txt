@@ -1,13 +1,23 @@
 """
 main.py — ONBOARDING + INGESTION PIPELINE ONLY
 
+This version removes ALL retrieval/query logic.
+
 Responsibilities:
+-----------------
 1. Download source files
 2. Extract text
 3. Chunk documents
 4. Generate embeddings
 5. Build vector index
+
+NO retrieval logic.
+NO QueryFactory.
+NO query execution.
+
+This is correct architecture for onboarding_api service.
 """
+
 
 import json
 import os
@@ -15,11 +25,10 @@ import sys
 from pathlib import Path
 from typing import List
 
-sys.stdout.reconfigure(encoding="utf-8")
+sys.stdout.reconfigure(encoding='utf-8')
 
 import yaml
 from dotenv import load_dotenv
-
 from config.logger import setup_logger
 from config.timer import log_execution_time
 
@@ -54,61 +63,45 @@ ENV_CANDIDATES = [
 for _env_path in ENV_CANDIDATES:
     if _env_path.exists():
         load_dotenv(_env_path)
-
-        logger.info(
-            f"Environment variables loaded from: {_env_path}"
-        )
         break
 else:
     load_dotenv()
-    logger.warning(
-        "No .env file found in expected locations. "
-        "Using system environment variables."
-    )
 
 # ── Config loader ──────────────────────────────────────────────────────────────
-
 @log_execution_time(logger)
 def load_config(config_path: str) -> dict:
     """
     Load tenant-specific YAML configuration.
     """
 
-    logger.info(
-        f"Loading tenant configuration | path={config_path}"
-    )
-
     path = Path(config_path)
 
     if not path.exists():
-
-        logger.error(
-            f"Tenant configuration file not found | path={config_path}"
-        )
 
         raise FileNotFoundError(
             f"Tenant config not found: {config_path}"
         )
 
-    try:
-        with open(path, "r", encoding="utf-8") as f:
+    print("\n" + "=" * 60)
+    print(f"[main] Loading tenant config:")
+    print(config_path)
+    print("=" * 60)
 
-            config = yaml.safe_load(f)
+    with open(path, "r", encoding="utf-8") as f:
 
-        logger.info(
-            "Tenant configuration loaded successfully."
-        )
+        return yaml.safe_load(f)
+'''
+def load_config() -> dict:
+    """
+    Load config.yaml
+    """
+    config_path = SCRIPT_DIR / "config.yaml"
 
-        return config
+    if not config_path.exists():
+        raise FileNotFoundError(f"config.yaml not found at {config_path}")
 
-    except Exception as exc:
-
-        logger.exception(
-            f"Failed loading configuration | path={config_path}"
-        )
-
-        raise exc
-
+    with open(config_path, "r", encoding="utf-8") as f:
+        return yaml.safe_load(f)'''
 
 # ── Step 1: Download source files ─────────────────────────────────────────────
 
@@ -118,85 +111,38 @@ def download_source_files(config: dict) -> list[str]:
     Download files from configured source.
     """
 
-    source_type = config["source"]["type"]
-
-    logger.info(
-        f"Starting source download | source_type={source_type}"
-    )
-
     source = DataSourceFactory.create(config)
 
     files = source.download()
 
     if not files:
-
-        logger.warning(
-            f"No files downloaded | source_type={source_type}"
-        )
-
-        return []
-
-    logger.info(
-        f"Source download completed | files_downloaded={len(files)}"
-    )
-
-    logger.debug(
-        f"Downloaded files: {files}"
-    )
+        print("[main] No files downloaded from source.")
 
     return files
-
-
 
 # ── Step 2: Extract documents ─────────────────────────────────────────────────
 
 @log_execution_time(logger)
-def extract_documents(
-    file_paths: list[str],
-    source_type: str
-) -> list[Document]:
+def extract_documents(file_paths: list[str], source_type: str) -> list[Document]:
     """
     Extract text from downloaded documents.
     """
-
-    logger.info(
-        f"Starting document extraction | total_files={len(file_paths)}"
-    )
 
     documents: list[Document] = []
 
     for file_path in file_paths:
 
         try:
-            logger.info(
-                f"Processing document | file={file_path}"
-            )
-
             extractor = ExtractorFactory.get_extractor(file_path)
-
-            logger.debug(
-                f"Extractor selected | "
-                f"extractor={extractor.__class__.__name__}"
-            )
 
             text = extractor.extract_text(file_path)
 
             if not text or len(text.strip()) < 10:
-
-                logger.warning(
-                    f"Skipping empty/invalid document | file={file_path}"
-                )
-
+                print(f"[main] Skipping empty document: {file_path}")
                 continue
 
-            logger.info(
-                f"Document extracted successfully | "
-                f"file={Path(file_path).name}"
-            )
-
-            logger.debug(
-                f"Extracted preview:\n{text[:300]}"
-            )
+            print(f"\n--- EXTRACTED ({Path(file_path).name}) ---")
+            print(text[:300])
 
             doc = Document(
                 text=text,
@@ -209,71 +155,39 @@ def extract_documents(
 
             documents.append(doc)
 
-        except Exception:
-
-            logger.exception(
-                f"Document extraction failed | file={file_path}"
-            )
-
-    logger.info(
-        f"Document extraction completed | "
-        f"valid_documents={len(documents)}"
-    )
+        except Exception as exc:
+            print(f"[main] Error processing {file_path}: {exc}")
 
     return documents
-
 
 # ── Step 3: Chunk documents ───────────────────────────────────────────────────
 
 @log_execution_time(logger)
-def chunk_documents(
-    documents: list[Document],
-    config: dict
-) -> list[BaseNode]:
+def chunk_documents(documents: list[Document], config: dict) -> list[BaseNode]:
     """
     Chunk documents using configured strategy.
     """
-
-    strategy = config["chunking"]["strategy"]
-
-    logger.info(
-        f"Starting document chunking | strategy={strategy}"
-    )
 
     chunker = ChunkingFactory.create(config)
 
     nodes = chunker.chunk(documents)
 
-    logger.info(
-        f"Chunking completed | total_chunks={len(nodes)}"
-    )
+    print(f"\n[main] Total chunks created: {len(nodes)}")
 
     if nodes:
-
         first = nodes[0]
 
-        logger.debug(
-            "Sample chunk generated successfully."
-        )
+        print("\n--- SAMPLE CHUNK ---")
 
         try:
-            logger.debug(
-                json.dumps(first.to_dict(), indent=2)[:800]
-            )
+            print(json.dumps(first.to_dict(), indent=2)[:800])
 
         except Exception:
-
-            logger.debug(
-                first.text[:400]
-                if hasattr(first, "text")
-                else str(first)[:400]
-            )
+            print(first.text[:400] if hasattr(first, "text") else str(first)[:400])
 
     return nodes
 
-
 # ── Embedder Adapter ───────────────────────────────────────────────────────────
-
 class _BaseEmbedderAdapter(BaseEmbedding):
     """
     Adapter for custom embedders to work with LlamaIndex.
@@ -317,8 +231,6 @@ class _BaseEmbedderAdapter(BaseEmbedding):
         ]
 
         return avg
-
-
 # ── Step 4: Build vector index ────────────────────────────────────────────────
 
 @log_execution_time(logger)
@@ -332,45 +244,27 @@ def build_vector_index(
 
     embedding_provider = config["embedding"]["provider"].lower()
 
-    logger.info(
-        f"Initializing embedding pipeline | "
-        f"provider={embedding_provider}"
-    )
-
+    # Validate OpenAI API key if needed
     if embedding_provider in ("openai", "azure_openai"):
 
         openai_api_key = os.getenv("OPENAI_API_KEY")
 
         if not openai_api_key:
-
-            logger.error(
-                "OPENAI_API_KEY environment variable missing."
-            )
-
             raise ValueError(
-                "OPENAI_API_KEY environment variable is not set."
+                "[main] OPENAI_API_KEY environment variable is not set."
             )
 
-    logger.info(
-        "Creating embedding model..."
-    )
-
+    # Create embedder
     embedder = EmbeddingFactory.create(config)
 
-    logger.info(
-        f"Embedder initialized | "
-        f"embedder={embedder.__class__.__name__}"
-    )
+    print(f"[main] Embedder initialized: {embedder}")
 
+    # OpenAI native embedder
     from llama_index.embeddings.openai import OpenAIEmbedding
 
     model_name = config["embedding"]["model"]
 
     if embedding_provider == "openai":
-
-        logger.info(
-            f"Using native OpenAI embedding model | model={model_name}"
-        )
 
         llama_embed_model = OpenAIEmbedding(
             api_key=os.getenv("OPENAI_API_KEY"),
@@ -378,42 +272,25 @@ def build_vector_index(
         )
 
     else:
-
-        logger.info(
-            f"Using custom embedding adapter | model={model_name}"
-        )
-
         llama_embed_model = _BaseEmbedderAdapter(embedder)
 
-    logger.info(
-        "Connecting to vector store..."
-    )
-
+    # Create vector store
     vector_store = VectorStoreFactory.create(config)
 
     vector_store.connect()
 
-    logger.info(
-        f"Vector store connected successfully | "
-        f"vector_store={vector_store.__class__.__name__}"
-    )
+    print(f"[main] Vector store connected: {vector_store}")
 
-    logger.info(
-        f"Creating vector index | total_nodes={len(nodes)}"
-    )
-
+    # Create vector index
     index = VectorStoreIndex(
         nodes,
         embed_model=llama_embed_model,
         vector_store=vector_store,
     )
 
-    logger.info(
-        "Vector index created successfully."
-    )
+    print("[main] Vector index created successfully.")
 
     return index
-
 
 # ── Pipeline orchestrator ─────────────────────────────────────────────────────
 
@@ -428,102 +305,65 @@ def run_pipeline(config: dict) -> VectorStoreIndex:
         5. Vector index
     """
 
-    logger.info("=" * 80)
-    logger.info("INGESTION PIPELINE STARTED")
-    logger.info("=" * 80)
-
     # Step 1
-    logger.info(
-        f"STEP 1 STARTED | source.type={config['source']['type']}"
-    )
+    print("\n" + "=" * 60)
+    print("STEP 1: Downloading source files...")
+    print(f"source.type = {config['source']['type']}")
 
     files = download_source_files(config)
 
     if not files:
-
-        logger.error(
-            "Pipeline stopped | no files downloaded."
-        )
-
-        raise SystemExit("No files downloaded.")
+        raise SystemExit("[main] No files downloaded.")
 
     # Step 2
-    logger.info("STEP 2 STARTED | document extraction")
+    print("\n" + "=" * 60)
+    print("STEP 2: Extracting documents...")
 
     documents = extract_documents(
         files,
         config["source"]["type"]
     )
 
-    logger.info(
-        f"Document extraction completed | "
-        f"valid_documents={len(documents)}"
-    )
+    print(f"Valid documents: {len(documents)}")
 
     if not documents:
-
-        logger.error(
-            "Pipeline stopped | no valid documents extracted."
-        )
-
-        raise SystemExit("No valid documents extracted.")
+        raise SystemExit("[main] No valid documents extracted.")
 
     # Step 3
-    logger.info(
-        f"STEP 3 STARTED | "
-        f"chunking.strategy={config['chunking']['strategy']}"
-    )
+    print("\n" + "=" * 60)
+    print("STEP 3: Chunking documents...")
+    print(f"chunking.strategy = {config['chunking']['strategy']}")
 
     nodes = chunk_documents(documents, config)
 
     # Step 4
-    logger.info(
-        f"STEP 4 STARTED | "
-        f"embedding.provider={config['embedding']['provider']}"
-    )
+    print("\n" + "=" * 60)
+    print("STEP 4: Building vector index...")
+    print(f"embedding.provider = {config['embedding']['provider']}")
 
     index = build_vector_index(nodes, config)
 
-    logger.info(
-        "Ingestion pipeline completed successfully."
-    )
-
-    logger.info("=" * 80)
+    print("[main] Ingestion pipeline completed successfully.")
 
     return index
-
 
 # ── Main entry point ──────────────────────────────────────────────────────────
 
 @log_execution_time(logger)
 def main():
 
-    logger.info("=" * 80)
-    logger.info("ONBOARDING + INGESTION PIPELINE")
-    logger.info("=" * 80)
+    config = load_config("D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\config.yaml")
 
-    config = load_config(
-        r"D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\config.yaml"
-    )
+    print("\n" + "=" * 60)
+    print("ONBOARDING + INGESTION PIPELINE")
+    print("=" * 60)
 
-    logger.info(
-        f"source.type={config['source']['type']}"
-    )
+    print(f"source.type        = {config['source']['type']}")
+    print(f"chunking.strategy  = {config['chunking']['strategy']}")
+    print(f"embedding.provider = {config['embedding']['provider']}")
 
-    logger.info(
-        f"chunking.strategy={config['chunking']['strategy']}"
-    )
-
-    logger.info(
-        f"embedding.provider={config['embedding']['provider']}"
-    )
-
+    # Run ingestion pipeline
     run_pipeline(config)
-
-    logger.info(
-        "Application execution completed successfully."
-    )
-
 
 if __name__ == "__main__":
     main()

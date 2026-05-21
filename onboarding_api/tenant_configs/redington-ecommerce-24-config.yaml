@@ -4,7 +4,7 @@
 # Supported: local | s3 | azure_blob | gdrive | sharepoint | web
 
 tenant:
-  name: redington-ecommerce-25
+  name: redington-ecommerce-24
 
 source:
   type: s3

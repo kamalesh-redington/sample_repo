@@ -1,6 +1,7 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
+from datetime import datetime
 
-from app.config.logger import setup_logger
+from app.config.logger import setup_logger, set_trace_id, clear_trace_id, get_trace_id
 from app.config.timer import log_execution_time
 from app.core.config import settings
 from app.db.base import Base, engine
@@ -15,6 +16,34 @@ try:
     logger.debug("Creating FastAPI application instance")
 
     app = FastAPI(title="Admin UI FastAPI")
+
+    @app.middleware("http")
+    async def add_trace_id_middleware(request: Request, call_next):
+        try:
+            header_trace = request.headers.get("x-trace-id")
+            if header_trace:
+                # prefer numeric header if provided
+                try:
+                    trace_int = int(header_trace)
+                except Exception:
+                    trace_int = int(datetime.utcnow().timestamp() * 1000)
+                set_trace_id(str(trace_int))
+                trace = trace_int
+            else:
+                # generate epoch milliseconds as integer
+                trace_int = int(datetime.utcnow().timestamp() * 1000)
+                set_trace_id(str(trace_int))
+                trace = trace_int
+
+            response = await call_next(request)
+            # ensure trace id is returned to client for reuse
+            response.headers["X-Trace-Id"] = str(trace)
+            return response
+        finally:
+            try:
+                clear_trace_id()
+            except Exception:
+                pass
 
     logger.info("FastAPI application instance created successfully")
 

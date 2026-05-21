@@ -39,6 +39,7 @@ class TokenResponse(BaseModel):
     logger.debug("Defining TokenResponse schema")
 
     access_token: str
+    trace_id: Optional[int] = None
     token_type: str = "bearer"
     user: UserSchema
 

@@ -2,8 +2,26 @@ import logging
 import os
 from logging.handlers import RotatingFileHandler
 from dotenv import load_dotenv
+from contextvars import ContextVar
 
 load_dotenv()
+
+# Context variable to store trace_id per logical context (request)
+trace_id_ctx: ContextVar[str] = ContextVar("trace_id", default="-")
+
+
+class TraceContextFilter(logging.Filter):
+    """Logging filter that injects the current trace_id from ContextVar into records."""
+
+    def filter(self, record: logging.LogRecord) -> bool:
+        try:
+            trace = trace_id_ctx.get()
+        except LookupError:
+            trace = None
+
+        record.trace_id = trace if trace else "-"
+        return True
+
 
 def setup_logger(name: str) -> logging.Logger:
 
@@ -11,14 +29,19 @@ def setup_logger(name: str) -> logging.Logger:
 
     logger = logging.getLogger(name)
 
-    # Prevent duplicate handlers
+    trace_filter = TraceContextFilter()
+
+    # If handlers already exist, ensure they have the trace filter attached
     if logger.handlers:
+        for h in logger.handlers:
+            if not any(isinstance(f, TraceContextFilter) for f in h.filters):
+                h.addFilter(trace_filter)
         return logger
 
     logger.setLevel(logging.DEBUG)
 
     formatter = logging.Formatter(
-        fmt="%(asctime)s | %(levelname)-8s | %(name)s | %(message)s",
+        fmt="%(asctime)s | %(levelname)-8s | %(name)s | [trace_id=%(trace_id)s] | %(message)s",
         datefmt="%Y-%m-%d %H:%M:%S"
     )
 
@@ -26,6 +49,7 @@ def setup_logger(name: str) -> logging.Logger:
     console_handler = logging.StreamHandler()
     console_handler.setLevel(logging.INFO)
     console_handler.setFormatter(formatter)
+    console_handler.addFilter(trace_filter)
     logger.addHandler(console_handler)
 
     # Info Log File
@@ -36,6 +60,7 @@ def setup_logger(name: str) -> logging.Logger:
     )
     info_handler.setLevel(logging.INFO)
     info_handler.setFormatter(formatter)
+    info_handler.addFilter(trace_filter)
     logger.addHandler(info_handler)
 
     # Debug Log File
@@ -49,6 +74,7 @@ def setup_logger(name: str) -> logging.Logger:
         )
         debug_handler.setLevel(logging.DEBUG)
         debug_handler.setFormatter(formatter)
+        debug_handler.addFilter(trace_filter)
         logger.addHandler(debug_handler)
 
         logger.info("DEBUG logging ENABLED")

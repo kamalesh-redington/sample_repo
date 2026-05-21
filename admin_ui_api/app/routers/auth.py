@@ -1,6 +1,7 @@
+from typing import Optional
 from fastapi import APIRouter, Depends, HTTPException, Header, status
 
-from app.config.logger import setup_logger
+from app.config.logger import setup_logger, get_trace_id
 from app.config.timer import log_execution_time
 from app.schemas.schemas import LoginRequest, MessageResponse, TokenResponse, UserSchema
 from app.services.auth_service import authenticate_user, get_current_user, login_user
@@ -10,11 +11,14 @@ logger = setup_logger(__name__)
 router = APIRouter()
 
 
+
 @router.post("/login", response_model=TokenResponse)
 @log_execution_time(logger)
-def login(credentials: LoginRequest):
+def login(credentials: LoginRequest, trace_id: Optional[int] = Header(None, alias="X-Trace-Id")):
 
     logger.info(f"Login API invoked for username: {credentials.username}")
+    if trace_id is not None:
+        logger.debug(f"Login invoked with X-Trace-Id: {trace_id}")
 
     try:
         logger.debug(f"Authenticating user: {credentials.username}")
@@ -35,8 +39,20 @@ def login(credentials: LoginRequest):
 
         logger.info(f"Login successful for username: {credentials.username}")
 
+        # prefer header-provided trace id (int), else use context trace id from middleware
+        context_trace = get_trace_id()
+        final_trace = None
+        if trace_id is not None:
+            final_trace = trace_id
+        elif context_trace:
+            try:
+                final_trace = int(context_trace)
+            except Exception:
+                final_trace = None
+
         return TokenResponse(
             access_token=token,
+            trace_id=final_trace,
             user=UserSchema(
                 id=user.id,
                 username=user.username,
