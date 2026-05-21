@@ -1,0 +1,402 @@
+RAG ENGINE — ONBOARDING API TESTING & CHANGES DOCUMENTATION
+============================================================
+
+MODULE:
+--------
+Onboarding API + Ingestion Initialization
+
+PROJECT:
+--------
+RAG Engine
+
+============================================================
+OBJECTIVE
+============================================================
+
+The objective of this phase was to:
+
+1. Separate onboarding and ingestion responsibilities
+2. Remove retrieval/query dependencies from onboarding service
+3. Validate onboarding API flow
+4. Test tenant provisioning workflow
+5. Validate config-driven onboarding
+6. Verify database persistence and multi-tenant setup
+
+============================================================
+ARCHITECTURE CHANGES DONE
+============================================================
+
+1. main.py Refactoring
+----------------------
+
+Previous State:
+---------------
+main.py contained:
+- ingestion logic
+- retrieval logic
+- query execution
+- QueryFactory integration
+
+Problem:
+--------
+Onboarding service should not contain retrieval responsibilities.
+
+Changes Done:
+-------------
+Removed:
+- QueryFactory dependency
+- retrieval execution
+- sample query logic
+- query-related functions
+
+Current Responsibility:
+-----------------------
+main.py now handles ONLY:
+✅ source download
+✅ document extraction
+✅ chunking
+✅ embedding generation
+✅ vector indexing
+
+Final Architecture:
+-------------------
+
+main.py
+   ↓
+Ingestion Pipeline Only
+
+============================================================
+
+2. app.py Refactoring
+---------------------
+
+Previous State:
+---------------
+app.py contained:
+- onboarding APIs
+- retrieval APIs
+- query endpoint
+- HTML chat UI
+- query engine initialization
+
+Changes Done:
+-------------
+Removed:
+- /query endpoint
+- query_engine global
+- get_query_engine()
+- retrieval dependencies
+- HTML chat frontend logic
+
+Current Responsibility:
+-----------------------
+app.py now handles ONLY:
+✅ onboarding APIs
+✅ FastAPI startup
+✅ tenant provisioning
+✅ YAML config upload
+✅ auth validation
+✅ Swagger docs
+
+Final Architecture:
+-------------------
+
+app.py
+   ↓
+Onboarding APIs Only
+
+============================================================
+
+3. Onboarding API Validation
+----------------------------
+
+Tested Endpoint:
+----------------
+
+POST /api/v1/tenant/create
+
+Purpose:
+--------
+Creates:
+- tenant
+- tenant user
+- tenant config
+- tenant role mapping
+
+============================================================
+
+4. Authentication Flow
+----------------------
+
+Current Implementation:
+-----------------------
+Temporary bearer token validation added for onboarding testing.
+
+Configured Token:
+-----------------
+
+your-secure-token-here
+
+Purpose:
+--------
+Simulates platform admin authorization.
+
+Future Improvement:
+-------------------
+Replace with:
+- JWT auth
+- OAuth2
+- Azure AD
+- AWS Cognito
+
+============================================================
+
+5. YAML-Based Config Registration
+---------------------------------
+
+Implemented onboarding using YAML configuration upload.
+
+Sample Config:
+--------------
+
+tenant:
+  name: redington-ecommerce-2
+
+source:
+  type: s3
+
+chunking:
+  strategy: sentence
+
+embedding:
+  provider: bedrock
+
+Purpose:
+--------
+Supports:
+✅ tenant onboarding
+✅ ingestion source registration
+✅ embedding provider registration
+✅ vector store registration
+
+============================================================
+API TESTING COMPLETED
+============================================================
+
+Completed Validations:
+----------------------
+
+✅ FastAPI startup validation
+✅ Swagger validation
+✅ Bearer token validation
+✅ YAML upload validation
+✅ Tenant creation
+✅ User provisioning
+✅ Password generation
+✅ Duplicate tenant validation
+✅ DB persistence validation
+✅ Config persistence validation
+
+============================================================
+SUCCESSFUL ONBOARDING RESPONSE
+============================================================
+
+{
+  "tenant_pkid": "redington-ecommerce-2",
+  "tenant_name": "redington-ecommerce-2",
+  "username": "redington-ecommerce-2",
+  "password": "generatedPassword",
+  "message": "Tenant created successfully"
+}
+
+============================================================
+DATABASE VALIDATION
+============================================================
+
+Verified Tables:
+----------------
+
+✅ tenants
+✅ users
+✅ roles
+
+Verified:
+---------
+
+✅ tenant insertion
+✅ user insertion
+✅ role assignment
+✅ config persistence
+
+============================================================
+CURRENT PROJECT STATUS
+============================================================
+
+Completed:
+-----------
+
+✅ Admin UI API testing
+✅ JWT authentication testing
+✅ RBAC validation
+✅ Multi-tenant validation
+✅ Onboarding API setup
+✅ Tenant onboarding testing
+✅ Config-driven onboarding
+✅ User provisioning
+✅ SQLite persistence validation
+
+Current Active Phase:
+---------------------
+
+ONBOARDING + INGESTION TESTING
+
+Upcoming Phase:
+---------------
+
+1. Ingestion pipeline execution
+2. Source download testing
+3. Chunking validation
+4. Embedding generation testing
+5. Vector store testing
+6. Retrieval API testing
+
+============================================================
+HOW TO RUN THE ONBOARDING API
+============================================================
+
+1. Open Project Folder
+----------------------
+
+cd onboarding_api
+
+============================================================
+
+2. Activate Virtual Environment
+--------------------------------
+
+Windows:
+
+venv\Scripts\activate
+
+============================================================
+
+3. Install Dependencies
+------------------------
+
+pip install fastapi uvicorn sqlalchemy pyyaml python-multipart bcrypt
+
+Optional Additional Packages:
+
+pip install python-dotenv
+pip install llama-index
+pip install faiss-cpu
+
+============================================================
+
+4. Run FastAPI Server
+----------------------
+
+uvicorn app:app --reload
+
+============================================================
+
+5. Swagger URL
+---------------
+
+http://127.0.0.1:8000/docs
+
+============================================================
+
+6. Available APIs
+------------------
+
+GET  /
+GET  /health
+POST /api/v1/tenant/create
+
+============================================================
+POSTMAN TESTING CONFIGURATION
+============================================================
+
+METHOD:
+-------
+
+POST
+
+URL:
+----
+
+http://127.0.0.1:8000/api/v1/tenant/create
+
+============================================================
+
+Authorization:
+--------------
+
+Type:
+Bearer Token
+
+Token:
+your-secure-token-here
+
+============================================================
+
+Body:
+-----
+
+form-data
+
+KEY:
+file
+
+TYPE:
+File
+
+VALUE:
+config.yaml
+
+============================================================
+ONBOARDING FLOW
+============================================================
+
+Postman
+   ↓
+Bearer Token Validation
+   ↓
+YAML Parsing
+   ↓
+Tenant Creation
+   ↓
+User Creation
+   ↓
+Password Generation
+   ↓
+SQLite Persistence
+   ↓
+Success Response Returned
+
+============================================================
+IMPORTANT UNDERSTANDING
+============================================================
+
+The onboarding API creates REAL tenant credentials.
+
+These credentials will later be used in:
+- login APIs
+- JWT authentication
+- ingestion APIs
+- retrieval APIs
+
+This replaces the dummy authentication users used during earlier auth testing.
+
+============================================================
+FINAL RESULT
+============================================================
+
+Successfully implemented and tested:
+✅ Multi-tenant onboarding workflow
+✅ Config-driven onboarding
+✅ Tenant provisioning
+✅ User provisioning
+✅ Auth-protected onboarding APIs
+✅ Ingestion-ready onboarding architecture

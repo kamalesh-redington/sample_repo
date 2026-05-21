@@ -30,45 +30,47 @@ Plugin hook
     VectorStoreFactory.register("my_store", "myapp.stores.MyStore")
 """
 
+from config.logger import setup_logger
+
+logger = setup_logger(__name__)
+from config.timer import log_execution_time
+
 from typing import Optional, Type
 
 from vector_store.base import BaseVectorStore, ObjectStoreConfig, VectorStoreConfig
-
 
 # ── provider registry ──────────────────────────────────────────────────────────
 # Dotted class paths → lazily imported when the type is actually requested.
 
 _REGISTRY: dict[str, str] = {
     # Relational + extension
-    "pgvector":           "vector_store.stores.pgvector_store.PGVectorStore",
-
+    "pgvector": "vector_store.stores.pgvector_store.PGVectorStore",
     # Managed vector databases
-    "pinecone":           "vector_store.stores.pinecone_store.PineconeStore",
-    "weaviate":           "vector_store.stores.weaviate_store.WeaviateStore",
-    "milvus":             "vector_store.stores.milvus_store.MilvusStore",
-    "qdrant":             "vector_store.stores.qdrant_store.QdrantStore",
-
+    "pinecone": "vector_store.stores.pinecone_store.PineconeStore",
+    "weaviate": "vector_store.stores.weaviate_store.WeaviateStore",
+    "milvus": "vector_store.stores.milvus_store.MilvusStore",
+    "qdrant": "vector_store.stores.qdrant_store.QdrantStore",
     # Search engines with vector support
-    "elasticsearch":      "vector_store.stores.elasticsearch_store.ElasticsearchStore",
-    "opensearch":         "vector_store.stores.elasticsearch_store.ElasticsearchStore",
-
+    "elasticsearch": "vector_store.stores.elasticsearch_store.ElasticsearchStore",
+    "opensearch": "vector_store.stores.elasticsearch_store.ElasticsearchStore",
     # Local / embedded
-    "faiss":              "vector_store.stores.faiss_store.FAISSStore",
-    "chroma":             "vector_store.stores.chroma_store.ChromaStore",
-
+    "faiss": "vector_store.stores.faiss_store.FAISSStore",
+    "chroma": "vector_store.stores.chroma_store.ChromaStore",
     # Cloud object store (hybrid FAISS + blob)
-    "s3_vector":          "vector_store.stores.s3_vector_store.S3VectorStore",
-    "gcs_vector":         "vector_store.stores.gcs_vector_store.GCSVectorStore",
-    "azure_blob_vector":  "vector_store.stores.azure_blob_vector_store.AzureBlobVectorStore",
+    "s3_vector": "vector_store.stores.s3_vector_store.S3VectorStore",
+    "gcs_vector": "vector_store.stores.gcs_vector_store.GCSVectorStore",
+    "azure_blob_vector": "vector_store.stores.azure_blob_vector_store.AzureBlobVectorStore",
 }
 
 # Object-store-backed types need an ObjectStoreConfig injected
 _OBJECT_STORE_TYPES = {"s3_vector", "gcs_vector", "azure_blob_vector"}
 
 
+@log_execution_time(logger)
 def _import_class(dotted_path: str) -> Type[BaseVectorStore]:
     """Lazily import a class from a dotted module path."""
     import importlib
+
     module_path, class_name = dotted_path.rsplit(".", 1)
     module = importlib.import_module(module_path)
     return getattr(module, class_name)
@@ -83,6 +85,7 @@ class VectorStoreFactory:
     """
 
     @staticmethod
+    @log_execution_time(logger)
     def create(config: dict) -> BaseVectorStore:
         """
         Instantiate a vector store from a raw config dict (parsed YAML).
@@ -101,21 +104,26 @@ class VectorStoreFactory:
             ValueError:  Unknown store type.
             ImportError: Required dependency not installed.
         """
-        vs_config  = VectorStoreConfig.from_config(config)
+        vs_config = VectorStoreConfig.from_config(config)
         store_type = vs_config.type.lower()
+        logger.info(f"Vector store provider selected: {store_type}")
 
         if store_type not in _REGISTRY:
             supported = ", ".join(sorted(_REGISTRY.keys()))
+            logger.warning(f"Unsupported vector store provider requested: {store_type}")
             raise ValueError(
                 f"Unsupported vector store type: {store_type!r}.\n"
                 f"Supported types: {supported}"
             )
 
         store_class = _import_class(_REGISTRY[store_type])
-        print(
-            f"[VectorStoreFactory] Creating store: {store_class.__name__} "
-            f"(type={store_type}, collection={vs_config.collection_name}, "
-            f"index={vs_config.index.type}, strategy={vs_config.storage_strategy})"
+        logger.info(f"Creating vector store: {store_class.__name__}")
+
+        logger.debug(
+            f"Type={store_type}, "
+            f"Collection={vs_config.collection_name}, "
+            f"Index={vs_config.index.type}, "
+            f"Strategy={vs_config.storage_strategy}"
         )
 
         if store_type in _OBJECT_STORE_TYPES:
@@ -125,6 +133,7 @@ class VectorStoreFactory:
         return store_class(vs_config)
 
     @staticmethod
+    @log_execution_time(logger)
     def create_from_yaml(yaml_path: str) -> BaseVectorStore:
         """
         Load config.yaml from disk and instantiate the store.
@@ -146,11 +155,13 @@ class VectorStoreFactory:
         return VectorStoreFactory.create(config)
 
     @staticmethod
+    @log_execution_time(logger)
     def list_types() -> list[str]:
         """Return a sorted list of all registered store type keys."""
         return sorted(_REGISTRY.keys())
 
     @staticmethod
+    @log_execution_time(logger)
     def register(type_key: str, dotted_class_path: str) -> None:
         """
         Register a custom/third-party store backend at runtime.
@@ -166,4 +177,4 @@ class VectorStoreFactory:
             )
         """
         _REGISTRY[type_key.lower()] = dotted_class_path
-        print(f"[VectorStoreFactory] Registered custom store: {type_key!r}")
+        logger.info(f"Registered custom vector store provider: {type_key}")

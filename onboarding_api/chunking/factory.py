@@ -19,23 +19,25 @@ Supported strategies (config.chunking.strategy)
 
 import importlib
 from typing import Type
-
+from config.logger import setup_logger
+logger = setup_logger(__name__)
+from config.timer import log_execution_time
 from chunking.base import BaseChunker, ChunkingConfig
-
 
 # ── Registry: strategy key → dotted class path ────────────────────────────────
 # Imports are deferred so heavy deps (torch, sentence-transformers) are only
 # loaded if the corresponding strategy is actually configured.
 
 _REGISTRY: dict[str, str] = {
-    "sentence":  "chunking.providers.sentence_splitter.SentenceChunker",
-    "token":     "chunking.providers.token_splitter.TokenChunker",
+    "sentence": "chunking.providers.sentence_splitter.SentenceChunker",
+    "token": "chunking.providers.token_splitter.TokenChunker",
     "character": "chunking.providers.character_splitter.CharacterChunker",
     "recursive": "chunking.providers.recursive_splitter.RecursiveChunker",
-    "semantic":  "chunking.providers.semantic_splitter.SemanticChunker",
+    "semantic": "chunking.providers.semantic_splitter.SemanticChunker",
 }
 
 
+@log_execution_time(logger)
 def _import_class(dotted_path: str) -> Type[BaseChunker]:
     """Lazily import a BaseChunker subclass from a dotted module path."""
     module_path, class_name = dotted_path.rsplit(".", 1)
@@ -51,6 +53,7 @@ class ChunkingFactory:
     """
 
     @staticmethod
+    @log_execution_time(logger)
     def create(config: dict) -> BaseChunker:
         """
         Instantiate the appropriate chunker from a raw config dict.
@@ -67,30 +70,43 @@ class ChunkingFactory:
             ValueError:  Unknown strategy key.
             ImportError: Required package not installed for that strategy.
         """
+        logger.info("Initializing chunking configuration")
         chunking_cfg = ChunkingConfig.from_config(config)
         strategy = chunking_cfg.strategy.lower().strip()
+        logger.info(f"Chunking strategy selected: {strategy}")
 
+        logger.debug(
+            f"Chunk size: {chunking_cfg.chunk_size}, "
+            f"Chunk overlap: {chunking_cfg.chunk_overlap}"
+        )
         if strategy not in _REGISTRY:
             supported = ", ".join(sorted(_REGISTRY.keys()))
+            logger.warning(f"Unsupported chunking strategy requested: {strategy}")
             raise ValueError(
                 f"Unsupported chunking strategy: {strategy!r}.\n"
                 f"Supported strategies: {supported}"
             )
 
         chunker_class = _import_class(_REGISTRY[strategy])
-        print(
-            f"[ChunkingFactory] Creating chunker: {chunker_class.__name__} "
-            f"(strategy={strategy!r}, chunk_size={chunking_cfg.chunk_size}, "
-            f"chunk_overlap={chunking_cfg.chunk_overlap})"
+        logger.info(f"Creating chunker: {chunker_class.__name__}")
+
+        logger.debug(
+            f"Chunker configuration -> "
+            f"strategy={strategy}, "
+            f"chunk_size={chunking_cfg.chunk_size}, "
+            f"chunk_overlap={chunking_cfg.chunk_overlap}"
         )
+        logger.info(f"Chunker initialized successfully: {chunker_class.__name__}")
         return chunker_class(chunking_cfg)
 
     @staticmethod
+    @log_execution_time(logger)
     def list_strategies() -> list[str]:
         """Return a sorted list of all registered strategy keys."""
         return sorted(_REGISTRY.keys())
 
     @staticmethod
+    @log_execution_time(logger)
     def register(strategy_key: str, dotted_class_path: str) -> None:
         """
         Register a custom chunking strategy at runtime.
@@ -107,4 +123,4 @@ class ChunkingFactory:
             )
         """
         _REGISTRY[strategy_key.lower()] = dotted_class_path
-        print(f"[ChunkingFactory] Registered custom strategy: {strategy_key!r}")
+        logger.info(f"Registered custom chunking strategy: {strategy_key}")

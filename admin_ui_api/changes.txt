@@ -1,0 +1,376 @@
+=========================================================
+RAG ENGINE - ADMIN UI API
+CODE CHANGES & TESTING DOCUMENTATION
+=========================================================
+
+
+=========================================================
+1. PROJECT MODULE TESTED
+=========================================================
+
+Module:
+-------
+admin_ui_api (FastAPI Backend)
+
+Purpose:
+--------
+Admin UI backend for:
+- Authentication
+- RBAC
+- Tenant Management
+- Config Management
+- Future Ingestion/Retrieval Integration
+
+Technology Stack:
+-----------------
+- FastAPI
+- SQLAlchemy ORM
+- SQLite
+- JWT Authentication
+- Postman API Testing
+
+
+=========================================================
+2. BACKEND SETUP COMPLETED
+=========================================================
+
+Completed:
+----------
+✔ Virtual environment setup
+✔ Dependency installation
+✔ FastAPI startup
+✔ SQLite DB verification
+✔ Postman collection import
+✔ Environment configuration
+
+Command Used:
+-------------
+uvicorn app.main:app --reload
+
+
+=========================================================
+3. DATABASE VERIFICATION
+=========================================================
+
+Verified SQLite Tables:
+-----------------------
+✔ users
+✔ roles
+✔ tenants
+✔ configs
+
+Verified Roles:
+---------------
+✔ admin
+✔ tenant
+
+Verified Users:
+---------------
+✔ admin
+✔ tenant
+
+Verified Tenant Records:
+------------------------
+✔ Example Tenant
+✔ redington-ecommerce
+
+Verified Config Sections:
+-------------------------
+✔ Source
+✔ Chunking
+✔ Embedding
+✔ Vector Store
+✔ Meta Data
+
+
+=========================================================
+4. AUTH API TESTING COMPLETED
+=========================================================
+
+Tested APIs:
+------------
+✔ POST /auth/login
+✔ GET /auth/me
+✔ POST /auth/logout
+
+Validated:
+-----------
+✔ JWT token generation
+✔ Bearer token validation
+✔ Protected route authorization
+✔ Logout/token invalidation
+✔ RBAC role retrieval
+
+Verified Credentials:
+---------------------
+Admin User:
+username = admin
+password = Hap$y#2@26
+
+Tenant User:
+username = tenant
+password = tenant123
+
+
+=========================================================
+5. TENANT API TESTING COMPLETED
+=========================================================
+
+Tested APIs:
+------------
+✔ GET /tenants
+✔ GET /tenants/{id}
+✔ GET /tenants/{id}/config
+
+Validated:
+-----------
+✔ Multi-tenant architecture
+✔ Tenant retrieval
+✔ Tenant-specific configuration loading
+✔ Protected API access
+✔ ORM serialization
+
+
+=========================================================
+6. PLACEHOLDER API VALIDATION
+=========================================================
+
+Validated Placeholder APIs:
+---------------------------
+✔ unstructured
+✔ structured
+✔ retrieval
+✔ logs
+
+Purpose:
+--------
+These placeholders represent future:
+- Ingestion Module
+- Structured DB Ingestion
+- Retrieval Module
+- Observability/Logs
+
+
+=========================================================
+7. CODE FIXES IMPLEMENTED
+=========================================================
+
+
+---------------------------------------------------------
+FIX #1 - SQLAlchemy DetachedInstanceError (Login API)
+---------------------------------------------------------
+
+Issue:
+------
+During login API testing, the backend failed with:
+
+sqlalchemy.orm.exc.DetachedInstanceError
+
+Reason:
+-------
+The SQLAlchemy ORM relationship:
+user.role.name
+
+was being lazy-loaded after the DB session was already closed.
+
+Affected File:
+--------------
+app/services/auth_service.py
+
+Old Code:
+---------
+return session.query(User).filter(User.username == username).first()
+
+Updated Code:
+-------------
+from sqlalchemy.orm import joinedload
+
+return (
+    session.query(User)
+    .options(joinedload(User.role))
+    .filter(User.username == username)
+    .first()
+)
+
+Why Change Was Needed:
+----------------------
+To eagerly load the User -> Role relationship before the session closes.
+
+Impact:
+-------
+✔ Login API fixed
+✔ Role retrieval working
+✔ JWT response generation working
+✔ ORM session lifecycle stabilized
+
+
+---------------------------------------------------------
+FIX #2 - DetachedInstanceError in Protected APIs
+---------------------------------------------------------
+
+Issue:
+------
+Protected APIs such as:
+
+GET /auth/me
+
+failed with DetachedInstanceError.
+
+Reason:
+-------
+The current_user.role relationship was lazy-loaded after session closure.
+
+Affected File:
+--------------
+app/core/security.py
+
+Affected Function:
+------------------
+get_user_by_token()
+
+Old Query:
+----------
+session.query(User).filter(User.id == user_id).first()
+
+Updated Query:
+--------------
+from sqlalchemy.orm import joinedload
+
+user = (
+    session.query(User)
+    .options(joinedload(User.role))
+    .filter(User.id == user_id)
+    .first()
+)
+
+Why Change Was Needed:
+----------------------
+To eagerly load the User -> Role relationship during JWT user lookup.
+
+Impact:
+-------
+✔ Protected routes fixed
+✔ /auth/me working
+✔ JWT user extraction stabilized
+✔ ORM relationship loading fixed
+
+
+=========================================================
+8. ARCHITECTURE UNDERSTANDING ACHIEVED
+=========================================================
+
+Backend Flow:
+-------------
+Postman
+↓
+FastAPI Router
+↓
+JWT Middleware
+↓
+Service Layer
+↓
+SQLAlchemy ORM
+↓
+SQLite Database
+↓
+RBAC
+↓
+Tenant Isolation
+↓
+JSON Response
+
+Authentication Flow:
+--------------------
+POST /auth/login
+↓
+authenticate_user()
+↓
+verify_password()
+↓
+SQLite users table
+↓
+JWT token generation
+↓
+Bearer token returned
+
+Multi-Tenant Flow:
+------------------
+User
+↓
+Role
+↓
+Tenant
+↓
+Configs
+
+
+=========================================================
+9. CONFIG-DRIVEN RAG ARCHITECTURE VERIFIED
+=========================================================
+
+Verified Config Sections:
+-------------------------
+✔ Source
+✔ Chunking
+✔ Embedding
+✔ Vector Store
+✔ Meta Data
+
+Purpose:
+--------
+These configurations will later control:
+- ingestion pipeline
+- chunking strategy
+- embedding models
+- vector DB integration
+- retrieval filtering
+
+
+=========================================================
+10. CURRENT PROJECT STATUS
+=========================================================
+
+Completed:
+----------
+✔ Admin UI API Testing
+✔ JWT/RBAC Validation
+✔ Tenant API Testing
+✔ SQLite Verification
+✔ ORM Debugging
+✔ Protected Route Testing
+✔ Config API Validation
+
+Pending Next Phases:
+--------------------
+⏳ Onboarding API Testing
+⏳ Ingestion Module Testing
+⏳ Retrieval API Testing
+⏳ Vector DB Runtime Integration
+⏳ Full RAG Pipeline Validation
+
+
+=========================================================
+11. FINAL UNDERSTANDING
+=========================================================
+
+The admin_ui_api backend acts as the:
+-------------------------------------
+Enterprise Admin Control Plane
+
+Responsible for:
+----------------
+✔ Authentication
+✔ RBAC
+✔ Tenant Management
+✔ Config Management
+✔ Future RAG Module Integration
+
+Future UI developers will consume these APIs for:
+-------------------------------------------------
+- Login screens
+- Tenant dashboards
+- Config management
+- Monitoring dashboards
+- Ingestion/retrieval management
+
+This testing validated backend readiness before frontend integration.

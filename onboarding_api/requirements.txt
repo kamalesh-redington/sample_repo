@@ -18,7 +18,7 @@ sentence-transformers
 # Database
 psycopg2-binary
 sqlalchemy>=2.0
-sqlite3
+#sqlite3
 
 # Authentication & Security
 passlib[bcrypt]>=1.7.4

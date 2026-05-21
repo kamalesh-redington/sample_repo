@@ -1,15 +1,6 @@
-"""
-Azure OpenAI Dense Embedder
-Provider key : "azure_openai"
-Embedding type: dense
-Modality     : text
+from config.logger import setup_logger
 
-Extra config fields (under embedding.extra / YAML siblings):
-    azure_endpoint : "https://<resource>.openai.azure.com/"
-    azure_api_key  : "<key>"               (or env AZURE_OPENAI_API_KEY)
-    api_version    : "2024-02-01"
-    deployment     : "text-embedding-3-small"  (Azure deployment name)
-"""
+logger = setup_logger(__name__)
 
 from typing import List
 
@@ -17,34 +8,67 @@ from embedding.base import BaseEmbedder, EmbeddingConfig
 
 
 class AzureOpenAIEmbedder(BaseEmbedder):
-    """Dense text embedder backed by Azure-hosted OpenAI."""
 
     def __init__(self, config: EmbeddingConfig):
+
         super().__init__(config)
+
+        logger.info("Initializing AzureOpenAIEmbedder")
+
+        logger.debug(f"Azure OpenAI model configured: {config.model}")
+
+        logger.debug(f"Embedding dimensions: {config.dimensions}")
+
         try:
+
             from openai import AzureOpenAI
+
         except ImportError as exc:
-            raise ImportError(
-                "openai package is required → pip install openai"
-            ) from exc
+
+            logger.exception("Azure OpenAI import failed")
+
+            raise ImportError("openai package required → pip install openai") from exc
 
         self._client = AzureOpenAI(
-            azure_endpoint=config.extra.get("azure_endpoint"),
-            api_key=config.extra.get("azure_api_key"),
+            api_key=config.extra.get("api_key"),
             api_version=config.extra.get("api_version", "2024-02-01"),
+            azure_endpoint=config.extra.get("endpoint"),
         )
-        self._deployment = config.extra.get("deployment", config.model)
+
+        logger.info("Azure OpenAI client initialized successfully")
 
     def embed_texts(self, texts: List[str]) -> List[List[float]]:
-        all_vectors: List[List[float]] = []
 
-        for i in range(0, len(texts), self.config.batch_size):
-            batch = texts[i : i + self.config.batch_size]
-            response = self._client.embeddings.create(
-                model=self._deployment,
-                input=batch,
-            )
-            for item in response.data:
-                all_vectors.append(item.embedding)
+        try:
 
-        return all_vectors
+            logger.info(f"Starting Azure OpenAI embeddings for {len(texts)} text(s)")
+
+            all_vectors = []
+
+            for i in range(0, len(texts), self.config.batch_size):
+
+                batch = texts[i : i + self.config.batch_size]
+
+                logger.debug(f"Processing Azure OpenAI batch size: {len(batch)}")
+
+                response = self._client.embeddings.create(
+                    model=self.config.model,
+                    input=batch,
+                    dimensions=self.config.dimensions,
+                )
+
+                for item in response.data:
+
+                    all_vectors.append(item.embedding)
+
+            logger.info("Azure OpenAI embedding generation completed successfully")
+
+            logger.debug(f"Generated vectors count: {len(all_vectors)}")
+
+            return all_vectors
+
+        except Exception as e:
+
+            logger.exception("Azure OpenAI embedding generation failed")
+
+            raise

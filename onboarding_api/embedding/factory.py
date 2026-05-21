@@ -1,41 +1,11 @@
-"""
-EmbeddingFactory — config-driven embedding provider instantiation.
+from config.logger import setup_logger
 
-Usage
------
-    from embedding.factory import EmbeddingFactory
-
-    embedder = EmbeddingFactory.create(config)          # raw dict (parsed YAML)
-    embedder = EmbeddingFactory.create_from_yaml("config.yaml")
-
-    vectors   = embedder.embed_texts(["hello world"])
-    query_vec = embedder.embed_query("what is RAG?")
-
-Supported providers
--------------------
-    Commercial APIs (dense, text):
-        openai | azure_openai | bedrock | google | cohere | voyage | jina
-
-    Open-source / self-hosted (dense, text):
-        huggingface | sentence_transformers | instructor | fastembed | ollama
-
-    Sparse / lexical (text):
-        splade | bm25
-
-    Hybrid (dense + sparse):
-        hybrid
-
-    Late interaction (text):
-        colbert
-
-    Multimodal:
-        clip
-"""
-
+logger = setup_logger(__name__)
+from asyncio.log import logger
 from typing import Type
+from config.timer import log_execution_time
 
 from embedding.base import BaseEmbedder, EmbeddingConfig
-
 
 # ── provider registry ──────────────────────────────────────────────────────────
 # Maps config.embedding.provider → embedder class.
@@ -44,40 +14,37 @@ from embedding.base import BaseEmbedder, EmbeddingConfig
 
 _REGISTRY: dict[str, str] = {
     # Commercial – dense text
-    "openai":               "embedding.providers.openai_embedder.OpenAIEmbedder",
-    "azure_openai":         "embedding.providers.azure_openai_embedder.AzureOpenAIEmbedder",
-    "bedrock":              "embedding.providers.bedrock_embedder.BedrockEmbedder",
-    "google":               "embedding.providers.google_vertex_embedder.GoogleVertexEmbedder",
-    "cohere":               "embedding.providers.cohere_embedder.CohereEmbedder",
-    "voyage":               "embedding.providers.voyage_embedder.VoyageEmbedder",
-    "jina":                 "embedding.providers.jina_embedder.JinaEmbedder",
-
+    "openai": "embedding.providers.openai_embedder.OpenAIEmbedder",
+    "azure_openai": "embedding.providers.azure_openai_embedder.AzureOpenAIEmbedder",
+    "bedrock": "embedding.providers.bedrock_embedder.BedrockEmbedder",
+    "google": "embedding.providers.google_vertex_embedder.GoogleVertexEmbedder",
+    "cohere": "embedding.providers.cohere_embedder.CohereEmbedder",
+    "voyage": "embedding.providers.voyage_embedder.VoyageEmbedder",
+    "jina": "embedding.providers.jina_embedder.JinaEmbedder",
     # Open-source – dense text (local / self-hosted)
-    "huggingface":          "embedding.providers.huggingface_embedder.HuggingFaceEmbedder",
-    "sentence_transformers":"embedding.providers.sentence_transformer_embedder.SentenceTransformerEmbedder",
-    "instructor":           "embedding.providers.instructor_embedder.InstructorEmbedder",
-    "fastembed":            "embedding.providers.fastembed_embedder.FastEmbedEmbedder",
-    "ollama":               "embedding.providers.ollama_embedder.OllamaEmbedder",
-
+    "huggingface": "embedding.providers.huggingface_embedder.HuggingFaceEmbedder",
+    "sentence_transformers": "embedding.providers.sentence_transformer_embedder.SentenceTransformerEmbedder",
+    "instructor": "embedding.providers.instructor_embedder.InstructorEmbedder",
+    "fastembed": "embedding.providers.fastembed_embedder.FastEmbedEmbedder",
+    "ollama": "embedding.providers.ollama_embedder.OllamaEmbedder",
     # Sparse / lexical
-    "splade":               "embedding.providers.splade_embedder.SpladeEmbedder",
-    "bm25":                 "embedding.providers.bm25_embedder.BM25Embedder",
-
+    "splade": "embedding.providers.splade_embedder.SpladeEmbedder",
+    "bm25": "embedding.providers.bm25_embedder.BM25Embedder",
     # Hybrid (dense + sparse)
-    "hybrid":               "embedding.providers.hybrid_embedder.HybridEmbedder",
-
+    "hybrid": "embedding.providers.hybrid_embedder.HybridEmbedder",
     # Late interaction
-    "colbert":              "embedding.providers.colbert_embedder.ColBERTEmbedder",
-
+    "colbert": "embedding.providers.colbert_embedder.ColBERTEmbedder",
     # Multimodal
-    "clip":                 "embedding.providers.clip_embedder.CLIPEmbedder",
+    "clip": "embedding.providers.clip_embedder.CLIPEmbedder",
 }
 
 
+@log_execution_time(logger)
 def _import_class(dotted_path: str) -> Type[BaseEmbedder]:
     """Lazily import a class from a dotted module path string."""
     module_path, class_name = dotted_path.rsplit(".", 1)
     import importlib
+
     module = importlib.import_module(module_path)
     return getattr(module, class_name)
 
@@ -113,15 +80,21 @@ class EmbeddingFactory:
 
         if provider not in _REGISTRY:
             supported = ", ".join(sorted(_REGISTRY.keys()))
+            logger.warning(f"Unsupported embedding provider requested: {provider}")
             raise ValueError(
                 f"Unsupported embedding provider: {provider!r}.\n"
                 f"Supported providers: {supported}"
             )
 
         embedder_class = _import_class(_REGISTRY[provider])
-        print(f"[EmbeddingFactory] Creating embedder: {embedder_class.__name__} "
-              f"(provider={provider}, model={embedding_config.model}, "
-              f"type={embedding_config.type}, modality={embedding_config.modality})")
+        logger.info(f"Creating embedder: {embedder_class.__name__}")
+
+        logger.debug(
+            f"Provider={provider}, "
+            f"Model={embedding_config.model}, "
+            f"Type={embedding_config.type}, "
+            f"Modality={embedding_config.modality}"
+        )
 
         return embedder_class(embedding_config)
 
@@ -167,4 +140,4 @@ class EmbeddingFactory:
             )
         """
         _REGISTRY[provider_key.lower()] = dotted_class_path
-        print(f"[EmbeddingFactory] Registered custom provider: {provider_key!r}")
+        logger.info(f"Registered custom embedding provider: {provider_key}")

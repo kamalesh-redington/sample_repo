@@ -1,0 +1,1555 @@
+
+================================================================================
+Chunk Index: 0
+Node ID: 5e236942-37ae-4e03-bfd8-905e8b303eac
+Metadata: {'file_name': 'cortex-xdr.pdf', 'file_path': 'data\\cortex-xdr.pdf', 'source': 's3'}
+================================================================================
+Cortex XDR Benefits
+•	 Stop attacks with proven, best-in-
+class security. Uncover and block 
+attacks with behavior-based and ­ 
+AI-powered next-generation antivirus.
+•	 Detect advanced threats with 
+analytics and AI. Uncover threats at 
+machine speed with the solution that 
+delivered 100% detection in the 2024 
+MITRE ATT&CK® Evaluations.
+•	 Reduce alerts by up to 98%. Avoid 
+alert fatigue with a game-changing 
+incident engine that intelligently 
+groups related alerts.
+•	 Cut investigation time by 88%. 
+Verify threats quickly by getting a 
+complete picture of attacks with root 
+cause analysis.
+•	 Maximize ROI. Consolidate tools and 
+simplify operations to cut SOC costs.
+1
+Cortex by Palo Alto Networks  |  Cortex XDR  |  Datasheet
+Cortex XDR
+Protect Your Entire Organization from 
+Breaches with the Industry’s First Extended 
+Detection and Response Platform
+Today’s siloed security solutions can’t keep up with evolving 
+threats, burdening security teams with too many alerts, 
+complex investigations, and missed attacks. Even when 
+teams deploy dozens of tools, they still lack the enterprise-
+wide visibility and deep analytics they need to stop threats 
+before damage is done. Faced with a shortage of security 
+talent, teams need a radical new approach to eliminate 
+threats—an approach built on good data, analytics, and AI 
+that’s always learning.
+
+2
+Cortex by Palo Alto Networks  |  Cortex XDR  |  Datasheet
+Prevent, Detect, and Respond to the Stealthiest Threats
+You can now stop modern attacks with Cortex XDR®, the industry’s first endpoint-based extended 
+detection and response platform that integrates data from any source. Your SOC team can cut through 
+the noise and focus on what matters most with intelligent alert grouping and incident scoring. Cross-data 
+insights accelerate investigations so that you can streamline incident response and recovery. Finally, by 
+harnessing the power of AI, analytics, and rich data, Cortex XDR allows you to detect stealthy threats.
+
+================================================================================
+Chunk Index: 1
+Node ID: b1906c73-6ac0-4676-8aa3-321aacf604d8
+Metadata: {'file_name': 'cortex-xdr.pdf', 'file_path': 'data\\cortex-xdr.pdf', 'source': 's3'}
+================================================================================
+Cross-data 
+insights accelerate investigations so that you can streamline incident response and recovery. Finally, by 
+harnessing the power of AI, analytics, and rich data, Cortex XDR allows you to detect stealthy threats.
+Cortex XDR delivers peace of mind with industry-leading endpoint security that achieved 100% detection 
+with no configuration changes in the 2024 MITRE ATT&CK Evaluations. The Cortex XDR platform collects 
+and analyzes all data so you can gain complete visibility and holistic protection to secure what’s next.
+In the 2024 MITRE ATT&CK Evaluations, Cortex XDR 
+made history as the first participant ever to achieve 100% 
+detection with technique-level detail and no configuration 
+changes or delays.
+Get Full Visibility Across Your Entire Environment
+Cortex XDR automatically stitches together endpoint, network, cloud, and identity data to accurately 
+detect attacks and simplify investigations. Third-party alerts are dynamically integrated with endpoint 
+data to reveal root cause and save hours of analysts’ time.
+Discover Threats with Analytics and Machine Learning
+Using machine learning, Cortex XDR continuously profiles endpoint and network behavior to detect 
+anomalous activity indicative of attacks. It provides a 360-degree view of users, including user risk 
+scores, for user behavior analytics (UBA).
+Gain Deeper Insights with Global Analytics
+Cortex XDR’s Global Analytics system harnesses cross-customer insights for you to identify 
+advanced threats, such as supply chain and zero-day attacks. By applying analytics to an integrated 
+set of data, Cortex XDR can detect evasive threats that siloed endpoint, network, and cloud detection 
+and response tools miss.
+Investigate at Lightning Speed
+Each incident within Cortex XDR provides you with a complete picture of an attack, with key artifacts 
+and threat intelligence details. Furthermore, Cortex XDR’s SmartScore identifies high-risk incidents 
+with machine learning, empowering your team to quickly assess attack scope and impact.
+Orchestrate, Automate, and Enrich with Cortex XSOAR
+Cortex XDR tightly integrates with Cortex XSOAR®, enabling your teams to feed incident data for 
+­automated response based on 1,000+ product integrations. XSOAR playbooks can automatically 
+ingest Cortex XDR incidents, retrieve related alerts, and update incident fields in Cortex XDR.
+
+================================================================================
+Chunk Index: 2
+Node ID: 9806309c-3957-4cb9-8d53-bc20c2534174
+Metadata: {'file_name': 'cortex-xdr.pdf', 'file_path': 'data\\cortex-xdr.pdf', 'source': 's3'}
+================================================================================
+XSOAR playbooks can automatically 
+ingest Cortex XDR incidents, retrieve related alerts, and update incident fields in Cortex XDR. It also 
+links insights to incidents in real time, giving you unmatched visibility into the global threat landscape 
+and automating the distribution of your threat intelligence at scale.
+
+3
+Cortex by Palo Alto Networks  |  Cortex XDR  |  Datasheet
+Onboarding all your data sources into Cortex XDR enables you to broaden the scope of threat hunting 
+and eliminate blind spots. Cortex XDR detects advanced attacks with AI, analytics, and out-of-the-box 
+rules, allowing your team to triage and contain threats quickly. It also simplifies triage and investigations 
+by automatically revealing the root cause, reputation, and attack sequence associated with each alert. 
+By grouping alerts into incidents, Cortex XDR slashes the number of individual alerts to review by up to 
+98%, reducing alert fatigue.
+ 
+Cross-Data Analytics
+XQL-Powered Hunting
+Coordinated Response
+Detailed Forensics
+Endpoints
+Network
+Cloud
+Identity
+Other Sources
+Data Sources
+Incident Management
+Figure 1: Analysis of data from any source for detection and response
+Figure 2: Customizable dashboard
+
+4
+Cortex by Palo Alto Networks  |  Cortex XDR  |  Datasheet
+Block Attacks with Best-in-Class Endpoint Detection  
+and Response
+The Cortex XDR agent offers unparalleled protection for exploits, malware, ransomware, and ­fileless 
+attacks. It includes the broadest set of exploit protection modules available to block malware 
+­infections. It enables sharp detection with AI-powered analytics and threat insights. Finally, it allows 
+you to remediate quickly and take control of affected machines.
+Securely Manage USB and Bluetooth Devices with Device Control
+The Cortex XDR agent protects your endpoints from malware and data loss by monitoring and ­managing 
+USB access. You can restrict usage by vendor, type, endpoint, and Active Directory group or user without 
+needing to install another agent on your hosts. Granular policies allow you to assign write or read-only 
+permissions per USB device.
+Bluetooth devices are also a potential vector for data loss from endpoints.
+
+================================================================================
+Chunk Index: 3
+Node ID: 872d2987-989f-4a10-9840-98b6b7baff88
+Metadata: {'file_name': 'cortex-xdr.pdf', 'file_path': 'data\\cortex-xdr.pdf', 'source': 's3'}
+================================================================================
+You can restrict usage by vendor, type, endpoint, and Active Directory group or user without 
+needing to install another agent on your hosts. Granular policies allow you to assign write or read-only 
+permissions per USB device.
+Bluetooth devices are also a potential vector for data loss from endpoints. Bluetooth Device Control 
+now gives analysts control over Bluetooth devices connecting to endpoints, covering both Bluetooth 
+Classic and Bluetooth Low Energy devices. Admins can set granular policies, like allowing specific 
+Bluetooth devices for productivity, while blocking everything else and stopping potential data loss. 
+This device control capability for Bluetooth further hardens endpoint security posture and prevents 
+unwanted data sharing over Bluetooth channels.
+Protect Endpoints with Host Firewall and Disk Encryption
+With host firewall and disk encryption capabilities, you can lower your security risks as well as address 
+­regulatory requirements. The Cortex XDR host firewall enables you to control inbound and outbound 
+­communications on your Windows and macOS endpoints. Additionally, with disk encryption, you can create 
+rules and policies and apply BitLocker or FileVault encryption on your endpoints. Host ­firewall and disk 
+­encryption capabilities and policies can be centrally configured from the Cortex XDR ­management console.
+Extend Enterprise Security to Mobile Devices
+With Cortex XDR, you can extend security to your mobile devices on both the iOS and Android 
+­platforms. For iOS devices, utilize URL filtering to analyze, block, or report malicious URLs and ­manage 
+­custom URLs. You can also report and block spam calls and messages, and leverage the Safari 
+browser security module to gate suspicious sites and inform users about site safety. Additionally, the 
+network and EDR security module allows you to exercise granular control and monitoring of network 
+traffic on supervised iOS devices.
+For Android, Cortex XDR enables you to examine APK files to prevent malicious applications from 
+running on your endpoints. Cortex XDR delivers robust mobile protection, securing your devices and 
+safeguarding your organization’s data.
+Superior Detection Coverage with Analytics and Malware Analysis
+Cortex XDR examines every file with its AI-driven local analysis engine—always learning and preparing 
+to counter new attack techniques. The Behavioral Threat Protection engine examines the behavior of 
+multiple related processes to uncover attacks as they occur.
+
+================================================================================
+Chunk Index: 4
+Node ID: 7e3ab354-4e0a-4866-a246-f3f565c954a1
+Metadata: {'file_name': 'cortex-xdr.pdf', 'file_path': 'data\\cortex-xdr.pdf', 'source': 's3'}
+================================================================================
+Superior Detection Coverage with Analytics and Malware Analysis
+Cortex XDR examines every file with its AI-driven local analysis engine—always learning and preparing 
+to counter new attack techniques. The Behavioral Threat Protection engine examines the behavior of 
+multiple related processes to uncover attacks as they occur. Integration with the Palo Alto Networks 
+WildFire® malware analysis service boosts security accuracy and coverage.
+
+5
+Cortex by Palo Alto Networks  |  Cortex XDR  |  Datasheet
+The XDR Advantage
+eXtended Threat Hunting Data Module
+Data collection is crucial for effective threat hunting. It enables the identification and analysis of 
+­potential threats by providing valuable insights into system behavior, network traffic, and user ­activity. 
+Comprehensive data empowers threat hunters to swiftly detect and respond to ­c­yberattacks, 
+­preventing or minimizing damage to organizations’ ­security posture. Cortex XDR’s eXtended Threat 
+Hunting Data Module enhances XDR Pro by ­onboarding additional event types and boosting XDR’s 
+analytics capabilities, allowing you to sharpen your detection and strengthen threat hunting operations.
+Stop Threats Quickly with Flexible Response Options
+Cortex XDR lets your security team instantly contain endpoint, network, and cloud threats from 
+one console. Stop the spread of malware, restrict network activity to and from devices, and update 
+prevention lists like bad domains through tight integration with enforcement points. The powerful 
+Live Terminal feature lets analysts swiftly verify and contain attacks without disrupting end users by 
+running Python, PowerShell, or system commands and scripts directly on endpoints. Analysts of all 
+experience levels can manage files and processes from graphical file and task managers.
+
+================================================================================
+Chunk Index: 5
+Node ID: 928e1bd1-18b1-4a78-8251-3994894a3c8c
+Metadata: {'file_name': 'cortex-xdr.pdf', 'file_path': 'data\\cortex-xdr.pdf', 'source': 's3'}
+================================================================================
+The powerful 
+Live Terminal feature lets analysts swiftly verify and contain attacks without disrupting end users by 
+running Python, PowerShell, or system commands and scripts directly on endpoints. Analysts of all 
+experience levels can manage files and processes from graphical file and task managers.
+Host Insights
+Better identify threats and 
+vulnerabilities and contain them
+Identity Analytics
+Leverage identity and access
+context and behavioral analysis
+Forensics
+Makes triage and forensic
+analysis easy and more powerful
+Identity Threat Detection
+and Response
+Manage risk from identity
+threats and malicious insiders
+eXtended Threat Hunting Data Module (XTH)
+Gain deeper visibility, enable threat hunting, and unlock advanced analytics
+Cortex XDR
+The industry’s ﬁrst extended detection and response solution
+Gain Unprecedented Visibility and Response with Host Insights
+Host Insights, an add-on module for Cortex XDR, offers a holistic approach to endpoint visibility and 
+attack containment, reducing your exposure to threats so you can avoid breaches. Host Insights helps 
+you swiftly find and eradicate threats by delivering vulnerability assessment, host inventory, and 
+Search and Destroy.
+
+6
+Cortex by Palo Alto Networks  |  Cortex XDR  |  Datasheet
+Accelerate Incident Response with Forensics
+Cortex XDR Forensics is a triage and investigation module letting you review evidence, hunt for 
+threats, simplify investigations, and perform compromise assessments from one console. With its 
+deep data collection, it provides you with instant access to a wealth of forensics data and artifacts—
+including volatile memory—so you can determine the source and scope of an attack. See the data-
+sheet for more information.
+Furthermore, with Cortex XDR Pro’s dissolvable agent, you can collect forensics data without the need 
+to maintain the complete agent on your endpoint. Instead, you deploy it just once. The dissolvable agent 
+can be installed on the affected device, performs a one-time data collection, and then uninstalls itself.
+Manage Insider and Identity Risk with Identity Analytics and ITDR
+With Cortex XDR’s Identity Analytics, you can use advanced data collection and analytics to identify 
+abnormal user and entity activity to defend against compromised user accounts and malicious ­insiders.
+
+================================================================================
+Chunk Index: 6
+Node ID: 2825adab-ce3d-425e-ad48-e6332d6460a1
+Metadata: {'file_name': 'cortex-xdr.pdf', 'file_path': 'data\\cortex-xdr.pdf', 'source': 's3'}
+================================================================================
+Manage Insider and Identity Risk with Identity Analytics and ITDR
+With Cortex XDR’s Identity Analytics, you can use advanced data collection and analytics to identify 
+abnormal user and entity activity to defend against compromised user accounts and malicious ­insiders. 
+Identity Analytics allows you to gain visibility by ingesting user activity data feeds (from endpoints, 
+agents, firewalls, Active Directory, and more). It also applies machine learning and behavioral analytics 
+built into analytic detectors that are continuously updated and created by Cortex threat researchers 
+and data sciences experts.
+By combining advanced detection capabilities as part of Identity Analytics with the Identity Threat 
+Detection and Response (ITDR) Module that protects against identity threats later on along the attack 
+lifecycle, you can swiftly identify and investigate identity-related threats, assess impact through scoring, 
+visualize trends and profiles, and reduce the risk of data breaches.
+Hunt for Hidden Malware, Targeted Attacks, and Insiders
+Powerful searching capabilities in Cortex XDR let your analysts unearth threats using an intuitive Query 
+Builder as well as construct advanced queries and visualize results with XQL Search. Your team can 
+search, schedule, and save queries to unearth hard-to-find threats. By integrating threat intelligence 
+with an extensive set of security data, your team can catch malware, external threats, and malicious 
+­insiders. The Asset Management feature reveals potential threats and streamlines network management 
+by showing you all the devices in your environment, including managed, unmanaged, and rogue devices.
+Enlist Experts for Managed Detection and Response
+With the Palo Alto Networks Unit 42® Managed Detection and Response (Unit 42 MDR) service, a 
+team of world-class analysts, hunters, and researchers work for you to investigate and respond to 
+attacks, allowing your team to scale fast and focus on more strategic tasks. The Unit 42 team ­applies 
+years of experience protecting businesses and governments around the globe to monitor your 
+­environment 24/7 and hunt for suspicious activity. Armed with industry-leading threat ­intelligence 
+from over 10 years of malware analysis, augmented every day by over 30 million new malware 
+­samples and 500 billion events, our Unit 42 experts ensure you stay ahead of emerging threats.
+
+================================================================================
+Chunk Index: 7
+Node ID: 340993d5-d420-40b7-bc7c-10226fed1388
+Metadata: {'file_name': 'cortex-xdr.pdf', 'file_path': 'data\\cortex-xdr.pdf', 'source': 's3'}
+================================================================================
+Armed with industry-leading threat ­intelligence 
+from over 10 years of malware analysis, augmented every day by over 30 million new malware 
+­samples and 500 billion events, our Unit 42 experts ensure you stay ahead of emerging threats.
+With Cortex XDR, you can choose MDR services from Unit 42 as well as our extensive ecosystem of 
+XMDR partners.
+
+7
+Cortex by Palo Alto Networks  |  Cortex XDR  |  Datasheet
+ 
+Cortex XDR was named a Leader in The Forrester Wave™: 
+Extended Detection And Response Platforms, Q2 2024.
+Extended Detection 
+And Response 
+Platforms
+WAVE 
+LEADER 2024
+Unify Management, Reporting, Triage, and Response in One 
+Intuitive Console
+The management console offers end-to-end support for all Cortex XDR capabilities, including endpoint 
+policy management, detection, investigation, and response. You can quickly assess the security status of 
+your organization’s or individual endpoints with customizable dashboards as well as summarize incidents 
+and security trends with graphical reports that can be scheduled or generated on demand. Public APIs 
+extend management to third-party tools, enabling you to retrieve and update incidents, collect agent 
+information, and contain endpoint threats from the management platform of your choice.
+Ease Deployment with Cloud Delivery
+The cloud-native Cortex XDR platform revolutionizes security deployment by eliminating the need 
+for new on-premises log storage or network sensors. At its core is a lightweight agent that can be 
+installed and upgraded without system reboots, minimizing operational disruption. This cloud-first 
+approach provides a scalable and efficient data repository, allowing organizations to easily store and 
+manage security information from multiple sources.
+Protecting the Cloud
+Cortex XDR extends its robust protection to cloud environments, supporting both private and public 
+cloud platforms including AWS, Google Cloud, and Microsoft Azure. This versatility ensures ­consistent 
+security practices across an organization’s entire IT ecosystem, regardless of where assets are ­hosted. 
+Threats in the cloud are prevented at runtime, detected with analytics tuned for cloud-specific 
+data, and are remediated with cloud-specific response actions. The platform also offers seamless 
+­integration with Kubernetes, simplifying deployment to containerized environments and protecting 
+modern, cloud-native applications.
+
+================================================================================
+Chunk Index: 8
+Node ID: 9754c6f5-453e-4f38-bbb7-1e5f0d70805e
+Metadata: {'file_name': 'cortex-xdr.pdf', 'file_path': 'data\\cortex-xdr.pdf', 'source': 's3'}
+================================================================================
+Threats in the cloud are prevented at runtime, detected with analytics tuned for cloud-specific 
+data, and are remediated with cloud-specific response actions. The platform also offers seamless 
+­integration with Kubernetes, simplifying deployment to containerized environments and protecting 
+modern, cloud-native applications.
+By safeguarding cloud workloads alongside on-premises assets, Cortex XDR provides ­comprehensive 
+visibility across an organization’s entire IT landscape. This unified view bridges the gap between 
+­traditional and cloud infrastructures, offering invaluable insights for security teams defending complex, 
+hybrid environments.
+
+3000 Tannery Way
+Santa Clara, CA 95054
+Main:	
++1.408.753.4000
+Sales:	
++1.866.320.4788
+Support:	
++1.866.898.9087
+www.paloaltonetworks.com
+© 2025 Palo Alto Networks, Inc. A list of our trademarks in the United States and other 
+jurisdictions can be found at https://www.paloaltonetworks.com/company/trademarks.html. 
+All other marks mentioned herein may be trademarks of their respective companies.
+
+================================================================================
+Chunk Index: 9
+Node ID: 6f07cfd4-3133-46e5-a537-e0bf04e749e0
+Metadata: {'file_name': 'cortex-xdr.pdf', 'file_path': 'data\\cortex-xdr.pdf', 'source': 's3'}
+================================================================================
+A list of our trademarks in the United States and other 
+jurisdictions can be found at https://www.paloaltonetworks.com/company/trademarks.html. 
+All other marks mentioned herein may be trademarks of their respective companies.
+cortex_ds_cortex-xdr_012425
+Resources
+Cortex XDR At a Glance
+Cortex XDR Help Center
+Customer Service Portal
+Table 1: Cortex XDR License Capabilities
+XDR Prevent
+XDR Pro per Endpoint
+XDR Pro per Gigabyte
+Next-Generation Antivirus
+Block malware, ransomware, exploits, and fileless attacks
+✓
+✓
+Endpoint Protection
+Safeguard endpoints with device control, firewall, and disk encryption
+✓
+✓
+Detection and Response
+Pinpoint attacks with AI-driven analytics and coordinate response
+✓
+✓
+Managed Detection and Response
+Let Unit 42 experts work for you 24/7 to detect and respond to threats
+✓
+✓
+Managed Threat Hunting
+Let Unit 42 experts work for you 24/7 to discover advanced threats
+✓
+✓
+Host Insights
+Find vulnerabilities and sweep across endpoints to eradicate threats
+✓
+Forensics Investigation
+Investigate incidents swiftly with ­comprehensive forensics  
+evidence collection
+✓
+Third-Party Security Events
+Send security events from other data sources
+✓
+✓
+Third-Party Security Logs
+Send raw logs from other data sources
+✓
+Network Traffic Analysis
+Syslog, Kafka, DB, CSV file, FTP, NetFlow, Windows events, Pathfinder
+✓
+Prisma® and Palo Alto Networks IoT Security
+Unify cloud and/or control system environments with XDR
+✓
+Integrations
+Threat intelligence solutions, Slack, send syslog
+✓
+✓
+✓
+Security Analytics
+Apply machine learning and UEBA detections to security data
+✓
+✓
+Identity Threat Detection and Response (ITDR Module)
+Uncover hard-to-detect threats like insiders, lateral movement, 
+­credential compromise ­(includes XTHD when paired with XDR Pro  
+per Endpoint)
+✓
+eXtended Threat Hunting Data ­(XTHD Module)
+Collect rich data at the endpoint to support deep threat hunting oper-
+ations in an environment
+✓
+
+================================================================================
+Chunk Index: 10
+Node ID: 448645b9-d33c-4bce-a97b-7822ae2a9251
+Metadata: {'file_name': 'test.pdf', 'file_path': 'data\\test.pdf', 'source': 's3'}
+================================================================================
+Disclaimer
+This is a PDF version of the Unilever Annual Report and Accounts 2025 and is an exact copy 
+of the printed document provided to Unilever’s shareholders. 
+The Annual Report and Accounts 2025 was filed with the National Storage Mechanism 
+and the Dutch Authority for the Financial Markets in European Single Electronic Format, 
+including a human-readable XHTML version of the Annual Report and Accounts 2025 (the 
+ESEF Format). The Annual Report and Accounts 2025 in ESEF Format is also available on 
+Unilever’s website at www.unilever.com. Only the Annual Report and Accounts 2025 in 
+ESEF Format is the official version for purposes of the ESEF Regulation.
+Certain sections of the Unilever Annual Report and Accounts 2025 have been audited. 
+These are on pages 128 to 191 and those parts noted as audited within the Directors’ 
+Remuneration Report on pages 78 to 108.
+The maintenance and integrity of the Unilever website is the responsibility of Unilever PLC; 
+the work carried out by the auditors does not involve consideration of these matters. 
+Accordingly, the auditors accept no responsibility for any changes that may have occurred 
+to the financial statements since they were initially placed on the website.
+Legislation in the United Kingdom and the Netherlands governing the preparation and 
+dissemination of financial statements may differ from legislation in other jurisdictions. 
+Except where you are a shareholder, this material is provided for information purposes 
+only and is not, in particular, intended to confer any legal rights on you.
+This Annual Report and Accounts does not constitute an invitation to invest in Unilever 
+shares. Any decisions you make in reliance on this information are solely your responsibility.
+The information is given as of the dates specified, is not updated, and any forward-looking 
+statements are made subject to the reservations specified in the cautionary statement on 
+the inside back cover of this PDF.
+Unilever accepts no responsibility for any information on other websites that may be 
+accessed from this site by hyperlinks.
+
+Unilever at a Glance
+We are a global consumer goods business with a strong category focus 
+and differentiated capabilities.
+
+================================================================================
+Chunk Index: 11
+Node ID: 80793963-aedd-4da0-90de-ae6e9b729ab3
+Metadata: {'file_name': 'test.pdf', 'file_path': 'data\\test.pdf', 'source': 's3'}
+================================================================================
+Unilever accepts no responsibility for any information on other websites that may be 
+accessed from this site by hyperlinks.
+
+Unilever at a Glance
+We are a global consumer goods business with a strong category focus 
+and differentiated capabilities.
+ORGANISATION
+Category-focused
+ 
+  
+€50.5bn
+Turnover in 2025
+    
+     
+    
+  
+BEAUTY & WELLBEING
+Hair Care
+Prestige Beauty
+Skin Care
+Wellbeing
+€12.8bn
+PERSONAL CARE
+Deodorants
+Oral Care
+Skin Cleansing
+€13.2bn
+HOME CARE
+Fabric Cleaning
+Fabric Enhancers
+Home & Hygiene
+€11.6bn
+FOODS
+Condiments
+Cooking Aids & Mini-Meals
+Unilever Food Solutions
+€12.9bn
+We maintain rigorous focus on our top 24 markets under eight geographies, representing around 85% of our turnover. The remaining Unilever 
+markets are organised under ’One Unilever’ (1UL) and consist of lean-resourced, small- to mid-sized markets managing their own P&L.
+
+================================================================================
+Chunk Index: 12
+Node ID: 8c44e6ff-c995-4764-80db-f026465ed6a7
+Metadata: {'file_name': 'test.pdf', 'file_path': 'data\\test.pdf', 'source': 's3'}
+================================================================================
+The remaining Unilever 
+markets are organised under ’One Unilever’ (1UL) and consist of lean-resourced, small- to mid-sized markets managing their own P&L.
+                       
+                    
+Global footprint
+190
+countries where our 
+products are sold
+Innovation-led
+€836m
+spend on Research 
+& Development
+Household penetration
+3.7bn
+people use Unilever 
+products every day 
+ABOUT UNILEVER
+2
+Unilever Annual Report and Accounts 2025
+Strategic Report
+
+BRANDS
+Power Brands
+   
+Power Brands
+78%
+of turnover in 2025
+PEOPLE
+Global talent
+Global talent pool
+Employee satisfaction
+96,000
+people who 
+work for Unilever
+84%
+satisfied with Unilever 
+as a place to work 
+VALUE FOR STAKEHOLDERS 
+Our business model leverages our organisational structure,
+ deep operational know-how and industry-leading expertise to create value for:
+Shareholders
+Consumers
+Customers
+Our People
+Suppliers & Partners
+Planet & Society
+ABOUT UNILEVER
+Strategic Report
+Unilever Annual Report and Accounts 2025
+3
+
+7 STRATEGIC GROWTH PRIORITIES 
+We are sharpening our focus on seven strategic growth 
+opportunities to support long-term value creation: 
+          
+           
+Categories
+Beauty
+Wellbeing
+Personal Care
+Proposition
+Premium
+Channels
+Digital Commerce
+Geographies
+United States
+India
+UNDERPINNED BY
+SUSTAINABILITY
+Protecting and enhancing the value of our business through 
+innovation, operational efficiency and long-term resilience.
+ 
+Climate
+Nature
+Plastics
+Livelihoods
+ABOUT UNILEVER
+Strategic Report
+Unilever Annual Report and Accounts 2025
+5
+
+DISCONTINUED OPERATIONS
+The results of the Ice Cream business for the period of 
+ownership until the demerger on 6 December 2025 are 
+included in discontinued operations. These are not included in 
+non-GAAP measures, including underlying earnings per share.
+In 2025, our discontinued operations generated €7.7 billion 
+turnover, with operating profit of €0.7 billion and profit after 
+taxation on demerger of discontinued operations of €3.8 billion.
+
+================================================================================
+Chunk Index: 13
+Node ID: 10cc414f-45c9-4ab3-b9d3-c370df40ab55
+Metadata: {'file_name': 'test.pdf', 'file_path': 'data\\test.pdf', 'source': 's3'}
+================================================================================
+In 2025, our discontinued operations generated €7.7 billion 
+turnover, with operating profit of €0.7 billion and profit after 
+taxation on demerger of discontinued operations of €3.8 billion. 
+Our profit after taxation on demerger of discontinued operations in 
+2025 reflected the gain on demerger. Cash flow from discontinued 
+operations included an operating inflow of €0.3 billion. Investing 
+outflow was €0.7 billion, mainly from the cash derecognised at the 
+time of the demerger and capital expenditure. Financing activities 
+contributed a €3.0 billion inflow, primarily from the bond issuance 
+completed by TMICC.
+LOOKING FORWARD
+Looking ahead, we will continue to focus on the three shifts that 
+will be critical to supporting sustained outperformance in rapidly 
+changing markets: building Desire at Scale with our brands, 
+reinforcing a Play to Win culture with clear accountability, and 
+rewiring the organisation for digital and AI.
+Our value creation plan is aimed at delivering absolute profit 
+growth in line with our top-third total shareholder return 
+ambition and is outlined below.
+     VALUE CREATION PLAN 2026
+DELIVER ABSOLUTE PROFIT GROWTH IN LINE WITH
+TOP 1/3 TOTAL SHAREHOLDER RETURN AMBITION
+   
+        
+      
+GROWTH ALGORITHM
+Mid-single-digit growth
+(USG)
+with UVG of at least 2%
+Modest margin improvement
+(UOM)
+Fuelled by gross margin
+Top 1/3
+total shareholder return
+CASH GENERATION
+Cash conversion
+Sustain ~100% cash 
+conversion over time
+Debt
+~2x net debt/EBITDA
+Strong single A 
+credit ratings
+ROIC
+High-teens ROIC
+CAPITAL ALLOCATION
+Growth & 
+productivity
+Capacity and margin 
+expansion
+Brand investment
+Portfolio reshaping
+Bolt-on M&A
+No transformational
+M&A
+Capital returns
+~60% dividend 
+payout ratio
+Share buybacks with 
+surplus cash
+EBITDA is underlying earnings before interest, taxation, depreciation and amortisation; ROIC is underlying return on invested capital; UOM is underlying operating margin; USG is underlying sales 
+growth; and UVG is underlying volume growth.
+
+================================================================================
+Chunk Index: 14
+Node ID: 9febb83a-b10d-447d-bf08-419d1ba9b0c1
+Metadata: {'file_name': 'test.pdf', 'file_path': 'data\\test.pdf', 'source': 's3'}
+================================================================================
+See pages 40 to 46 for further details on these measures. Dividend payout ratio is calculated as dividend per share/underlying earnings per share.
+REVIEW OF THE YEAR
+Strategic Report
+Unilever Annual Report and Accounts 2025
+13
+
+PERFORMANCE SUMMARY 
+In 2025, our turnover was €12.9 billion, decreasing by (3.2)% 
+compared to the prior year, impacted by adverse currency 
+movements and partially offset by 2.5% underlying sales growth. 
+This consistent and competitive underlying performance was led by 
+emerging markets. North America grew in line with the total Business 
+Group, while Europe remained suppressed amid softer consumer 
+demand. Encouragingly, underlying volume growth improved to 
+0.8%, reflecting our disciplined execution in a slower market 
+environment. 
+Cooking Aids grew low single-digit, driven primarily by price. Knorr’s 
+softer performance in developed markets was offset by positive 
+volume and price in emerging markets. Condiments delivered 
+mid-single-digit growth, with balanced volume and price, led by 
+Hellmann’s continued momentum. The brand benefited from 
+strong demand for its flavoured mayo range, now present in over 
+30 markets, and particularly good growth in emerging markets. 
+Unilever Food Solutions was flat, with positive volume growth in 
+North America. This was partially offset by declines in China, its 
+biggest market, and Europe, reflecting weaker out-of-home 
+consumption and ongoing macroeconomic pressures. 
+Operating profit increased by 5.7% to €2.7 billion, due to reduced 
+restructuring costs compared to the prior year and an underlying 
+operating profit increase of 2.7%. Underlying operating margin 
+increased by 130bps to 22.6%. This was driven by improvements in 
+gross margin and overheads, alongside disciplined brand investment 
+as we continue to execute our focused Foods strategy. 
+STRATEGIC PRIORITIES
+Our key focus is to continue delivering consistent growth with strong 
+profit and cash generation. We have introduced a new Foods 
+strategy which, now in its second year, supports this. We are 
+streamlining and optimising our portfolio and accelerating science-
+led innovation built around products rooted in great taste.
+
+================================================================================
+Chunk Index: 15
+Node ID: 1d6e18a2-0f42-4a46-9dab-8220f0a8b97f
+Metadata: {'file_name': 'test.pdf', 'file_path': 'data\\test.pdf', 'source': 's3'}
+================================================================================
+We have introduced a new Foods 
+strategy which, now in its second year, supports this. We are 
+streamlining and optimising our portfolio and accelerating science-
+led innovation built around products rooted in great taste. At the 
+same time, we are sharpening execution across our strategic 
+partnerships, strengthening consumer engagement and driving 
+operational excellence.
+INNOVATION-LED PREMIUMISATION 
+Innovation remains our primary driver of volume growth, and 
+in 2025, we turned consumer trends into scalable, multi-year 
+product offerings. We are embracing the appetite for new flavours 
+and cuisines, the desire for convenient and solo cooking, and the rise 
+of time-saving methods such as air frying. 
+Knorr continues to evolve its portfolio through innovation and 
+product superiority. This approach in bouillons and seasonings 
+fuelled particularly strong growth in the Philippines, Indonesia and 
+the US. In addition, Knorr tapped into the growing demand for smart 
+cooking and eating, expanding mini-meals with ready-to-heat 
+pots inspired by trending global cuisines. In the UK and Germany, 
+it introduced new cooking pastes – such as Sundried Tomato & 
+Herbs and Smoked Chilli & Lime – designed for air fryer use. 
+We continued to invest in the fast-growing flavour space, with our 
+flavoured mayo range reaching €100 million across 35 markets, 
+supported by Hellmann’s launches like Ranch in the UK and Flamin’ 
+Hot in Mexico. 
+Our approach to innovation has evolved too. We accelerated our 
+latest product development through an AI formulation tool, 
+significantly reducing time to market. 
+FRONTLINE EXECUTION 
+Our brands are embracing a social-first approach to connect with 
+people in authentic, locally relevant ways. Knorr delivered its 
+biggest social-first campaign, #UnlockYourGreenFlag, positioning 
+cooking as a universal ‘green flag’ in the dating world. Partnering 
+with the world’s most downloaded dating app and influencers 
+across 29 markets, the campaign delivered content that resonated 
+with Gen Z, driving a measurable uplift in brand preference.
+Connecting with consumers at the right moments is central to 
+our strategy.
+
+================================================================================
+Chunk Index: 16
+Node ID: 08419abe-279b-40e5-a88a-ba7a70b5d6c7
+Metadata: {'file_name': 'test.pdf', 'file_path': 'data\\test.pdf', 'source': 's3'}
+================================================================================
+Partnering 
+with the world’s most downloaded dating app and influencers 
+across 29 markets, the campaign delivered content that resonated 
+with Gen Z, driving a measurable uplift in brand preference.
+Connecting with consumers at the right moments is central to 
+our strategy. In the US – a key market for Hellmann’s – the brand 
+continues to leverage major sporting events as a repeatable model, 
+celebrating the football season with its fifth Big Game activation, 
+generating over 40 billion earned media impressions. This multi-
+channel campaign combined Unilever’s ‘Perfect Store’ execution 
+across online platforms and in-store activations with bold creative 
+designed to spark conversation ahead of the event. 
+Beyond in-market activations, strategic partnerships help us reach 
+new audiences and build excitement for our brands. In Brazil, one 
+of Hellmann’s biggest markets, the brand extended its collaboration 
+with the National Basketball Association (NBA). The collaboration 
+combined cultural engagement with consumer activation and 
+product innovation, introducing new flavours such as Barbecue, 
+Bacon and Garlic in our convenient squeeze format. These initiatives 
+delivered high penetration in the squeeze segment and significant 
+sales growth among younger consumers.
+We also continued to innovate at scale in the professional 
+space through Unilever Food Solutions (UFS). In China, its largest 
+market, UFS launched chefs-for-chefs innovations such as Knorr 
+Professional Seasoned Soy Sauce to meet rising demand for richer 
+umami and more intense soy flavours. This marks the brand’s first 
+premium variant developed specifically for culinary professionals. 
+Through its Future Menus initiative, UFS works with chefs in over 50 
+markets to shape global food trends. This year’s focus on Asian and 
+South American cuisines was supported by signature products such 
+as Hellmann’s Spicy Mayo and Ancho Chipotle Sauce, helping chefs 
+create popular dishes like tacos and dumplings.
+PRODUCTIVITY AND SIMPLIFICATION
+We are transforming our factory performance by harnessing 
+advanced technology to optimise operations and improve 
+efficiency. At the same time, we are investing in our people – 
+equipping factory teams with technical and soft skills to innovate 
+and respond to market needs.
+To meet growing demand, we established a new soy sauce plant in 
+Greater China.
+
+================================================================================
+Chunk Index: 17
+Node ID: d94e4aa9-453c-4a40-b367-76068d112cd6
+Metadata: {'file_name': 'test.pdf', 'file_path': 'data\\test.pdf', 'source': 's3'}
+================================================================================
+At the same time, we are investing in our people – 
+equipping factory teams with technical and soft skills to innovate 
+and respond to market needs.
+To meet growing demand, we established a new soy sauce plant in 
+Greater China. The facility evolved from a pilot plant to full-scale 
+production and incorporates advanced controls to enable 
+breakthroughs in fermentation. Significant design changes from 
+conventional soy sauce plants have helped to optimise capital 
+expenditure and improve volume.
+Alongside operational improvements, we further simplified our 
+Foods portfolio this year, sharpening our focus on Power Brands 
+and global categories. This included the sale of Conimex and 
+The Vegetarian Butcher, with binding offers for the sale of Graze, as 
+well as Unox and Zwan, which are both pending the usual closing 
+conditions and regulatory approvals. Since 2019, we have removed 
+more than 25% of SKUs, reduced ingredients by 20% and streamlined 
+formulations by nearly a third.
+Knorr continues to focus on product superiority and unlocking 
+convenience in bouillons and seasonings.
+REVIEW OF THE YEAR
+28
+Unilever Annual Report and Accounts 2025
+Strategic Report
+
+Non-Financial Performance
+Climate 
+Goal
+Unilever
+Unilever (including Ice Cream)
+2025
+2025
+2024
+2023
+Reduce absolute operational GHG emissions (Scope 1 & 2) 
+by 100% by 2030 from a 2015 baseline(a)(b)
+(100)%
+ (77) %
+ (77) %
+ (72) %
+ (70) %
+Reduce absolute Scope 3 energy and industrial (E&I) GHG 
+emissions by 42% by 2030 from a 2021 baseline(b)(c)(d)
+(42.0)%
+ (11) %
+ (11) %
+ (7) %
+–
+Reduce absolute Scope 3 forest, land and agriculture (FLAG) 
+GHG emissions by 30.3% by 2030 from a 2021 baseline(b)(c)(d)
+(30.
+
+================================================================================
+Chunk Index: 18
+Node ID: a490270f-14b6-4ae3-ad5b-762594632bef
+Metadata: {'file_name': 'test.pdf', 'file_path': 'data\\test.pdf', 'source': 's3'}
+================================================================================
+0)%
+ (11) %
+ (11) %
+ (7) %
+–
+Reduce absolute Scope 3 forest, land and agriculture (FLAG) 
+GHG emissions by 30.3% by 2030 from a 2021 baseline(b)(c)(d)
+(30.3)%
+ (17) %
+ (17) %
+ (12) %
+–
+Nature
+Goal
+Unilever
+Unilever (including Ice Cream)
+2025
+2025
+2024
+2023
+Implement regenerative agriculture practices on 1 million 
+hectares of agricultural land by 2030
+1m 0.25m
+0.26m
+0.13m
+0.06m
+Help protect and restore 1 million hectares of natural 
+ecosystems by 2030
+1m 0.66m
+0.67m
+0.43m
+0.29m
+95% volume of key crops to be verified as sustainably 
+sourced by 2030
+95%
+ 81% 
+ 80% 
+ 79% 
+ 79% 
+Maintain no deforestation across our primary 
+deforestation-linked commodities(e)
+95%
+ 97% 
+ 96% 
+ 97% 
+ 98% 
+Implement water stewardship programmes in 100 locations 
+in water-stressed areas by 2030
+100
+29
+30
+21
+13
+Plastics
+Goal
+Unilever
+Unilever (including Ice Cream)
+2025
+2025
+2024
+2023
+Reduce our virgin plastic footprint – by 30% by 2026, 
+and 40% by 2028, from a 2019 baseline(f)
+ (30) %  (29) %
+ (29) %
+ (23) %
+ (21) %
+100% of our plastic packaging to be reusable,
+
+================================================================================
+Chunk Index: 19
+Node ID: 855d1610-1c5b-4943-97f8-b734e9d02269
+Metadata: {'file_name': 'test.pdf', 'file_path': 'data\\test.pdf', 'source': 's3'}
+================================================================================
+and 40% by 2028, from a 2019 baseline(f)
+ (30) %  (29) %
+ (29) %
+ (23) %
+ (21) %
+100% of our plastic packaging to be reusable, 
+recyclable or compostable(a)(f)
+100%
+ 57% 
+ 57% 
+ 57% 
+ 53% 
+by 2030 (for rigids)
+100%
+ 75% 
+ 75% 
+ 76% 
+ — 
+by 2035 (for flexibles)
+100%
+ 15% 
+ 15% 
+ 13% 
+ — 
+Use 25% recycled plastic in our packaging by 2025(f)
+25%
+ 25% 
+ 24% 
+ 21% 
+ 20% 
+Collect and process more plastic packaging than 
+we sell by 2025(f)
+100%
+ 111% 
+ 111% 
+ 93% 
+ 68% 
+Livelihoods
+Goal
+Unilever
+Unilever (including Ice Cream)
+2025
+2025
+2024
+2023
+Suppliers representing 50% of our procurement spend 
+to sign the Living Wage Promise by 2026
+50%
+ 43% 
+ 41% 
+ 32% 
+–
+Help 250,000 smallholder farmers in our supply chain 
+access livelihoods programmes by 2026
+0.25m 0.17m
+0.21m
+0.08m
+–
+Help 2.5 million SMEs in our retail value chain grow their 
+business by 2026(g)
+2.5m 2.12m
+2.36m
+2.58m
+1.91m
+(a)
+2023 performance measured for 12-month period ended 30 September.
+(b)
+Baseline period measured for 12-month period ended 30 September.
+(c)
+2024 performance restated due to change in measurement methodology and correction of an error in logistics third-party emission factors (E&I only).
+(d)
+Unilever 2025 performance measured including Ice Cream. 
+(e)
+2023 performance measured for all commodity volumes ordered for three-month period October to December, except for palm oil in India measured only for December.
+(f)
+The scope of our plastic packaging targets includes plastic packaging in 26 countries, which account for approximately 82% of Unilever’s sales.
+
+================================================================================
+Chunk Index: 20
+Node ID: c91d69b9-04b4-46f6-ab71-d22b59404fe9
+Metadata: {'file_name': 'test.pdf', 'file_path': 'data\\test.pdf', 'source': 's3'}
+================================================================================
+(e)
+2023 performance measured for all commodity volumes ordered for three-month period October to December, except for palm oil in India measured only for December.
+(f)
+The scope of our plastic packaging targets includes plastic packaging in 26 countries, which account for approximately 82% of Unilever’s sales.
+(g)
+2023 performance measured for three-month period October to December.
+REVIEW OF THE YEAR
+30
+Unilever Annual Report and Accounts 2025
+Strategic Report
+
+UNDERLYING PRICE GROWTH
+Underlying price growth (UPG) is part of USG and means, for the applicable period, the increase in turnover attributable to changes in 
+prices during the period. UPG therefore excludes the impact to USG due to (i) the volume of products sold; and (ii) the composition of 
+products sold during the period. In determining changes in price, we exclude the impact of price growth in excess of 26% per year in 
+hyperinflationary economies as explained in USG on the previous page.
+The relationship between USG, UVG and UPG is set out below:
+2025 vs 2024
+2024 vs 2023
+2023 vs 2022
+Underlying volume growth (%)
+ 1.5 
+ 3.1 
+ 1.1 
+Underlying price growth (%)
+ 2.0 
+ 1.2 
+ 6.5 
+Underlying sales growth (%)
+ 3.5 
+ 4.3 
+ 7.7 
+NON-UNDERLYING ITEMS
+Some of our non-GAAP measures are adjusted to exclude items defined as non-underlying. Management considers non-underlying 
+items to be significant, unusual or non-recurring in nature and so believes that separately identifying them helps users better 
+understand the financial performance of the Group from period to period.
+■Non-underlying items within operating profit are gains or losses on business disposals, acquisition and disposal-related costs, 
+restructuring costs, impairments and other approved one-off items within operating profit classified here due to their nature 
+and frequency.
+■Non-underlying items not in operating profit but within net profit are net monetary gains/(losses) arising from hyperinflationary 
+economies and significant and unusual items in net finance cost, share of profit/(loss) of joint ventures and associates and taxation.
+
+================================================================================
+Chunk Index: 21
+Node ID: a0da12a9-1365-49b3-8e16-f07f6b853640
+Metadata: {'file_name': 'test.pdf', 'file_path': 'data\\test.pdf', 'source': 's3'}
+================================================================================
+■Non-underlying items not in operating profit but within net profit are net monetary gains/(losses) arising from hyperinflationary 
+economies and significant and unusual items in net finance cost, share of profit/(loss) of joint ventures and associates and taxation.
+■Non-underlying items after tax are calculated as non-underlying items within operating profit after tax plus non-underlying items 
+not in operating profit but within net profit after tax.
+Consequently, within underlying operating profit we exclude the following items:
+■Restructuring costs are costs that are directly attributable to a restructuring project. Management defines a restructuring project 
+as a strategic, major initiative that delivers cost savings and materially changes either the scope of the business or the manner in 
+which the business is conducted.
+■Acquisition and disposal-related costs are costs that are directly attributable to a business acquisition or disposal project.
+■Impairment of assets including goodwill, intangible assets, and property, plant and equipment. 
+■Gains or losses from the disposal of group companies which arise from business disposal projects.
+■Other approved one-off items are those additional matters considered by management to be significant and outside the course 
+of normal operations.
+
+================================================================================
+Chunk Index: 22
+Node ID: 2bb9acb6-d3be-45c3-bc28-04c0aa1d6a38
+Metadata: {'file_name': 'test.pdf', 'file_path': 'data\\test.pdf', 'source': 's3'}
+================================================================================
+■Gains or losses from the disposal of group companies which arise from business disposal projects.
+■Other approved one-off items are those additional matters considered by management to be significant and outside the course 
+of normal operations.
+The breakdown of non-underlying items is shown below:
+€ million
+2025
+€ million
+2024(g)
+€ million
+2023(g)
+Non-underlying items within operating profit before tax
+ 
+(1,047)  
+(1,369)  
+(81) 
+Acquisition and disposal-related costs(a)
+ 
+(288)  
+(293)  
+(222) 
+(Loss)/gain disposal of group companies(b)
+ 
+(36)  
+(229)  
+491 
+Restructuring costs(c)
+ 
+(599)  
+(710)  
+(425) 
+Impairments(d)
+ 
+(43)  
+(134)  
+– 
+Other(e)
+ 
+(81)  
+(3)  
+75 
+Tax on non-underlying items within operating profit
+ 
+7  
+88  
+188 
+Non-underlying items within operating profit after tax
+ 
+(1,040)  
+(1,281)  
+107 
+Non-underlying items not in operating profit but within net profit before tax
+ 
+(34)  
+(167)  
+(179) 
+Interest related to non-underlying items(f)
+ 
+34  
+35  
+(10) 
+Net monetary gain arising from hyperinflationary economies
+ 
+(68)  
+(201)  
+(169) 
+Tax impact of non-underlying items not in operating profit but within net profit, including non-
+underlying tax items
+ 
+(39)  
+85  
+(1) 
+Non-underlying items not in operating profit but within net profit after tax
+ 
+(73)  
+(82)  
+(180) 
+Non-underlying items after tax
+ 
+(1,113)  
+(1,363)  
+(73) 
+Attributable to:
+Non-controlling interest
+ 
+(34)  
+22  
+(6) 
+Shareholders' equity
+ 
+(1,079)  
+(1,385)  
+(67) 
+(a)
+2025 includes a charge of €98 million (2024: €225 million, 2023: €104 million) relating to the revaluation of the minority interest liability of Nutrafol and OZiva, and €91 
+million related to the Ice Cream separation.
+
+================================================================================
+Chunk Index: 23
+Node ID: b0e853f4-ea7d-4132-a0eb-96f15755d21f
+Metadata: {'file_name': 'test.pdf', 'file_path': 'data\\test.pdf', 'source': 's3'}
+================================================================================
+(b)
+2025 net loss arises from the disposals of The Vegetarian Butcher and Kate Somerville, partially offset by a gain on Conimex disposal. 2024 net loss related to the disposals 
+of our Russian business, Elida Beauty, Pureit and Qinyuan. 2023 includes a gain of €497 million related to the disposal of Suave.
+(c)
+In 2024, we announced the launch of a company-wide productivity programme to support margin improvement through specific interventions. The majority of the costs 
+incurred in both 2024 and 2025 that relate to the productivity programme were for redundancy and are recognised as restructuring in line with our policy. The remaining 
+costs comprise technology and supply chain projects.
+(d)
+2025 includes an impairment charge of €42 million relating to REN. 2024 includes an impairment charge of €127 million relating to Blueair, an air purification business.
+(e)
+2025 includes a charge for the settlement of cases reached during the year with plaintiff law firms, and an estimated amount for potential future claims relating to litigation 
+arising from products which are no longer manufactured and sold by the Group.
+(f)
+2025 includes an impact of Elida Beauty seller note settlement. 2024 and 2023 impact was driven by interest related to UK tax audit of intangible income and centralised 
+services.
+(g)
+2024 and 2023 comparatives have been re-presented to reflect the demerger of our Ice Cream business.
+OUR PERFORMANCE
+42
+Unilever Annual Report and Accounts 2025
+Strategic Report
+
+SECTION 172 STATEMENT
+Under Section 172 of the UK Companies Act 2006 (‘Section 172’), directors must act in the way that they consider, in good faith, would 
+be most likely to promote the success of their company. In doing so, our Directors must have regard to stakeholders and the other 
+matters set out in Section 172. Our Section 172 statement includes the information set out on pages 60 to 61 of the Governance Report. 
+This identifies our key stakeholders, provides examples of how the business engaged with them during 2025, and includes details on 
+how our Directors have taken steps to understand the needs and priorities of these stakeholders when setting Unilever’s strategy 
+and taking decisions concerning the business.
+
+================================================================================
+Chunk Index: 24
+Node ID: 4f1a27b4-2ba5-4c4c-8874-a41842d1f35a
+Metadata: {'file_name': 'test.pdf', 'file_path': 'data\\test.pdf', 'source': 's3'}
+================================================================================
+This identifies our key stakeholders, provides examples of how the business engaged with them during 2025, and includes details on 
+how our Directors have taken steps to understand the needs and priorities of these stakeholders when setting Unilever’s strategy 
+and taking decisions concerning the business. This may be by direct engagement or via their delegated committees and forums, and the 
+relevance of each stakeholder group may vary depending on the matter at hand. See the Review of the Year section on pages 6 to 30 
+for further details. 
+EMPLOYEE DIVERSITY
+As part of our disclosure to comply with the UK Corporate Governance Code 2024 and the Companies Act 2006, the table below 
+shows our workforce diversity by gender and work level as at 31 December 2025. This excludes employees of The Magnum Ice 
+Cream Company, who are no longer employees of Unilever – refer to the roll forward of total Unilever employees from 31 December 
+2024 to 31 December 2025 on page 257.
+2025
+2024
+Gender statistics
+Female
+Male
+Not reported(c)
+Female
+Male
+Not reported(c)
+Board
+4
+6
+0
+4
+5
+0
+ 40% 
+ 60% 
+ 0% 
+ 44% 
+ 56% 
+ 0% 
+Unilever Leadership Executive (ULE)
+4
+8
+0
+4
+9
+0
+ 33% 
+ 67% 
+ 0% 
+ 31% 
+ 69% 
+ 0% 
+Senior management(a) 
+23
+57
+0
+31
+65
+0
+ 29% 
+ 71% 
+ 0% 
+ 32% 
+ 68% 
+ 0% 
+Management(b)
+7,858
+6,469
+7
+8,999
+7,472
+5
+ 55% 
+ 45% 
+ 0% 
+ 55% 
+ 45% 
+ 0% 
+Total workforce
+35,762
+60,295
+35
+44,313
+75,530
+197
+ 37% 
+ 63% 
+ 0% 
+ 37% 
+ 63% 
+ 0% 
+(a)
+Employees in senior management roles one work level below ULE (based on internal reporting definitions). 
+(b)
+Employees in management roles including ULE and senior management.
+
+================================================================================
+Chunk Index: 25
+Node ID: b32c2f42-b7d9-4a5f-b820-94f6061bebe9
+Metadata: {'file_name': 'test.pdf', 'file_path': 'data\\test.pdf', 'source': 's3'}
+================================================================================
+(b)
+Employees in management roles including ULE and senior management. 
+(c)
+‘Not reported’ includes those categorised as ’Other’, ‘Unspecified’ or ‘Prefer not to say’.
+Employees who are statutory directors of the corporate entities included in this Annual Report and Accounts: 494 (63%) males and 
+286 (37%) females (see Group Companies on pages 192 to 200). 
+OUR PERFORMANCE
+48
+Unilever Annual Report and Accounts 2025
+Strategic Report
+
+Board tenure as at 31 December 2025
+*
+Srinivas Phatak joined the Board on 16 September 2025.
+Board independence as at 31 December 2025
+The Non-Executive Directors (including the Chair) comprised 
+80% of the Board of Directors as at 31 December 2025.
+COMMITTEE EVALUATION 
+The Committee carried out an evaluation of its activities which 
+was facilitated by the consultancy firm No 4. 
+The results of this evaluation were discussed by the Committee 
+in January 2026. Feedback was also provided to the Board with 
+respect to this evaluation of the Committee. The Committee 
+concluded that it had operated effectively, in particular in 
+relation to Board and ULE appointments. The Committee 
+would continue to focus on this key area, as well as its other 
+responsibilities for corporate governance.
+
+================================================================================
+Chunk Index: 26
+Node ID: 76208fa4-119c-47f6-8db3-207e32a89bf7
+Metadata: {'file_name': 'test.pdf', 'file_path': 'data\\test.pdf', 'source': 's3'}
+================================================================================
+The Committee 
+concluded that it had operated effectively, in particular in 
+relation to Board and ULE appointments. The Committee 
+would continue to focus on this key area, as well as its other 
+responsibilities for corporate governance. 
+ 
+Ian Meakins
+Chair of the Nominating and Corporate 
+Governance Committee
+Adrian Hennah
+Zoe Yujnovich
+ 
+REPORT OF THE NOMINATING AND CORPORATE GOVERNANCE COMMITTEE
+Governance Report
+Unilever Annual Report and Accounts 2025
+69
+1
+2
+7
+Chair
+Non-independent Executive Directors
+Independent Non-Executive Directors
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+Fernando Fernandez
+Adrian Hennah 
+Susan Kilsby
+Ruby Lu
+Judith McKenna
+Ian Meakins
+Nelson Peltz
+Srinivas Phatak*
+Benoît Potier
+Zoe Yujnovich
+
+€1,711
+€1,711
+€374
+€374
+€1,752
+€3,754
+€1,791
+€2,653
+€0
+€3,000
+€6,000
+€9,000
+CEO Actual
+CEO Maximum
+2025 remuneration at a glance 
+EXECUTIVE DIRECTOR REMUNERATION IN 2025
+Fernando Fernandez (CFO to 28 February 2025; CEO from 1 March 2025)
+Srinivas Phatak (CFO from 16 September 2025)
+All figures in the table are in €’000. 
+The CEO chart includes fixed pay and actual bonus paid to Fernando Fernandez for both his role as CFO (1 January 2025 to 28 February 
+2025) and as CEO (from 1 March 2025). The actual PSP value relates to awards granted prior to his appointment to the Board.
+The CFO chart includes fixed pay and actual bonus paid to Srinivas Phatak, pro-rated to reflect his time as CFO (from 16 September 
+2025). The actual PSP value relates to awards granted prior to his appointment to the Board. 
+2025 Annual Bonus Outcome
+Performance against the targets for each of the measures is set out below.
+
+================================================================================
+Chunk Index: 27
+Node ID: 3286efb7-66a5-4d4b-991a-6b186c3310bd
+Metadata: {'file_name': 'test.pdf', 'file_path': 'data\\test.pdf', 'source': 's3'}
+================================================================================
+The actual PSP value relates to awards granted prior to his appointment to the Board. 
+2025 Annual Bonus Outcome
+Performance against the targets for each of the measures is set out below. All target ranges are structured on a linear basis between 
+steps from threshold up to maximum.
+Performance measure
+Weighting
+Outcome 
+% of target
+Underlying sales growth at constant FX rates 
+(USG)
+40%
+1.5%
+4.5%
+6.0%
+71%
+Underlying operating profit growth less 
+restructuring costs at current FX rates (UOP) (a)
+30%
+0%
+4.6%
+8.1%
+26%
+Free cash flow (FCF) at current FX rates(c)
+30%
+€5.3bn
+€6.2bn
+€6.7bn
+113%
+Formulaic outcome
+70%
+(a)
+UOP less restructuring refers to the measurement of profit incorporating restructuring investments, meaning that the level of restructuring spend directly impacts the 
+performance measurement of management. 
+(b)
+The impact of the demerger of our Ice Cream business on targets and actuals for 2025 has been set out on the next page.
+(c)
+FCF targets and actuals exclude the impact of cash taxes paid on disposals and India GST payments and refunds.
+2023–2025 Performance Share Plan Outcome
+Performance against the targets for each of the measures is set out below. All target ranges are straight line between threshold 
+and maximum.
+Performance measure
+Weighting
+Outcome
+% of target
+Competitiveness: % business winning
+25%
+45%
+60%
+39%
+Cumulative free cash flow (€bn) (current FX 
+rates excluding cash tax on disposal)
+25%
+€15.3bn
+€21.3bn
+160%
+Underlying return on invested capital (ROIC) 
+(exit year %)
+25%
+14.8%
+18.8%
+200%
+Sustainability Progress Index (Committee 
+assessment of SPI progress)
+25%
+0%
+200%
+140%
+Formulaic outcome
+135%
+(a)
+The impact of the demerger of our Ice Cream business on targets and actuals for 2025 has been set out on the next page. 
+Malus and clawback provisions were not applied to Executive Director remuneration during the year ended 31 December 2025.
+
+================================================================================
+Chunk Index: 28
+Node ID: 5711e3c0-f51c-4eba-a6f1-44eddbef0427
+Metadata: {'file_name': 'test.pdf', 'file_path': 'data\\test.pdf', 'source': 's3'}
+================================================================================
+Malus and clawback provisions were not applied to Executive Director remuneration during the year ended 31 December 2025.
+DIRECTORS’ REMUNERATION REPORT
+84
+Unilever Annual Report and Accounts 2025
+Governance Report
+3.6%
+€6.3bn
+Maximum
+150%
+70%
+Target(b)
+100%
+Maximum
+200%
+Target(a)
+100%
+Threshold
+0%
+19.0%
+140%
+0.7%
+€20.1bn
+135%
+48.0%
+€343
+€343
+€224
+€224
+€288
+€617
+€686
+€1,016
+Fixed Pay
+Benefits
+Annual Bonus
+Performance Share Plan (PSP)
+€0
+€1,000
+€2,000
+€3,000
+CFO Actual
+CFO Maximum
+Threshold
+0%
+Actual(b)
+Actual(a)
+Interval
+50%
+3.0%
+1.3%
+€5.7bn

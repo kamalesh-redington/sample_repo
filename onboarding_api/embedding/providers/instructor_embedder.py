@@ -1,22 +1,6 @@
-"""
-Instructor Embedder (Instruction-Tuned Dense Embedder)
-Provider key : "instructor"
-Embedding type: instructor
-Modality     : text
+from config.logger import setup_logger
 
-Models:
-    - hkunlp/instructor-xl        (768-dim, strongest)
-    - hkunlp/instructor-large     (768-dim)
-    - hkunlp/instructor-base      (768-dim, lightweight)
-
-Instruction examples:
-    "Represent the scientific document for retrieval:"
-    "Represent the query for semantic search:"
-
-Extra config fields:
-    device     : "cpu" | "cuda" | "mps"
-    instruction: override config.instruction at runtime
-"""
+logger = setup_logger(__name__)
 
 from typing import List
 
@@ -24,41 +8,57 @@ from embedding.base import BaseEmbedder, EmbeddingConfig
 
 
 class InstructorEmbedder(BaseEmbedder):
-    """
-    Instruction-tuned dense embedder.
-    Every text is prefixed with an instruction string that
-    conditions the embedding's meaning (retrieval, clustering, etc.).
-    """
-
-    _DEFAULT_INSTRUCTION = "Represent the document for retrieval:"
 
     def __init__(self, config: EmbeddingConfig):
+
         super().__init__(config)
+
+        logger.info("Initializing InstructorEmbedder")
+
+        logger.debug(f"Instructor model configured: {config.model}")
+
         try:
+
             from InstructorEmbedding import INSTRUCTOR
+
         except ImportError as exc:
+
+            logger.exception("InstructorEmbedding import failed")
+
             raise ImportError(
                 "InstructorEmbedding required → pip install InstructorEmbedding"
             ) from exc
 
         from InstructorEmbedding import INSTRUCTOR
-        self._model = INSTRUCTOR(
-            config.model,
-            device=config.extra.get("device", "cpu"),
-        )
-        self._instruction = (
-            config.instruction
-            or config.extra.get("instruction")
-            or self._DEFAULT_INSTRUCTION
+
+        self._model = INSTRUCTOR(config.model)
+
+        self._instruction = config.extra.get(
+            "instruction", "Represent the document for retrieval:"
         )
 
+        logger.info("Instructor model initialized successfully")
+
     def embed_texts(self, texts: List[str]) -> List[List[float]]:
-        # Instructor expects [[instruction, text], ...]
-        pairs = [[self._instruction, t] for t in texts]
-        vectors = self._model.encode(
-            pairs,
-            batch_size=self.config.batch_size,
-            normalize_embeddings=self.config.normalize,
-            show_progress_bar=False,
-        )
-        return vectors.tolist()
+
+        try:
+
+            logger.info(f"Starting Instructor embeddings for {len(texts)} text(s)")
+
+            pairs = [[self._instruction, text] for text in texts]
+
+            logger.debug(f"Prepared instruction-text pairs: {len(pairs)}")
+
+            vectors = self._model.encode(pairs)
+
+            logger.info("Instructor embedding generation completed successfully")
+
+            logger.debug(f"Generated vectors count: {len(vectors)}")
+
+            return vectors.tolist()
+
+        except Exception as e:
+
+            logger.exception("Instructor embedding generation failed")
+
+            raise

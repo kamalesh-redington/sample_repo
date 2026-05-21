@@ -1,4 +1,708 @@
-from fastapi import FastAPI, HTTPException, Depends, File, UploadFile, Header
+from config.logger import setup_logger
+
+logger = setup_logger(__name__)
+
+from fastapi import FastAPI, HTTPException, Depends, File, UploadFile
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+from pydantic import BaseModel, ConfigDict
+from pathlib import Path
+from sqlalchemy.orm import Session
+from typing import Optional
+import yaml
+
+# ────────────────────────────────────────────────────────────────────────────────
+# Local imports
+# ────────────────────────────────────────────────────────────────────────────────
+from db.database import init_db, get_db
+from db import crud
+from auth.security import generate_strong_password, verify_bearer_token
+from main import load_config, run_pipeline
+from config.timer import log_execution_time
+
+# ───────────────────────────────────────────────────────────────────────────────
+# FastAPI App
+# ────────────────────────────────────────────────────────────────────────────────
+app = FastAPI(
+    title="RAG Engine - Onboarding API",
+    description="Tenant onboarding and ingestion initialization service",
+    version="1.0.0",
+)
+logger.info("Starting Onboarding API")
+# ────────────────────────────────────────────────────────────────────────────────
+# Initialize Database
+# ────────────────────────────────────────────────────────────────────────────────
+logger.info("Initializing database")
+
+init_db()
+
+logger.info("Database initialized successfully")
+# ────────────────────────────────────────────────────────────────────────────────
+# Security
+# ────────────────────────────────────────────────────────────────────────────────
+security = HTTPBearer()
+# Temporary admin token for testing
+VALID_TOKEN = "your-secure-token-here"
+
+# Local tenant config storage folder
+TENANT_CONFIG_DIR = Path("tenant_configs") #tenant_configs
+
+# Create folder if not exists
+TENANT_CONFIG_DIR.mkdir(exist_ok=True)
+
+logger.info(f"Tenant config directory ready: {TENANT_CONFIG_DIR}")
+
+
+# ────────────────────────────────────────────────────────────────────────────────
+# Response Models
+# ────────────────────────────────────────────────────────────────────────────────
+class HealthResponse(BaseModel):
+
+    status: str
+    service: str
+
+
+class TenantCreationResponse(BaseModel):
+
+    model_config = ConfigDict(from_attributes=True)
+
+    tenant_pkid: str
+    tenant_name: str
+    username: str
+    password: str
+    message: str
+
+
+# ────────────────────────────────────────────────────────────────────────────────
+# Root Endpoint
+# ────────────────────────────────────────────────────────────────────────────────
+
+
+@app.get("/")
+@log_execution_time(logger)
+def root():
+    logger.info("Root endpoint accessed")
+    return {
+        "message": "RAG Engine Onboarding API is running",
+        "swagger": "/docs",
+        "health": "/health",
+        "config_debug": "/config/debug",
+    }
+
+
+# ────────────────────────────────────────────────────────────────────────────────
+# Health Endpoint
+# ────────────────────────────────────────────────────────────────────────────────
+
+
+@app.get("/health", response_model=HealthResponse)
+@log_execution_time(logger)
+def health_check():
+    logger.info("Health check endpoint accessed")
+    return HealthResponse(status="ok", service="onboarding-api")
+
+
+# ────────────────────────────────────────────────────────────────────────────────
+# Config Debug Endpoint
+# ────────────────────────────────────────────────────────────────────────────────
+
+
+@app.get("/config/debug")
+@log_execution_time(logger)
+def config_debug():
+
+    try:
+        logger.info("Loading configuration for debug endpoint")
+        config = load_config()
+        logger.info("Configuration loaded successfully")
+        return {
+            "status": "success",
+            "message": "Config loaded successfully",
+            "config": config,
+        }
+
+    except Exception as e:
+        logger.exception("Configuration loading failed")
+        raise HTTPException(status_code=500, detail=f"Config loading failed: {str(e)}")
+
+
+# ────────────────────────────────────────────────────────────────────────────────
+# Tenant Onboarding Endpoint
+# ────────────────────────────────────────────────────────────────────────────────
+
+
+@app.post("/api/v1/tenant/create", response_model=TenantCreationResponse)
+async def create_tenant(
+    file: UploadFile = File(...),
+    db: Session = Depends(get_db),
+    authorization: Optional[HTTPAuthorizationCredentials] = Depends(security),
+):
+    """
+    Create tenant using uploaded YAML configuration
+    and trigger ingestion pipeline.
+    """
+    logger.info("Tenant creation request received")
+    # ────────────────────────────────────────────────────────────────────────────
+    # Validate Bearer Token
+    # ────────────────────────────────────────────────────────────────────────────
+    logger.info("Validating bearer token")
+    verify_bearer_token(authorization, VALID_TOKEN)
+    logger.info("Bearer token validated successfully")
+    # ────────────────────────────────────────────────────────────────────────────
+    # Validate File Extension
+    # ────────────────────────────────────────────────────────────────────────────
+    logger.info(f"Uploaded file received: {file.filename}")
+    if not (file.filename.endswith(".yaml") or file.filename.endswith(".yml")):
+        logger.warning(f"Invalid file type uploaded: {file.filename}")
+        raise HTTPException(status_code=400, detail="Only YAML files are allowed")
+
+    try:
+
+        # ────────────────────────────────────────────────────────────────────────
+        # Read YAML File
+        # ────────────────────────────────────────────────────────────────────────
+        logger.info("Reading uploaded YAML file")
+
+        content = await file.read()
+
+        yaml_content = yaml.safe_load(content.decode("utf-8"))
+        logger.info("YAML parsed successfully")
+        logger.debug(f"Parsed YAML content: {yaml_content}")
+        if not yaml_content:
+            logger.warning("Uploaded YAML file is empty")
+
+            raise HTTPException(status_code=400, detail="YAML file is empty")
+
+        # ────────────────────────────────────────────────────────────────────────
+        # Validate Tenant Section
+        # ────────────────────────────────────────────────────────────────────────
+        logger.info("Validating tenant configuration section")
+
+        if "tenant" not in yaml_content:
+            logger.warning("Tenant section missing in YAML")
+            raise HTTPException(
+                status_code=400, detail="YAML must contain 'tenant' section"
+            )
+
+        tenant_config = yaml_content["tenant"]
+        logger.debug(f"Tenant configuration: {tenant_config}")
+
+        tenant_name = tenant_config.get("name")
+        logger.info(f"Processing tenant: {tenant_name}")
+        # ────────────────────────────────────────────────────────────
+        # Save tenant YAML locally
+        # ────────────────────────────────────────────────────────────
+
+        tenant_config_filename = f"{tenant_name}-config.yaml"
+
+        tenant_config_path = TENANT_CONFIG_DIR / tenant_config_filename
+
+        with open(tenant_config_path, "w", encoding="utf-8") as config_file:
+
+            config_file.write(content.decode("utf-8"))
+
+        logger.info(f"Tenant config saved: {tenant_config_path}")
+        if not tenant_name:
+            logger.warning("tenant.name is missing")
+
+            raise HTTPException(status_code=400, detail="tenant.name is required")
+
+        # ────────────────────────────────────────────────────────────────────────
+        # Generate Tenant PKID
+        # ────────────────────────────────────────────────────────────────────────
+
+        tenant_pkid = tenant_name.lower().replace(" ", "-").replace("_", "-")
+
+        tenant_pkid = "".join(c for c in tenant_pkid if c.isalnum() or c == "-")
+        logger.info(f"Generated tenant PKID: {tenant_pkid}")
+        logger.debug(
+            f"Normalized tenant PKID generated from tenant name: {tenant_name}"
+        )
+        # ────────────────────────────────────────────────────────────────────────
+        # Duplicate Tenant Validation
+        # ────────────────────────────────────────────────────────────────────────
+        logger.info(f"Checking existing tenant: {tenant_pkid}")
+        logger.debug(f"Checking tenant existence in database for PKID: {tenant_pkid}")
+        existing_tenant = crud.get_tenant_by_pkid(db, tenant_pkid)
+
+        if existing_tenant:
+
+            logger.warning(f"Duplicate tenant detected: {tenant_pkid}")
+            raise HTTPException(
+                status_code=409, detail=f"Tenant '{tenant_pkid}' already exists"
+            )
+
+        # ────────────────────────────────────────────────────────────────────────
+        # Create Tenant
+        # ────────────────────────────────────────────────────────────────────────
+        logger.info(f"Creating tenant in database: {tenant_pkid}")
+
+        db_tenant = crud.create_tenant(
+            db=db,
+            tenant_pkid=tenant_pkid,
+            name=tenant_name,
+            config_yaml=content.decode("utf-8"),
+        )
+        logger.info(f"Tenant created successfully: {tenant_pkid}")
+        logger.debug(f"Database tenant object created: {db_tenant}")
+        # ────────────────────────────────────────────────────────────────────────
+        # Generate Tenant Credentials
+        # ────────────────────────────────────────────────────────────────────────
+
+        username = tenant_pkid
+
+        password = generate_strong_password(length=16)
+        logger.info(f"Generated credentials for tenant: {username}")
+        logger.debug(f"Generated password length for user {username}: {len(password)}")
+        # ────────────────────────────────────────────────────────────────────────
+        # Duplicate User Validation
+        # ────────────────────────────────────────────────────────────────────────
+        logger.debug(f"Checking if user already exists: {username}")
+        if crud.user_exists(db, username):
+            logger.warning(f"Duplicate user detected: {username}")
+            raise HTTPException(
+                status_code=409, detail=f"User '{username}' already exists"
+            )
+
+        # ────────────────────────────────────────────────────────────────────────
+        # Create Tenant User
+        # ────────────────────────────────────────────────────────────────────────
+        logger.info(f"Creating tenant user: {username}")
+        
+        db_user = crud.create_user_for_tenant(
+            db=db,
+            tenant_id=db_tenant.id,
+            username=username,
+            password=password,
+            email=None,
+            role_id=None,
+        )
+        logger.debug(f"Database user object created: {db_user}")
+        logger.info(f"Tenant user created successfully: {username}")
+        # ────────────────────────────────────────────────────────────────────────
+        # Trigger Ingestion Pipeline
+        # ────────────────────────────────────────────────────────────────────────
+        logger.info(f"Triggering ingestion pipeline for tenant: {tenant_name}")
+
+        try:
+
+            config = load_config(str(tenant_config_path))
+
+            logger.info("Pipeline configuration loaded successfully")
+            logger.debug(f"Pipeline configuration loaded: {config}")
+
+            run_pipeline(config)
+
+            logger.info("Ingestion pipeline executed successfully")
+            logger.debug(f"Pipeline execution completed for tenant: {tenant_pkid}")
+        except Exception as pipeline_error:
+
+            logger.exception("Ingestion pipeline execution failed")
+
+            raise HTTPException(
+                status_code=500,
+                detail=f"Ingestion pipeline failed: {str(pipeline_error)}",
+            )
+
+        # ────────────────────────────────────────────────────────────────────────
+        # Success Response
+        # ────────────────────────────────────────────────────────────────────────
+        logger.info(f"Tenant onboarding completed successfully: {tenant_pkid}")
+        return TenantCreationResponse(
+            tenant_pkid=tenant_pkid,
+            tenant_name=tenant_name,
+            username=username,
+            password=password,
+            message=(
+                f"Tenant '{tenant_name}' "
+                f"and user '{username}' "
+                f"created successfully"
+            ),
+        )
+
+    # ────────────────────────────────────────────────────────────────────────────
+    # YAML Validation Error
+    # ────────────────────────────────────────────────────────────────────────────
+
+    except yaml.YAMLError as e:
+        logger.exception("Invalid YAML uploaded")
+
+        raise HTTPException(status_code=400, detail=f"Invalid YAML: {str(e)}")
+
+    # ────────────────────────────────────────────────────────────────────────────
+    # Re-raise HTTP Exceptions
+    # ────────────────────────────────────────────────────────────────────────────
+
+    except HTTPException:
+        raise
+
+    # ────────────────────────────────────────────────────────────────────────────
+    # Generic Server Errors
+    # ────────────────────────────────────────────────────────────────────────────
+
+    except Exception as e:
+        logger.debug(f"Exception details: {str(e)}")
+        logger.exception("Tenant creation failed")
+
+        raise HTTPException(status_code=500, detail=f"Tenant creation failed: {str(e)}")
+
+
+# ────────────────────────────────────────────────────────────────────────────────
+# Startup Event
+# ────────────────────────────────────────────────────────────────────────────────
+
+
+@app.on_event("startup")
+@log_execution_time(logger)
+def startup_event():
+
+    logger.info("RAG ENGINE ONBOARDING API STARTED")
+
+
+'''from fastapi import (
+    FastAPI,
+    HTTPException,
+    Depends,
+    File,
+    UploadFile
+)
+
+from fastapi.responses import JSONResponse
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+
+from pydantic import BaseModel, ConfigDict
+
+from sqlalchemy.orm import Session
+
+from typing import Optional
+
+import yaml
+
+# ────────────────────────────────────────────────────────────────────────────────
+# Local imports
+# ────────────────────────────────────────────────────────────────────────────────
+
+from db.database import init_db, get_db
+
+from db import crud
+
+from auth.security import (
+    generate_strong_password,
+    verify_bearer_token
+)
+
+# Optional:
+# Used later for ingestion trigger if needed
+from main import load_config, run_pipeline
+
+# ────────────────────────────────────────────────────────────────────────────────
+# FastAPI App
+# ────────────────────────────────────────────────────────────────────────────────
+
+app = FastAPI(
+    title="RAG Engine - Onboarding API",
+    description="Tenant onboarding and ingestion initialization service",
+    version="1.0.0"
+)
+
+# ────────────────────────────────────────────────────────────────────────────────
+# Initialize DB on startup
+# ────────────────────────────────────────────────────────────────────────────────
+
+init_db()
+
+# ────────────────────────────────────────────────────────────────────────────────
+# Security
+# ────────────────────────────────────────────────────────────────────────────────
+
+security = HTTPBearer()
+
+# Temporary hardcoded token for testing
+# Later move to ENV or JWT auth
+VALID_TOKEN = "your-secure-token-here"
+
+# ────────────────────────────────────────────────────────────────────────────────
+# Response Models
+# ────────────────────────────────────────────────────────────────────────────────
+
+class HealthResponse(BaseModel):
+
+    status: str
+    service: str
+
+
+class TenantCreationResponse(BaseModel):
+
+    model_config = ConfigDict(from_attributes=True)
+
+    tenant_pkid: str
+    tenant_name: str
+    username: str
+    password: str
+    message: str
+
+
+# ────────────────────────────────────────────────────────────────────────────────
+# Health Endpoint
+# ────────────────────────────────────────────────────────────────────────────────
+
+@app.get("/health", response_model=HealthResponse)
+def health_check():
+
+    return HealthResponse(
+        status="ok",
+        service="onboarding-api"
+    )
+
+# ────────────────────────────────────────────────────────────────────────────────
+# Root Endpoint
+# ────────────────────────────────────────────────────────────────────────────────
+
+@app.get("/")
+def root():
+
+    return {
+        "message": "RAG Engine Onboarding API is running",
+        "swagger": "/docs",
+        "health": "/health"
+    }
+
+# ────────────────────────────────────────────────────────────────────────────────
+# Tenant Onboarding Endpoint
+# ────────────────────────────────────────────────────────────────────────────────
+
+@app.post(
+    "/api/v1/tenant/create",
+    response_model=TenantCreationResponse
+)
+async def create_tenant(
+
+    file: UploadFile = File(...),
+
+    db: Session = Depends(get_db),
+
+    authorization: Optional[
+        HTTPAuthorizationCredentials
+    ] = Depends(security)
+):
+    """
+    Create tenant using uploaded YAML configuration.
+    """
+
+    # ────────────────────────────────────────────────────────────────────────────
+    # Validate bearer token
+    # ────────────────────────────────────────────────────────────────────────────
+
+    verify_bearer_token(
+        authorization,
+        VALID_TOKEN
+    )
+
+    # ────────────────────────────────────────────────────────────────────────────
+    # Validate file extension
+    # ────────────────────────────────────────────────────────────────────────────
+
+    if not (
+        file.filename.endswith(".yaml")
+        or file.filename.endswith(".yml")
+    ):
+        raise HTTPException(
+            status_code=400,
+            detail="Only YAML files are allowed"
+        )
+
+    try:
+
+        # ────────────────────────────────────────────────────────────────────────
+        # Read YAML content
+        # ────────────────────────────────────────────────────────────────────────
+
+        content = await file.read()
+
+        yaml_content = yaml.safe_load(
+            content.decode("utf-8")
+        )
+
+        if not yaml_content:
+            raise HTTPException(
+                status_code=400,
+                detail="YAML file is empty"
+            )
+
+        # ────────────────────────────────────────────────────────────────────────
+        # Validate tenant section
+        # ────────────────────────────────────────────────────────────────────────
+
+        if "tenant" not in yaml_content:
+            raise HTTPException(
+                status_code=400,
+                detail="YAML must contain 'tenant' section"
+            )
+
+        tenant_config = yaml_content["tenant"]
+
+        tenant_name = tenant_config.get("name")
+
+        if not tenant_name:
+            raise HTTPException(
+                status_code=400,
+                detail="tenant.name is required"
+            )
+
+        # ────────────────────────────────────────────────────────────────────────
+        # Generate tenant PKID
+        # ────────────────────────────────────────────────────────────────────────
+
+        tenant_pkid = (
+            tenant_name
+            .lower()
+            .replace(" ", "-")
+            .replace("_", "-")
+        )
+
+        tenant_pkid = "".join(
+            c for c in tenant_pkid
+            if c.isalnum() or c == "-"
+        )
+
+        # ────────────────────────────────────────────────────────────────────────
+        # Check duplicate tenant
+        # ────────────────────────────────────────────────────────────────────────
+
+        existing_tenant = crud.get_tenant_by_pkid(
+            db,
+            tenant_pkid
+        )
+
+        if existing_tenant:
+            raise HTTPException(
+                status_code=409,
+                detail=f"Tenant '{tenant_pkid}' already exists"
+            )
+
+        # ────────────────────────────────────────────────────────────────────────
+        # Create tenant
+        # ────────────────────────────────────────────────────────────────────────
+
+        tenant_description = tenant_config.get(
+            "description",
+            ""
+        )
+
+        db_tenant = crud.create_tenant(
+            db=db,
+            tenant_pkid=tenant_pkid,
+            name=tenant_name,
+            config_yaml=content.decode("utf-8")
+        )
+
+        # ────────────────────────────────────────────────────────────────────────
+        # Generate tenant user credentials
+        # ────────────────────────────────────────────────────────────────────────
+
+        username = tenant_pkid
+
+        password = generate_strong_password(
+            length=16
+        )
+
+        # ────────────────────────────────────────────────────────────────────────
+        # Check duplicate user
+        # ────────────────────────────────────────────────────────────────────────
+
+        if crud.user_exists(db, username):
+
+            raise HTTPException(
+                status_code=409,
+                detail=f"User '{username}' already exists"
+            )
+
+        # ────────────────────────────────────────────────────────────────────────
+        # Create tenant user
+        # ────────────────────────────────────────────────────────────────────────
+
+        db_user = crud.create_user_for_tenant(
+            db=db,
+            tenant_id=db_tenant.id,
+            username=username,
+            password=password,
+            email=None,
+            role_id=None
+        )
+
+        # ────────────────────────────────────────────────────────────────────────
+        # OPTIONAL:
+        # Trigger ingestion pipeline later if needed
+        # ────────────────────────────────────────────────────────────────────────
+        
+
+        # ────────────────────────────────────────────────────────────────────────
+        # Success response
+        # ────────────────────────────────────────────────────────────────────────
+
+        return TenantCreationResponse(
+            tenant_pkid=tenant_pkid,
+            tenant_name=tenant_name,
+            username=username,
+            password=password,
+            message=(
+                f"Tenant '{tenant_name}' "
+                f"and user '{username}' "
+                f"created successfully"
+            )
+        )
+
+    # ────────────────────────────────────────────────────────────────────────────
+    # YAML parsing errors
+    # ────────────────────────────────────────────────────────────────────────────
+
+    except yaml.YAMLError as e:
+
+        raise HTTPException(
+            status_code=400,
+            detail=f"Invalid YAML: {str(e)}"
+        )
+
+    # ────────────────────────────────────────────────────────────────────────────
+    # Re-raise FastAPI exceptions
+    # ────────────────────────────────────────────────────────────────────────────
+
+    except HTTPException:
+        raise
+
+    # ────────────────────────────────────────────────────────────────────────────
+    # Generic server errors
+    # ────────────────────────────────────────────────────────────────────────────
+
+    except Exception as e:
+
+        raise HTTPException(
+            status_code=500,
+            detail=f"Tenant creation failed: {str(e)}"
+        )
+
+# ────────────────────────────────────────────────────────────────────────────────
+# Startup Event
+# ────────────────────────────────────────────────────────────────────────────────
+
+@app.on_event("startup")
+def startup_event():
+
+    print("\n" + "=" * 60)
+    print("RAG ENGINE ONBOARDING API STARTED")
+    print("=" * 60)
+
+    print("Available endpoints:")
+    print("GET  /")
+    print("GET  /health")
+    print("POST /api/v1/tenant/create")
+
+    print("\nSwagger UI:")
+    print("http://127.0.0.1:8000/docs")
+
+    print("=" * 60)
+    
+    '''
+'''from fastapi import FastAPI, HTTPException, Depends, File, UploadFile, Header
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.security import HTTPBearer
 from pydantic import BaseModel, ConfigDict
@@ -209,6 +913,7 @@ def root():
 
 # Streamlit UI can post to this endpoint at /query with JSON payload {"question": "..."}
 @app.post("/query")
+@log_execution_time(logger)
 def query_document(request: QueryRequest):
     question = request.question.strip()
     if not question:
@@ -354,3 +1059,4 @@ async def create_tenant(
             detail=f"Error creating tenant: {str(e)}"
         )
 
+'''

@@ -1,117 +1,61 @@
-"""
-CLIP Multimodal Embedder (Image + Text)
-Provider key  : "clip"
-Embedding type: dense
-Modality      : multimodal  (text | image | text+image)
+from config.logger import setup_logger
 
-Models:
-    - openai/clip-vit-base-patch32       (512-dim)
-    - openai/clip-vit-large-patch14      (768-dim)
-    - laion/CLIP-ViT-H-14-laion2B-s32B-b79K (1024-dim, strongest)
+logger = setup_logger(__name__)
 
-Extra config fields:
-    device     : "cpu" | "cuda" | "mps"
-    image_size : 224  (default, matches most CLIP variants)
-"""
-
-from pathlib import Path
-from typing import List, Union
+from typing import List
 
 from embedding.base import BaseEmbedder, EmbeddingConfig
 
 
 class CLIPEmbedder(BaseEmbedder):
-    """
-    CLIP-based multimodal embedder.
-
-    - embed_texts()   → text embeddings
-    - embed_images()  → image embeddings (from file paths or PIL Images)
-    - embed_mixed()   → combined fused vector (text + image mean)
-    """
 
     def __init__(self, config: EmbeddingConfig):
+
         super().__init__(config)
+
+        logger.info("Initializing CLIPEmbedder")
+
+        logger.debug(f"CLIP model configured: {config.model}")
+
         try:
-            from transformers import CLIPModel, CLIPProcessor
+
+            from sentence_transformers import SentenceTransformer
+
         except ImportError as exc:
+
+            logger.exception("sentence-transformers import failed")
+
             raise ImportError(
-                "transformers required → pip install transformers"
+                "sentence-transformers required → pip install sentence-transformers"
             ) from exc
 
-        import torch
-        from transformers import CLIPModel, CLIPProcessor
+        from sentence_transformers import SentenceTransformer
 
-        self._device = torch.device(config.extra.get("device", "cpu"))
-        self._processor = CLIPProcessor.from_pretrained(config.model)
-        self._model = CLIPModel.from_pretrained(config.model).to(self._device)
-        self._model.eval()
-        self._torch = torch
+        self._model = SentenceTransformer(config.model)
 
-    def _load_image(self, source: Union[str, Path]):
-        """Load image from path or return PIL Image directly."""
-        from PIL import Image
-        if isinstance(source, (str, Path)):
-            return Image.open(source).convert("RGB")
-        return source  # assume PIL Image
+        logger.info("CLIP model initialized successfully")
 
     def embed_texts(self, texts: List[str]) -> List[List[float]]:
-        import torch
 
-        all_vectors: List[List[float]] = []
+        try:
 
-        for i in range(0, len(texts), self.config.batch_size):
-            batch = texts[i : i + self.config.batch_size]
-            inputs = self._processor(
-                text=batch, return_tensors="pt", padding=True, truncation=True
-            ).to(self._device)
+            logger.info(f"Starting CLIP embeddings for {len(texts)} text(s)")
 
-            with torch.no_grad():
-                features = self._model.get_text_features(**inputs)
+            vectors = self._model.encode(
+                texts,
+                batch_size=self.config.batch_size,
+                normalize_embeddings=self.config.normalize,
+                show_progress_bar=False,
+            )
 
-            if self.config.normalize:
-                features = torch.nn.functional.normalize(features, p=2, dim=-1)
+            logger.info("CLIP embedding generation completed successfully")
 
-            all_vectors.extend(features.cpu().tolist())
+            logger.debug(f"Generated vectors count: {len(vectors)}")
 
-        return all_vectors
+            return vectors.tolist()
 
-    def embed_images(self, image_sources: List[Union[str, Path]]) -> List[List[float]]:
-        """Embed images from file paths or PIL Images."""
-        import torch
+        except Exception as e:
 
-        all_vectors: List[List[float]] = []
+            logger.exception("CLIP embedding generation failed")
 
-        for i in range(0, len(image_sources), self.config.batch_size):
-            batch_src = image_sources[i : i + self.config.batch_size]
-            images = [self._load_image(src) for src in batch_src]
-            inputs = self._processor(images=images, return_tensors="pt").to(self._device)
-
-            with torch.no_grad():
-                features = self._model.get_image_features(**inputs)
-
-            if self.config.normalize:
-                features = torch.nn.functional.normalize(features, p=2, dim=-1)
-
-            all_vectors.extend(features.cpu().tolist())
-
-        return all_vectors
-
-    def embed_mixed(
-        self,
-        texts: List[str],
-        image_sources: List[Union[str, Path]],
-    ) -> List[List[float]]:
-        """
-        Fuse text + image into a single vector per pair (element-wise mean).
-        Both lists must be the same length.
-        """
-        import torch
-
-        text_vecs = self._torch.tensor(self.embed_texts(texts))
-        image_vecs = self._torch.tensor(self.embed_images(image_sources))
-        fused = (text_vecs + image_vecs) / 2.0
-
-        if self.config.normalize:
-            fused = torch.nn.functional.normalize(fused, p=2, dim=-1)
-
-        return fused.tolist()
+            raise

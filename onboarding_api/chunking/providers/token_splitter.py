@@ -1,16 +1,6 @@
-"""
-chunking/providers/token_splitter.py
+from config.logger import setup_logger
 
-Strategy: ``token``
-
-Wraps LlamaIndex's ``TokenTextSplitter`` which splits text purely by token
-count using the tiktoken tokenizer (or a Hugging Face tokenizer if configured).
-
-Config keys used
-----------------
-    chunking.chunk_size    : int — max tokens per chunk (default 512)
-    chunking.chunk_overlap : int — token overlap between chunks (default 64)
-"""
+logger = setup_logger(__name__)
 
 from typing import List
 
@@ -22,27 +12,38 @@ from chunking.base import BaseChunker, ChunkingConfig
 
 
 class TokenChunker(BaseChunker):
-    """
-    Splits documents into fixed-size token windows.
-
-    Uses LlamaIndex ``TokenTextSplitter`` backed by the ``cl100k_base``
-    tiktoken tokenizer (same as OpenAI ``text-embedding-3-*`` models).
-
-    Ideal when you need strict, predictable token budgets.
-    """
 
     def __init__(self, config: ChunkingConfig):
+
         super().__init__(config)
+
+        logger.info("Initializing TokenChunker")
+
+        logger.debug(f"Token chunk size: {config.chunk_size}")
+
+        logger.debug(f"Token chunk overlap: {config.chunk_overlap}")
+
         self._splitter = TokenTextSplitter(
             chunk_size=config.chunk_size,
             chunk_overlap=config.chunk_overlap,
         )
 
     def chunk(self, documents: List[Document]) -> List[BaseNode]:
-        """Split documents into token-bounded nodes."""
-        nodes = self._splitter.get_nodes_from_documents(documents)
-        print(
-            f"[TokenChunker] {len(documents)} document(s) → "
-            f"{len(nodes)} node(s)"
-        )
-        return nodes
+
+        try:
+
+            logger.info(f"Starting token chunking for {len(documents)} document(s)")
+
+            nodes = self._splitter.get_nodes_from_documents(documents)
+
+            logger.info("Token chunking completed successfully")
+
+            logger.debug(f"Generated token nodes: {len(nodes)}")
+
+            return nodes
+
+        except Exception as e:
+
+            logger.exception("Token chunking failed")
+
+            raise

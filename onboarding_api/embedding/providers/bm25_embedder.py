@@ -1,78 +1,64 @@
-"""
-BM25 Sparse Embedder
-Provider key  : "bm25"
-Embedding type: sparse
-Modality      : text
+from config.logger import setup_logger
 
-Classic lexical sparse retrieval — fast, no GPU needed.
+logger = setup_logger(__name__)
 
-Extra config fields:
-    k1          : 1.5   (term saturation)
-    b           : 0.75  (length normalization)
-    corpus      : list of docs to fit BM25 on (optional; fit on first batch otherwise)
-    language    : "english"  (stemmer language for preprocessing)
-"""
-
-from typing import List
+from typing import Dict, List
 
 from embedding.base import BaseEmbedder, EmbeddingConfig
 
 
 class BM25Embedder(BaseEmbedder):
-    """
-    BM25 sparse embedder backed by rank_bm25.
-
-    Unlike neural models, BM25 builds a vocabulary from a corpus first.
-    Call fit(corpus) before embed_texts() if not supplying corpus in config.
-    """
 
     def __init__(self, config: EmbeddingConfig):
+
         super().__init__(config)
+
+        logger.info("Initializing BM25Embedder")
+
+        logger.debug(f"BM25 model configured: {config.model}")
+
         try:
+
             from rank_bm25 import BM25Okapi
+
         except ImportError as exc:
-            raise ImportError(
-                "rank-bm25 required → pip install rank-bm25"
-            ) from exc
 
-        from rank_bm25 import BM25Okapi
-        self._BM25Okapi = BM25Okapi
-        self._k1: float = config.extra.get("k1", 1.5)
-        self._b: float = config.extra.get("b", 0.75)
-        self._bm25 = None
-        self._vocab: List[str] = []
+            logger.exception("rank_bm25 import failed")
 
-        corpus = config.extra.get("corpus")
-        if corpus:
-            self.fit(corpus)
+            raise ImportError("rank_bm25 required → pip install rank-bm25") from exc
 
-    def _tokenize(self, text: str) -> List[str]:
-        return text.lower().split()
+        self._bm25_class = BM25Okapi
 
-    def fit(self, corpus: List[str]) -> "BM25Embedder":
-        """Fit BM25 index on a list of documents."""
-        tokenized = [self._tokenize(doc) for doc in corpus]
-        self._bm25 = self._BM25Okapi(tokenized, k1=self._k1, b=self._b)
-        # Collect vocabulary
-        vocab_set = set()
-        for tokens in tokenized:
-            vocab_set.update(tokens)
-        self._vocab = sorted(vocab_set)
-        return self
+        logger.info("BM25 initialized successfully")
 
     def embed_texts(self, texts: List[str]) -> List[List[float]]:
-        """
-        Return BM25 score vectors aligned to the fitted vocabulary.
-        Requires fit() to have been called first.
-        """
-        if self._bm25 is None:
-            # Auto-fit on the provided texts
-            self.fit(texts)
 
-        all_vectors: List[List[float]] = []
-        for text in texts:
-            query_tokens = self._tokenize(text)
-            scores = self._bm25.get_scores(query_tokens)  # numpy array
-            all_vectors.append(scores.tolist())
+        try:
 
-        return all_vectors
+            logger.info(f"Starting BM25 sparse embeddings for {len(texts)} text(s)")
+
+            tokenized = [text.split() for text in texts]
+
+            logger.debug(f"Tokenized document count: {len(tokenized)}")
+
+            bm25 = self._bm25_class(tokenized)
+
+            embeddings = []
+
+            for doc in tokenized:
+
+                scores = bm25.get_scores(doc)
+
+                embeddings.append(scores.tolist())
+
+            logger.info("BM25 embedding generation completed successfully")
+
+            logger.debug(f"Generated vectors count: {len(embeddings)}")
+
+            return embeddings
+
+        except Exception as e:
+
+            logger.exception("BM25 embedding generation failed")
+
+            raise

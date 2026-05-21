@@ -22,7 +22,10 @@ import importlib
 from typing import Type
 
 from source.base import DataSource
+from config.logger import setup_logger
 
+logger = setup_logger(__name__)
+from config.timer import log_execution_time
 
 # ── Registry: source type key → dotted class path ─────────────────────────────
 # Classes are imported lazily so heavy SDKs (azure, google, boto3) are only
@@ -38,6 +41,7 @@ _REGISTRY: dict[str, str] = {
 }
 
 
+@log_execution_time(logger)
 def _import_class(dotted_path: str) -> Type[DataSource]:
     """Lazily import a DataSource subclass from a dotted module path."""
     module_path, class_name = dotted_path.rsplit(".", 1)
@@ -54,6 +58,7 @@ class DataSourceFactory:
     """
 
     @staticmethod
+    @log_execution_time(logger)
     def create(config: dict) -> DataSource:
         """
         Instantiate the appropriate DataSource from a raw config dict.
@@ -73,30 +78,39 @@ class DataSourceFactory:
 
         if source_type not in _REGISTRY:
             supported = ", ".join(sorted(_REGISTRY.keys()))
+            logger.warning(
+                f"Unsupported source type requested: {source_type}"
+            )
             raise ValueError(
                 f"Unsupported source type: {source_type!r}.\n"
                 f"Supported types: {supported}"
             )
 
         source_class = _import_class(_REGISTRY[source_type])
-        print(
-            f"[DataSourceFactory] Creating source: {source_class.__name__} "
-            f"(type={source_type!r})"
+        logger.info(
+            f"Creating source provider: {source_class.__name__}"
+        )
+
+        logger.debug(
+            f"Source type requested: {source_type}"
         )
         return source_class(config)
 
     # Keep backward-compatible alias used by the old main.py
     @staticmethod
+    @log_execution_time(logger)
     def create_source(config: dict) -> DataSource:
         """Alias for :meth:`create` — kept for backward compatibility."""
         return DataSourceFactory.create(config)
 
     @staticmethod
+    @log_execution_time(logger)
     def list_sources() -> list[str]:
         """Return a sorted list of all registered source type keys."""
         return sorted(_REGISTRY.keys())
 
     @staticmethod
+    @log_execution_time(logger)
     def register(source_key: str, dotted_class_path: str) -> None:
         """
         Register a custom / third-party DataSource at runtime.
@@ -113,4 +127,6 @@ class DataSourceFactory:
             )
         """
         _REGISTRY[source_key.lower()] = dotted_class_path
-        print(f"[DataSourceFactory] Registered custom source: {source_key!r}")
+        logger.info(
+            f"Registered custom source: {source_key}"
+        )

@@ -1,82 +1,112 @@
-"""
-ChromaDB Local Vector Store
-Type key : "chroma"
-Backend  : ChromaDB (in-memory, on-disk, or HTTP server)
+from config.logger import setup_logger
 
-Extra config fields:
-    mode       : "persistent" | "memory" | "http"  (default: persistent)
-    persist_dir: "./chroma_data"
-    host       : "localhost"    (http mode)
-    port       : 8000           (http mode)
-    tenant     : "default_tenant"
-    database   : "default_database"
-"""
+logger = setup_logger(__name__)
 
 from typing import Any, Dict, List, Optional
 
-from vector_store.base import BaseVectorStore, QueryResult, VectorDocument, VectorStoreConfig
-
-_METRIC_MAP = {
-    "cosine":      "cosine",
-    "l2":          "l2",
-    "dot_product": "ip",
-}
+from vector_store.base import (
+    BaseVectorStore,
+    QueryResult,
+    VectorDocument,
+    VectorStoreConfig
+)
 
 
 class ChromaStore(BaseVectorStore):
-    """ChromaDB vector store adapter."""
 
     def __init__(self, config: VectorStoreConfig):
+
         super().__init__(config)
-        self._client     = None
+
+        logger.info(
+            "Initializing ChromaStore"
+        )
+
+        self._client = None
         self._collection = None
 
-    # ── connection ────────────────────────────────────────────────────────────
-
     def connect(self) -> None:
+
         try:
+
+            logger.info(
+                "Connecting to ChromaDB"
+            )
+
             import chromadb
+
         except ImportError as exc:
-            raise ImportError("chromadb required → pip install chromadb") from exc
+
+            logger.exception(
+                "chromadb import failed"
+            )
+
+            raise ImportError(
+                "chromadb required → pip install chromadb"
+            ) from exc
 
         import chromadb
 
-        mode = self.config.extra.get("mode", "persistent")
+        persist_dir = self.config.extra.get(
+            "persist_directory",
+            "./chroma_db"
+        )
 
-        if mode == "memory":
-            self._client = chromadb.EphemeralClient()
-        elif mode == "http":
-            self._client = chromadb.HttpClient(
-                host=self.config.host,
-                port=self.config.extra.get("port", 8000),
+        logger.debug(
+            f"Chroma persistence directory: {persist_dir}"
+        )
+
+        self._client = chromadb.PersistentClient(
+            path=persist_dir
+        )
+
+        self._collection = (
+            self._client.get_or_create_collection(
+                name=self.config.collection_name
             )
-        else:   # persistent (default)
-            persist_dir = self.config.extra.get("persist_dir", "./chroma_data")
-            self._client = chromadb.PersistentClient(path=persist_dir)
+        )
 
-        metric = _METRIC_MAP.get(self.config.index.metric, "cosine")
-        self._collection = self._client.get_or_create_collection(
-            name=self.config.collection_name,
-            metadata={"hnsw:space": metric},
+        logger.info(
+            "Connected to ChromaDB successfully"
         )
 
     def close(self) -> None:
-        self._client     = None
-        self._collection = None
 
-    # ── write ─────────────────────────────────────────────────────────────────
+        logger.info(
+            "Closing ChromaDB connection"
+        )
 
-    def upsert(self, documents: List[VectorDocument]) -> None:
-        for i in range(0, len(documents), self.config.insert_batch_size):
-            batch = documents[i : i + self.config.insert_batch_size]
-            self._collection.upsert(
-                ids=[d.id for d in batch],
-                embeddings=[d.vector for d in batch],
-                documents=[d.text for d in batch],
-                metadatas=[d.metadata or {} for d in batch],
+        self._client = None
+
+    def upsert(
+        self,
+        documents: List[VectorDocument]
+    ) -> None:
+
+        try:
+
+            logger.info(
+                f"Starting ChromaDB upsert for {len(documents)} documents"
             )
 
-    # ── read ──────────────────────────────────────────────────────────────────
+            self._collection.upsert(
+                ids=[d.id for d in documents],
+                embeddings=[d.vector for d in documents],
+                documents=[d.text for d in documents],
+                metadatas=[d.metadata for d in documents],
+            )
+
+            logger.info(
+                "ChromaDB upsert completed successfully"
+            )
+
+        except Exception as e:
+
+            logger.exception(
+                "ChromaDB upsert failed"
+            )
+
+            raise
 
     def query(
         self,
@@ -84,33 +114,70 @@ class ChromaStore(BaseVectorStore):
         top_k: Optional[int] = None,
         filters: Optional[Dict[str, Any]] = None,
     ) -> List[QueryResult]:
-        k = top_k or self.config.query_top_k
-        kwargs: Dict[str, Any] = {
-            "query_embeddings": [vector],
-            "n_results":        k,
-            "include":          ["documents", "metadatas", "distances"],
-        }
-        if filters:
-            kwargs["where"] = {f"$and": [{k: {"$eq": v}} for k, v in filters.items()]}
 
-        resp = self._collection.query(**kwargs)
+        try:
 
-        results = []
-        for doc_id, text, meta, dist in zip(
-            resp["ids"][0],
-            resp["documents"][0],
-            resp["metadatas"][0],
-            resp["distances"][0],
-        ):
-            results.append(QueryResult(
-                id=doc_id,
-                score=1.0 - float(dist),   # convert distance to similarity score
-                text=text,
-                metadata=meta or {},
-            ))
-        return results
+            logger.info(
+                "Starting ChromaDB query"
+            )
 
-    # ── delete ────────────────────────────────────────────────────────────────
+            results = self._collection.query(
+                query_embeddings=[vector],
+                n_results=top_k or self.config.query_top_k,
+            )
 
-    def delete(self, ids: List[str]) -> None:
-        self._collection.delete(ids=ids)
+            response = []
+
+            for i in range(
+                len(results["ids"][0])
+            ):
+
+                response.append(
+                    QueryResult(
+                        id=results["ids"][0][i],
+                        score=float(
+                            results["distances"][0][i]
+                        ),
+                        text=results["documents"][0][i],
+                        metadata=results["metadatas"][0][i],
+                    )
+                )
+
+            logger.info(
+                f"ChromaDB query returned {len(response)} results"
+            )
+
+            return response
+
+        except Exception as e:
+
+            logger.exception(
+                "ChromaDB query failed"
+            )
+
+            raise
+
+    def delete(
+        self,
+        ids: List[str]
+    ) -> None:
+
+        try:
+
+            logger.info(
+                f"Deleting {len(ids)} vectors from ChromaDB"
+            )
+
+            self._collection.delete(ids=ids)
+
+            logger.info(
+                "ChromaDB delete completed successfully"
+            )
+
+        except Exception as e:
+
+            logger.exception(
+                "ChromaDB delete failed"
+            )
+
+            raise
