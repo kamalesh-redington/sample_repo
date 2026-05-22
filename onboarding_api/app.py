@@ -3,6 +3,7 @@ from config.logger import setup_logger
 logger = setup_logger(__name__)
 
 from fastapi import FastAPI, HTTPException, Depends, File, UploadFile, Header, Request
+from fastapi.responses import JSONResponse
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from pydantic import BaseModel, ConfigDict
 from pathlib import Path
@@ -17,6 +18,7 @@ from db.database import init_db, get_db
 from db import crud
 from auth.security import generate_strong_password, verify_bearer_token
 from main import load_config, run_pipeline
+from core.response import format_response, StandardResponseModel
 from config.timer import log_execution_time
 from datetime import datetime
 import logging
@@ -30,6 +32,16 @@ app = FastAPI(
     version="1.0.0",
 )
 logger.info("Starting Onboarding API")
+
+# Register global exception handlers defined in `main.py`
+try:
+    # main.register_exception_handlers is implemented in main.py and will attach
+    # handlers from core/exceptions without creating circular imports.
+    import main as _main
+
+    _main.register_exception_handlers(app)
+except Exception:
+    logger.exception("Could not register global exception handlers")
 
 
 class TraceLoggerAdapter(logging.LoggerAdapter):
@@ -130,12 +142,17 @@ class TenantCreationResponse(BaseModel):
 @log_execution_time(logger)
 def root():
     logger.info("Root endpoint accessed")
-    return {
-        "message": "RAG Engine Onboarding API is running",
-        "swagger": "/docs",
-        "health": "/health",
-        "config_debug": "/config/debug",
-    }
+    return format_response(
+        status="success",
+        statu_code="200",
+        status_message="Service running",
+        response={
+            "message": "RAG Engine Onboarding API is running",
+            "swagger": "/docs",
+            "health": "/health",
+            "config_debug": "/config/debug",
+        },
+    )
 
 
 # ────────────────────────────────────────────────────────────────────────────────
@@ -143,11 +160,16 @@ def root():
 # ────────────────────────────────────────────────────────────────────────────────
 
 
-@app.get("/health", response_model=HealthResponse)
+@app.get("/health", response_model=StandardResponseModel)
 @log_execution_time(logger)
 def health_check():
     logger.info("Health check endpoint accessed")
-    return HealthResponse(status="ok", service="onboarding-api")
+    return format_response(
+        status="success",
+        statu_code="200",
+        status_message="OK",
+        response={"status": "ok", "service": "onboarding-api"},
+    )
 
 
 # ────────────────────────────────────────────────────────────────────────────────
@@ -155,7 +177,7 @@ def health_check():
 # ────────────────────────────────────────────────────────────────────────────────
 
 
-@app.get("/config/debug")
+@app.get("/config/debug", response_model=StandardResponseModel)
 @log_execution_time(logger)
 def config_debug():
 
@@ -163,11 +185,12 @@ def config_debug():
         logger.info("Loading configuration for debug endpoint")
         config = load_config()
         logger.info("Configuration loaded successfully")
-        return {
-            "status": "success",
-            "message": "Config loaded successfully",
-            "config": config,
-        }
+        return format_response(
+            status="success",
+            statu_code="200",
+            status_message="Config loaded successfully",
+            response={"config": config},
+        )
 
     except Exception as e:
         logger.exception("Configuration loading failed")
@@ -179,7 +202,7 @@ def config_debug():
 # ────────────────────────────────────────────────────────────────────────────────
 
 
-@app.post("/api/v1/tenant/create", response_model=TenantCreationResponse)
+@app.post("/api/v1/tenant/create", response_model=StandardResponseModel)
 async def create_tenant(
     file: UploadFile = File(...),
     db: Session = Depends(get_db),
@@ -373,17 +396,23 @@ async def create_tenant(
         # Success Response
         # ────────────────────────────────────────────────────────────────────────
         l.info("Tenant onboarding completed successfully: %s", tenant_pkid)
-        return TenantCreationResponse(
-            tenant_pkid=tenant_pkid,
-            tenant_name=tenant_name,
-            username=username,
-            password=password,
-            message=(
-                f"Tenant '{tenant_name}' "
-                f"and user '{username}' "
-                f"created successfully"
-            ),
+        content = format_response(
+            status="success",
+            statu_code="200",
+            status_message="Tenant created successfully",
+            response={
+                "tenant_pkid": tenant_pkid,
+                "tenant_name": tenant_name,
+                "username": username,
+                "password": password,
+                "message": (
+                    f"Tenant '{tenant_name}' "
+                    f"and user '{username}' "
+                    f"created successfully"
+                ),
+            },
         )
+        return JSONResponse(status_code=200, content=content)
 
     # ────────────────────────────────────────────────────────────────────────────
     # YAML Validation Error

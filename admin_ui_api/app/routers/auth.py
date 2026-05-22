@@ -3,8 +3,15 @@ from fastapi import APIRouter, Depends, HTTPException, Header, status
 
 from app.config.logger import setup_logger, get_trace_id
 from app.config.timer import log_execution_time
-from app.schemas.schemas import LoginRequest, MessageResponse, TokenResponse, UserSchema
+from app.schemas.schemas import (
+    LoginRequest,
+    MessageResponse,
+    TokenResponse,
+    UserSchema,
+    ResponseWrapper,
+)
 from app.services.auth_service import authenticate_user, get_current_user, login_user
+from app.utils.response import format_response
 
 logger = setup_logger(__name__)
 
@@ -12,7 +19,7 @@ router = APIRouter()
 
 
 
-@router.post("/login", response_model=TokenResponse)
+@router.post("/login", response_model=ResponseWrapper)
 @log_execution_time(logger)
 def login(credentials: LoginRequest, trace_id: Optional[int] = Header(None, alias="X-Trace-Id")):
 
@@ -50,15 +57,21 @@ def login(credentials: LoginRequest, trace_id: Optional[int] = Header(None, alia
             except Exception:
                 final_trace = None
 
-        return TokenResponse(
-            access_token=token,
+        return format_response(
+            status="success",
+            statu_code="200",
+            status_message="OK",
+            response={
+                "access_token": token,
+                "token_type": "bearer",
+                "user": {
+                    "id": user.id,
+                    "username": user.username,
+                    "role": user.role.name,
+                    "tenant_id": user.tenant_id,
+                },
+            },
             trace_id=final_trace,
-            user=UserSchema(
-                id=user.id,
-                username=user.username,
-                role=user.role.name,
-                tenant_id=user.tenant_id,
-            ),
         )
 
     except HTTPException:
@@ -71,7 +84,7 @@ def login(credentials: LoginRequest, trace_id: Optional[int] = Header(None, alia
         raise
 
 
-@router.post("/logout", response_model=MessageResponse)
+@router.post("/logout", response_model=ResponseWrapper)
 @log_execution_time(logger)
 def logout(authorization: str = Header(None)):
 
@@ -99,7 +112,12 @@ def logout(authorization: str = Header(None)):
 
         logger.info("Logout completed successfully")
 
-        return MessageResponse(message="Logout successful")
+        return format_response(
+            status="success",
+            statu_code="200",
+            status_message="OK",
+            response={"message": "Logout successful"},
+        )
 
     except HTTPException:
         raise
@@ -109,7 +127,7 @@ def logout(authorization: str = Header(None)):
         raise
 
 
-@router.get("/me", response_model=UserSchema)
+@router.get("/me", response_model=ResponseWrapper)
 @log_execution_time(logger)
 def read_me(current_user=Depends(get_current_user)):
 
@@ -125,11 +143,17 @@ def read_me(current_user=Depends(get_current_user)):
             f"{current_user.username}"
         )
 
-        return UserSchema(
-            id=current_user.id,
-            username=current_user.username,
-            role=current_user.role.name,
-            tenant_id=current_user.tenant_id,
+        return format_response(
+            status="success",
+            statu_code="200",
+            status_message="OK",
+            response={
+                "id": current_user.id,
+                "username": current_user.username,
+                "role": current_user.role.name,
+                "tenant_id": current_user.tenant_id,
+            },
+            trace_id=get_trace_id(),
         )
 
     except Exception as e:

@@ -1,6 +1,6 @@
-from typing import Dict, List, Optional
+from typing import Any, Dict, List, Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from app.config.logger import setup_logger
 
@@ -103,6 +103,24 @@ class PlaceholderResponse(BaseModel):
     message: str
 
     logger.info("PlaceholderResponse schema defined successfully")
+
+
+
+class ResponseWrapper(BaseModel):
+
+    logger.debug("Defining ResponseWrapper schema")
+
+    status: str
+    statu_code: Optional[str] = Field(None, alias="statu-code")
+    status_message: Optional[str] = Field(None, alias="status-message")
+    trace_id: Optional[int] = Field(None, alias="trace-id")
+    response: List[Any] = Field(default_factory=list)
+
+    class Config:
+        allow_population_by_field_name = True
+        orm_mode = True
+
+    logger.info("ResponseWrapper schema defined successfully")
 
 
 logger.info("All schema models initialized successfully")

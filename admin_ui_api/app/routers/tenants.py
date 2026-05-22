@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 
-from app.config.logger import setup_logger
+from app.config.logger import setup_logger, get_trace_id
 from app.config.timer import log_execution_time
 from app.schemas.schemas import (
     ConfigSection,
@@ -10,6 +10,8 @@ from app.schemas.schemas import (
     TenantSchema,
     UserSchema,
 )
+from app.schemas.schemas import ResponseWrapper
+from app.utils.response import format_response
 from app.services.auth_service import get_current_user
 from app.services.tenant_service import (
     authorize_tenant_access,
@@ -23,7 +25,7 @@ logger = setup_logger(__name__)
 router = APIRouter()
 
 
-@router.get("/tenants", response_model=list[TenantSchema])
+@router.get("/tenants", response_model=ResponseWrapper)
 @log_execution_time(logger)
 def list_tenants(current_user=Depends(get_current_user)):
 
@@ -48,10 +50,21 @@ def list_tenants(current_user=Depends(get_current_user)):
 
         logger.info(f"Tenant list fetched successfully. Count: {len(tenants)}")
 
-        return [
-            TenantSchema(id=t.id, name=t.name, slug=t.slug, description=t.description)
-            for t in tenants
-        ]
+        return format_response(
+            status="success",
+            statu_code="200",
+            status_message="OK",
+            response=[
+                {
+                    "id": t.id,
+                    "name": t.name,
+                    "slug": t.slug,
+                    "description": t.description,
+                }
+                for t in tenants
+            ],
+            trace_id=get_trace_id(),
+        )
 
     except HTTPException:
         raise
@@ -61,7 +74,7 @@ def list_tenants(current_user=Depends(get_current_user)):
         raise
 
 
-@router.get("/tenant/{tenant_id}", response_model=TenantSchema)
+@router.get("/tenant/{tenant_id}", response_model=ResponseWrapper)
 @log_execution_time(logger)
 def tenant_detail(tenant_id: int, current_user=Depends(get_current_user)):
 
@@ -76,11 +89,17 @@ def tenant_detail(tenant_id: int, current_user=Depends(get_current_user)):
             f"Tenant details fetched successfully for tenant_id: " f"{tenant_id}"
         )
 
-        return TenantSchema(
-            id=tenant.id,
-            name=tenant.name,
-            slug=tenant.slug,
-            description=tenant.description,
+        return format_response(
+            status="success",
+            statu_code="200",
+            status_message="OK",
+            response={
+                "id": tenant.id,
+                "name": tenant.name,
+                "slug": tenant.slug,
+                "description": tenant.description,
+            },
+            trace_id=get_trace_id(),
         )
 
     except Exception as e:
@@ -90,7 +109,7 @@ def tenant_detail(tenant_id: int, current_user=Depends(get_current_user)):
         raise
 
 
-@router.get("/tenant/{tenant_id}/config", response_model=TenantConfigResponse)
+@router.get("/tenant/{tenant_id}/config", response_model=ResponseWrapper)
 @log_execution_time(logger)
 def tenant_config(tenant_id: int, current_user=Depends(get_current_user)):
 
@@ -117,16 +136,22 @@ def tenant_config(tenant_id: int, current_user=Depends(get_current_user)):
             f"Tenant configuration fetched successfully for " f"tenant_id: {tenant_id}"
         )
 
-        return TenantConfigResponse(
-            tenant=TenantSchema(
-                id=tenant.id,
-                name=tenant.name,
-                slug=tenant.slug,
-                description=tenant.description,
-            ),
-            config_sections=sections,
-            selected_section=selected_section,
-            content_body=content_body,
+        return format_response(
+            status="success",
+            statu_code="200",
+            status_message="OK",
+            response={
+                "tenant": {
+                    "id": tenant.id,
+                    "name": tenant.name,
+                    "slug": tenant.slug,
+                    "description": tenant.description,
+                },
+                "config_sections": sections,
+                "selected_section": selected_section,
+                "content_body": content_body,
+            },
+            trace_id=get_trace_id(),
         )
 
     except Exception as e:
@@ -137,7 +162,7 @@ def tenant_config(tenant_id: int, current_user=Depends(get_current_user)):
         raise
 
 
-@router.get("/tenant/{tenant_id}/unstructured", response_model=PlaceholderResponse)
+@router.get("/tenant/{tenant_id}/unstructured", response_model=ResponseWrapper)
 @log_execution_time(logger)
 def tenant_unstructured(tenant_id: int, current_user=Depends(get_current_user)):
 
@@ -148,12 +173,18 @@ def tenant_unstructured(tenant_id: int, current_user=Depends(get_current_user)):
 
         logger.info(f"Unstructured placeholder returned for tenant_id: " f"{tenant_id}")
 
-        return PlaceholderResponse(
-            title="Unstructured Data",
-            message=(
-                "This endpoint is a placeholder for "
-                "unstructured data exploration and upload."
-            ),
+        return format_response(
+            status="success",
+            statu_code="200",
+            status_message="OK",
+            response={
+                "title": "Unstructured Data",
+                "message": (
+                    "This endpoint is a placeholder for "
+                    "unstructured data exploration and upload."
+                ),
+            },
+            trace_id=get_trace_id(),
         )
 
     except Exception as e:
@@ -163,7 +194,7 @@ def tenant_unstructured(tenant_id: int, current_user=Depends(get_current_user)):
         raise
 
 
-@router.get("/tenant/{tenant_id}/structured", response_model=PlaceholderResponse)
+@router.get("/tenant/{tenant_id}/structured", response_model=ResponseWrapper)
 @log_execution_time(logger)
 def tenant_structured(tenant_id: int, current_user=Depends(get_current_user)):
 
@@ -174,12 +205,18 @@ def tenant_structured(tenant_id: int, current_user=Depends(get_current_user)):
 
         logger.info(f"Structured placeholder returned for tenant_id: " f"{tenant_id}")
 
-        return PlaceholderResponse(
-            title="Structured Data",
-            message=(
-                "This endpoint is a placeholder for structured "
-                "data definitions and dataset mappings."
-            ),
+        return format_response(
+            status="success",
+            statu_code="200",
+            status_message="OK",
+            response={
+                "title": "Structured Data",
+                "message": (
+                    "This endpoint is a placeholder for structured "
+                    "data definitions and dataset mappings."
+                ),
+            },
+            trace_id=get_trace_id(),
         )
 
     except Exception as e:
@@ -189,7 +226,7 @@ def tenant_structured(tenant_id: int, current_user=Depends(get_current_user)):
         raise
 
 
-@router.get("/tenant/{tenant_id}/retrieval", response_model=PlaceholderResponse)
+@router.get("/tenant/{tenant_id}/retrieval", response_model=ResponseWrapper)
 @log_execution_time(logger)
 def tenant_retrieval(tenant_id: int, current_user=Depends(get_current_user)):
 
@@ -200,12 +237,18 @@ def tenant_retrieval(tenant_id: int, current_user=Depends(get_current_user)):
 
         logger.info(f"Retrieval placeholder returned for tenant_id: " f"{tenant_id}")
 
-        return PlaceholderResponse(
-            title="Retrieval",
-            message=(
-                "This endpoint is a placeholder for retrieval "
-                "and search pipeline controls."
-            ),
+        return format_response(
+            status="success",
+            statu_code="200",
+            status_message="OK",
+            response={
+                "title": "Retrieval",
+                "message": (
+                    "This endpoint is a placeholder for retrieval "
+                    "and search pipeline controls."
+                ),
+            },
+            trace_id=get_trace_id(),
         )
 
     except Exception as e:
@@ -215,7 +258,7 @@ def tenant_retrieval(tenant_id: int, current_user=Depends(get_current_user)):
         raise
 
 
-@router.get("/tenant/{tenant_id}/logs", response_model=PlaceholderResponse)
+@router.get("/tenant/{tenant_id}/logs", response_model=ResponseWrapper)
 @log_execution_time(logger)
 def tenant_logs(tenant_id: int, current_user=Depends(get_current_user)):
 
@@ -226,12 +269,18 @@ def tenant_logs(tenant_id: int, current_user=Depends(get_current_user)):
 
         logger.info(f"Logs placeholder returned for tenant_id: " f"{tenant_id}")
 
-        return PlaceholderResponse(
-            title="Logs",
-            message=(
-                "This endpoint is a placeholder for tenant logs "
-                "and operational history."
-            ),
+        return format_response(
+            status="success",
+            statu_code="200",
+            status_message="OK",
+            response={
+                "title": "Logs",
+                "message": (
+                    "This endpoint is a placeholder for tenant logs "
+                    "and operational history."
+                ),
+            },
+            trace_id=get_trace_id(),
         )
 
     except Exception as e:

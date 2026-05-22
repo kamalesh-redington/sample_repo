@@ -6,7 +6,15 @@ from app.config.timer import log_execution_time
 from app.core.config import settings
 from app.db.base import Base, engine
 from app.routers import auth, tenants
+from fastapi import HTTPException
+from fastapi.exceptions import RequestValidationError
+from app.core.exceptions import (
+    http_exception_handler,
+    validation_exception_handler,
+    internal_exception_handler,
+)
 from app.services.auth_service import ensure_setup
+from app.utils.response import format_response
 
 logger = setup_logger(__name__)
 
@@ -47,6 +55,11 @@ try:
 
     logger.info("FastAPI application instance created successfully")
 
+    # register global exception handlers to ensure consistent response format
+    app.add_exception_handler(HTTPException, http_exception_handler)
+    app.add_exception_handler(RequestValidationError, validation_exception_handler)
+    app.add_exception_handler(Exception, internal_exception_handler)
+
     logger.debug("Initializing database metadata")
 
     Base.metadata.create_all(bind=engine)
@@ -86,10 +99,16 @@ def read_root():
     try:
         logger.info("Returning root endpoint response")
 
-        return {
-            "message": "Admin UI FastAPI is running",
-            "config_path": str(settings.config_yaml_path)
-        }
+        return format_response(
+            status="success",
+            statu_code="200",
+            status_message="OK",
+            response={
+                "message": "Admin UI FastAPI is running",
+                "config_path": str(settings.config_yaml_path),
+            },
+            trace_id=get_trace_id(),
+        )
 
     except Exception as e:
         logger.exception(f"Root endpoint execution failed: {str(e)}")

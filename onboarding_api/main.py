@@ -25,6 +25,26 @@ from config.timer import log_execution_time
 
 logger = setup_logger(__name__)
 
+# Exception handler registration helper
+def register_exception_handlers(app):
+    """Register global exception handlers on the provided FastAPI app.
+
+    This function is intentionally placed here so `app.py` can call it after
+    creating the FastAPI `app` instance without introducing circular imports.
+    """
+    try:
+        from fastapi import HTTPException
+        from fastapi.exceptions import RequestValidationError
+        from core import exceptions as core_exceptions
+
+        app.add_exception_handler(HTTPException, core_exceptions.http_exception_handler)
+        app.add_exception_handler(RequestValidationError, core_exceptions.validation_exception_handler)
+        app.add_exception_handler(Exception, core_exceptions.generic_exception_handler)
+
+        logger.info("Global exception handlers registered on app")
+    except Exception:
+        logger.exception("Failed to register exception handlers")
+
 # ── Factory imports ────────────────────────────────────────────────────────────
 from source.factory import DataSourceFactory
 from chunking.factory import ChunkingFactory
