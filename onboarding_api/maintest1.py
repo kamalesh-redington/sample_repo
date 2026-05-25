@@ -100,7 +100,7 @@ def save_embeddings(nodes, embed_model):
 
             try:
 
-                embedding = embed_model._get_text_embedding(node.text)
+                embedding = embed_model.get_text_embedding(node.text)
 
                 f.write("\n" + "=" * 100 + "\n")
                 f.write(f"CHUNK {idx}\n")
@@ -161,7 +161,6 @@ from chunking.factory import ChunkingFactory
 from embedding.factory import EmbeddingFactory
 from extractors.factory import ExtractorFactory
 from vector_store.factory import VectorStoreFactory
-from object_store.factory import ObjectStoreFactory
 
 # ── LlamaIndex ────────────────────────────────────────────────────────────────
 from llama_index.core import Document, VectorStoreIndex
@@ -403,9 +402,7 @@ class _BaseEmbedderAdapter(BaseEmbedding):
 
 
 @log_execution_time(logger)
-def build_vector_index(
-    nodes: list[BaseNode], config: dict, documents
-) -> VectorStoreIndex:
+def build_vector_index(nodes: list[BaseNode], config: dict) -> VectorStoreIndex:
     """
     Generate embeddings and create vector index.
     """
@@ -471,101 +468,9 @@ def build_vector_index(
         vector_store=vector_store,
     )
 
-    backup_to_object_store(
-        config=config, documents=documents, nodes=nodes, embed_model=embedder
-    )
-
     logger.info("Vector index created successfully.")
 
     return index
-
-
-@log_execution_time(logger)
-def backup_to_object_store(config, documents, nodes, embed_model):
-    """
-    Backup extracted documents, embeddings,
-    and metadata to object store.
-    """
-
-    logger.info("Starting object store backup process")
-
-    try:
-
-        object_store = ObjectStoreFactory.create(config)
-
-        object_store.connect()
-
-        logger.info(
-            f"Object store connected successfully | "
-            f"provider={config['object_store']['provider']} | "
-            f"bucket={config['object_store']['bucket']}"
-        )
-
-        # --------------------------------------------------
-        # Save extracted documents
-        # --------------------------------------------------
-
-        logger.info(f"Backing up documents | " f"total_documents={len(documents)}")
-
-        for doc in documents:
-
-            file_name = doc.metadata["file_name"]
-
-            object_store.save_document(file_name=file_name, content=doc.text)
-
-            logger.debug(f"Document backed up successfully | " f"file_name={file_name}")
-
-        # --------------------------------------------------
-        # Save embeddings
-        # --------------------------------------------------
-
-        logger.info(f"Backing up embeddings | " f"total_chunks={len(nodes)}")
-
-        for idx, node in enumerate(nodes):
-
-            embedding = embed_model.embed_texts([node.text])[0]
-
-            object_store.save_embedding(
-                key_name=f"chunk_{idx+1}",
-                embedding={
-                    "chunk_id": idx + 1,
-                    "text": node.text[:500],
-                    "embedding": embedding,
-                },
-            )
-
-            logger.debug(
-                f"Embedding backed up successfully | "
-                f"chunk_id={idx+1} | "
-                f"dimension={len(embedding)}"
-            )
-
-        # --------------------------------------------------
-        # Save metadata
-        # --------------------------------------------------
-
-        metadata = {
-            "documents": len(documents),
-            "chunks": len(nodes),
-            "embedding_provider": config["embedding"]["provider"],
-            "vector_store": config["vector_store"]["type"],
-        }
-
-        object_store.save_metadata(key_name="ingestion_summary", metadata=metadata)
-
-        logger.info(
-            f"Metadata backed up successfully | "
-            f"documents={len(documents)} | "
-            f"chunks={len(nodes)}"
-        )
-
-        logger.info("Object store backup completed successfully")
-
-    except Exception:
-
-        logger.exception("Object store backup failed")
-
-        raise
 
 
 # ── Pipeline orchestrator ─────────────────────────────────────────────────────
@@ -625,7 +530,7 @@ def run_pipeline(config: dict) -> VectorStoreIndex:
         f"STEP 4 STARTED | " f"embedding.provider={config['embedding']['provider']}"
     )
 
-    index = build_vector_index(nodes, config, documents)
+    index = build_vector_index(nodes, config)
 
     logger.info("Ingestion pipeline completed successfully.")
 
