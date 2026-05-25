@@ -25,6 +25,113 @@ from config.timer import log_execution_time
 
 logger = setup_logger(__name__)
 
+
+import json
+import os
+from pathlib import Path
+
+
+def save_downloaded_files(files):
+    os.makedirs("data", exist_ok=True)
+
+    with open("data/downloaded_files.txt", "w", encoding="utf-8") as f:
+        f.write("DOWNLOADED FILES\n")
+        f.write("=" * 80 + "\n")
+
+        for file in files:
+            f.write(f"{file}\n")
+
+        f.write("\n")
+        f.write(f"TOTAL FILES: {len(files)}\n")
+
+
+def save_extracted_documents(documents):
+    os.makedirs("data", exist_ok=True)
+
+    with open("data/extracted_documents.txt", "w", encoding="utf-8") as f:
+
+        for idx, doc in enumerate(documents, start=1):
+
+            f.write("\n" + "=" * 100 + "\n")
+            f.write(f"DOCUMENT {idx}\n")
+            f.write("=" * 100 + "\n")
+
+            f.write(f"Metadata:\n{doc.metadata}\n\n")
+
+            f.write("TEXT:\n")
+            f.write(doc.text)
+            f.write("\n")
+
+
+def save_chunks(nodes):
+    os.makedirs("data", exist_ok=True)
+
+    with open("data/chunks.txt", "w", encoding="utf-8") as f:
+
+        for idx, node in enumerate(nodes, start=1):
+
+            f.write("\n" + "=" * 100 + "\n")
+            f.write(f"CHUNK {idx}\n")
+            f.write("=" * 100 + "\n")
+
+            try:
+                f.write("METADATA:\n")
+                f.write(json.dumps(node.metadata, indent=2))
+                f.write("\n\n")
+            except:
+                pass
+
+            f.write("TEXT:\n")
+
+            try:
+                f.write(node.text)
+            except:
+                f.write(str(node))
+
+            f.write("\n")
+
+
+def save_embeddings(nodes, embed_model):
+    os.makedirs("data", exist_ok=True)
+
+    with open("data/embeddings.txt", "w", encoding="utf-8") as f:
+
+        for idx, node in enumerate(nodes, start=1):
+
+            try:
+
+                embedding = embed_model.get_text_embedding(node.text)
+
+                f.write("\n" + "=" * 100 + "\n")
+                f.write(f"CHUNK {idx}\n")
+                f.write("=" * 100 + "\n")
+
+                f.write(f"VECTOR DIMENSION: {len(embedding)}\n\n")
+
+                f.write("FIRST 50 VALUES:\n")
+
+                f.write(json.dumps(embedding[:50], indent=2))
+
+                f.write("\n\n")
+
+            except Exception as e:
+
+                f.write(f"Embedding failed for chunk {idx}: {e}\n")
+
+
+def save_vector_store_info(vector_store):
+    os.makedirs("data", exist_ok=True)
+
+    with open("data/vector_store_info.txt", "w", encoding="utf-8") as f:
+
+        f.write("VECTOR STORE INFORMATION\n")
+        f.write("=" * 80 + "\n")
+
+        f.write(f"Class: {vector_store.__class__.__name__}\n")
+
+        f.write(str(vector_store))
+
+
 # Exception handler registration helper
 def register_exception_handlers(app):
     """Register global exception handlers on the provided FastAPI app.
@@ -38,12 +145,15 @@ def register_exception_handlers(app):
         from core import exceptions as core_exceptions
 
         app.add_exception_handler(HTTPException, core_exceptions.http_exception_handler)
-        app.add_exception_handler(RequestValidationError, core_exceptions.validation_exception_handler)
+        app.add_exception_handler(
+            RequestValidationError, core_exceptions.validation_exception_handler
+        )
         app.add_exception_handler(Exception, core_exceptions.generic_exception_handler)
 
         logger.info("Global exception handlers registered on app")
     except Exception:
         logger.exception("Failed to register exception handlers")
+
 
 # ── Factory imports ────────────────────────────────────────────────────────────
 from source.factory import DataSourceFactory
@@ -61,6 +171,7 @@ from extractors.ocr_config import configure_tesseract
 
 configure_tesseract()
 
+
 # ── Environment setup ──────────────────────────────────────────────────────────
 
 SCRIPT_DIR = Path(__file__).resolve().parent
@@ -75,9 +186,7 @@ for _env_path in ENV_CANDIDATES:
     if _env_path.exists():
         load_dotenv(_env_path)
 
-        logger.info(
-            f"Environment variables loaded from: {_env_path}"
-        )
+        logger.info(f"Environment variables loaded from: {_env_path}")
         break
 else:
     load_dotenv()
@@ -88,49 +197,41 @@ else:
 
 # ── Config loader ──────────────────────────────────────────────────────────────
 
+
 @log_execution_time(logger)
 def load_config(config_path: str) -> dict:
     """
     Load tenant-specific YAML configuration.
     """
 
-    logger.info(
-        f"Loading tenant configuration | path={config_path}"
-    )
+    logger.info(f"Loading tenant configuration | path={config_path}")
 
     path = Path(config_path)
 
     if not path.exists():
 
-        logger.error(
-            f"Tenant configuration file not found | path={config_path}"
-        )
+        logger.error(f"Tenant configuration file not found | path={config_path}")
 
-        raise FileNotFoundError(
-            f"Tenant config not found: {config_path}"
-        )
+        raise FileNotFoundError(f"Tenant config not found: {config_path}")
 
     try:
         with open(path, "r", encoding="utf-8") as f:
 
             config = yaml.safe_load(f)
 
-        logger.info(
-            "Tenant configuration loaded successfully."
-        )
+        logger.info("Tenant configuration loaded successfully.")
 
         return config
 
     except Exception as exc:
 
-        logger.exception(
-            f"Failed loading configuration | path={config_path}"
-        )
+        logger.exception(f"Failed loading configuration | path={config_path}")
 
         raise exc
 
 
 # ── Step 1: Download source files ─────────────────────────────────────────────
+
 
 @log_execution_time(logger)
 def download_source_files(config: dict) -> list[str]:
@@ -140,9 +241,7 @@ def download_source_files(config: dict) -> list[str]:
 
     source_type = config["source"]["type"]
 
-    logger.info(
-        f"Starting source download | source_type={source_type}"
-    )
+    logger.info(f"Starting source download | source_type={source_type}")
 
     source = DataSourceFactory.create(config)
 
@@ -150,73 +249,54 @@ def download_source_files(config: dict) -> list[str]:
 
     if not files:
 
-        logger.warning(
-            f"No files downloaded | source_type={source_type}"
-        )
+        logger.warning(f"No files downloaded | source_type={source_type}")
 
         return []
 
-    logger.info(
-        f"Source download completed | files_downloaded={len(files)}"
-    )
+    logger.info(f"Source download completed | files_downloaded={len(files)}")
 
-    logger.debug(
-        f"Downloaded files: {files}"
-    )
+    logger.debug(f"Downloaded files: {files}")
 
     return files
 
 
-
 # ── Step 2: Extract documents ─────────────────────────────────────────────────
 
+
 @log_execution_time(logger)
-def extract_documents(
-    file_paths: list[str],
-    source_type: str
-) -> list[Document]:
+def extract_documents(file_paths: list[str], source_type: str) -> list[Document]:
     """
     Extract text from downloaded documents.
     """
 
-    logger.info(
-        f"Starting document extraction | total_files={len(file_paths)}"
-    )
+    logger.info(f"Starting document extraction | total_files={len(file_paths)}")
 
     documents: list[Document] = []
 
     for file_path in file_paths:
 
         try:
-            logger.info(
-                f"Processing document | file={file_path}"
-            )
+            logger.info(f"Processing document | file={file_path}")
 
             extractor = ExtractorFactory.get_extractor(file_path)
 
             logger.debug(
-                f"Extractor selected | "
-                f"extractor={extractor.__class__.__name__}"
+                f"Extractor selected | " f"extractor={extractor.__class__.__name__}"
             )
 
             text = extractor.extract_text(file_path)
 
             if not text or len(text.strip()) < 10:
 
-                logger.warning(
-                    f"Skipping empty/invalid document | file={file_path}"
-                )
+                logger.warning(f"Skipping empty/invalid document | file={file_path}")
 
                 continue
 
             logger.info(
-                f"Document extracted successfully | "
-                f"file={Path(file_path).name}"
+                f"Document extracted successfully | " f"file={Path(file_path).name}"
             )
 
-            logger.debug(
-                f"Extracted preview:\n{text}"
-            )
+            logger.debug(f"Extracted preview:\n{text}")
 
             doc = Document(
                 text=text,
@@ -231,68 +311,52 @@ def extract_documents(
 
         except Exception:
 
-            logger.exception(
-                f"Document extraction failed | file={file_path}"
-            )
+            logger.exception(f"Document extraction failed | file={file_path}")
 
-    logger.info(
-        f"Document extraction completed | "
-        f"valid_documents={len(documents)}"
-    )
+    logger.info(f"Document extraction completed | " f"valid_documents={len(documents)}")
 
     return documents
 
 
 # ── Step 3: Chunk documents ───────────────────────────────────────────────────
 
+
 @log_execution_time(logger)
-def chunk_documents(
-    documents: list[Document],
-    config: dict
-) -> list[BaseNode]:
+def chunk_documents(documents: list[Document], config: dict) -> list[BaseNode]:
     """
     Chunk documents using configured strategy.
     """
 
     strategy = config["chunking"]["strategy"]
 
-    logger.info(
-        f"Starting document chunking | strategy={strategy}"
-    )
+    logger.info(f"Starting document chunking | strategy={strategy}")
 
     chunker = ChunkingFactory.create(config)
 
     nodes = chunker.chunk(documents)
 
-    logger.info(
-        f"Chunking completed | total_chunks={len(nodes)}"
-    )
+    logger.info(f"Chunking completed | total_chunks={len(nodes)}")
 
     if nodes:
 
         first = nodes[0]
 
-        logger.debug(
-            "Sample chunk generated successfully."
-        )
+        logger.debug("Sample chunk generated successfully.")
 
         try:
-            logger.debug(
-                json.dumps(first.to_dict(), indent=2)[:800]
-            )
+            logger.debug(json.dumps(first.to_dict(), indent=2)[:800])
 
         except Exception:
 
             logger.debug(
-                first.text[:400]
-                if hasattr(first, "text")
-                else str(first)[:400]
+                first.text[:400] if hasattr(first, "text") else str(first)[:400]
             )
 
     return nodes
 
 
 # ── Embedder Adapter ───────────────────────────────────────────────────────────
+
 
 class _BaseEmbedderAdapter(BaseEmbedding):
     """
@@ -307,9 +371,7 @@ class _BaseEmbedderAdapter(BaseEmbedding):
         return self._embedder.embed_query(text)
 
     def get_text_embedding_batch(
-        self,
-        texts: list[str],
-        show_progress: bool = False
+        self, texts: list[str], show_progress: bool = False
     ) -> list[list[float]]:
         return self._embedder.embed_texts(texts)
 
@@ -331,31 +393,23 @@ class _BaseEmbedderAdapter(BaseEmbedding):
 
         dim = len(vecs[0])
 
-        avg = [
-            sum(v[i] for v in vecs) / len(vecs)
-            for i in range(dim)
-        ]
+        avg = [sum(v[i] for v in vecs) / len(vecs) for i in range(dim)]
 
         return avg
 
 
 # ── Step 4: Build vector index ────────────────────────────────────────────────
 
+
 @log_execution_time(logger)
-def build_vector_index(
-    nodes: list[BaseNode],
-    config: dict
-) -> VectorStoreIndex:
+def build_vector_index(nodes: list[BaseNode], config: dict) -> VectorStoreIndex:
     """
     Generate embeddings and create vector index.
     """
 
     embedding_provider = config["embedding"]["provider"].lower()
 
-    logger.info(
-        f"Initializing embedding pipeline | "
-        f"provider={embedding_provider}"
-    )
+    logger.info(f"Initializing embedding pipeline | " f"provider={embedding_provider}")
 
     if embedding_provider in ("openai", "azure_openai"):
 
@@ -363,24 +417,15 @@ def build_vector_index(
 
         if not openai_api_key:
 
-            logger.error(
-                "OPENAI_API_KEY environment variable missing."
-            )
+            logger.error("OPENAI_API_KEY environment variable missing.")
 
-            raise ValueError(
-                "OPENAI_API_KEY environment variable is not set."
-            )
+            raise ValueError("OPENAI_API_KEY environment variable is not set.")
 
-    logger.info(
-        "Creating embedding model..."
-    )
+    logger.info("Creating embedding model...")
 
     embedder = EmbeddingFactory.create(config)
 
-    logger.info(
-        f"Embedder initialized | "
-        f"embedder={embedder.__class__.__name__}"
-    )
+    logger.info(f"Embedder initialized | " f"embedder={embedder.__class__.__name__}")
 
     from llama_index.embeddings.openai import OpenAIEmbedding
 
@@ -388,9 +433,7 @@ def build_vector_index(
 
     if embedding_provider == "openai":
 
-        logger.info(
-            f"Using native OpenAI embedding model | model={model_name}"
-        )
+        logger.info(f"Using native OpenAI embedding model | model={model_name}")
 
         llama_embed_model = OpenAIEmbedding(
             api_key=os.getenv("OPENAI_API_KEY"),
@@ -399,28 +442,25 @@ def build_vector_index(
 
     else:
 
-        logger.info(
-            f"Using custom embedding adapter | model={model_name}"
-        )
+        logger.info(f"Using custom embedding adapter | model={model_name}")
 
         llama_embed_model = _BaseEmbedderAdapter(embedder)
 
-    logger.info(
-        "Connecting to vector store..."
-    )
+    logger.info("Connecting to vector store...")
 
     vector_store = VectorStoreFactory.create(config)
 
     vector_store.connect()
+
+    save_vector_store_info(vector_store)
 
     logger.info(
         f"Vector store connected successfully | "
         f"vector_store={vector_store.__class__.__name__}"
     )
 
-    logger.info(
-        f"Creating vector index | total_nodes={len(nodes)}"
-    )
+    logger.info(f"Creating vector index | total_nodes={len(nodes)}")
+    save_embeddings(nodes, llama_embed_model)
 
     index = VectorStoreIndex(
         nodes,
@@ -428,14 +468,13 @@ def build_vector_index(
         vector_store=vector_store,
     )
 
-    logger.info(
-        "Vector index created successfully."
-    )
+    logger.info("Vector index created successfully.")
 
     return index
 
 
 # ── Pipeline orchestrator ─────────────────────────────────────────────────────
+
 
 @log_execution_time(logger)
 def run_pipeline(config: dict) -> VectorStoreIndex:
@@ -453,60 +492,47 @@ def run_pipeline(config: dict) -> VectorStoreIndex:
     logger.info("=" * 80)
 
     # Step 1
-    logger.info(
-        f"STEP 1 STARTED | source.type={config['source']['type']}"
-    )
+    logger.info(f"STEP 1 STARTED | source.type={config['source']['type']}")
 
     files = download_source_files(config)
+    save_downloaded_files(files)
 
     if not files:
 
-        logger.error(
-            "Pipeline stopped | no files downloaded."
-        )
+        logger.error("Pipeline stopped | no files downloaded.")
 
         raise SystemExit("No files downloaded.")
 
     # Step 2
     logger.info("STEP 2 STARTED | document extraction")
 
-    documents = extract_documents(
-        files,
-        config["source"]["type"]
-    )
+    documents = extract_documents(files, config["source"]["type"])
+    save_extracted_documents(documents)
 
-    logger.info(
-        f"Document extraction completed | "
-        f"valid_documents={len(documents)}"
-    )
+    logger.info(f"Document extraction completed | " f"valid_documents={len(documents)}")
 
     if not documents:
 
-        logger.error(
-            "Pipeline stopped | no valid documents extracted."
-        )
+        logger.error("Pipeline stopped | no valid documents extracted.")
 
         raise SystemExit("No valid documents extracted.")
 
     # Step 3
     logger.info(
-        f"STEP 3 STARTED | "
-        f"chunking.strategy={config['chunking']['strategy']}"
+        f"STEP 3 STARTED | " f"chunking.strategy={config['chunking']['strategy']}"
     )
 
     nodes = chunk_documents(documents, config)
+    save_chunks(nodes)
 
     # Step 4
     logger.info(
-        f"STEP 4 STARTED | "
-        f"embedding.provider={config['embedding']['provider']}"
+        f"STEP 4 STARTED | " f"embedding.provider={config['embedding']['provider']}"
     )
 
     index = build_vector_index(nodes, config)
 
-    logger.info(
-        "Ingestion pipeline completed successfully."
-    )
+    logger.info("Ingestion pipeline completed successfully.")
 
     logger.info("=" * 80)
 
@@ -514,6 +540,7 @@ def run_pipeline(config: dict) -> VectorStoreIndex:
 
 
 # ── Main entry point ──────────────────────────────────────────────────────────
+
 
 @log_execution_time(logger)
 def main():
@@ -526,23 +553,15 @@ def main():
         r"D:\OneDrive - REDINGTON\Work\Code\RAG\s1_rag_engine\onboarding_api\config.yaml"
     )
 
-    logger.info(
-        f"source.type={config['source']['type']}"
-    )
+    logger.info(f"source.type={config['source']['type']}")
 
-    logger.info(
-        f"chunking.strategy={config['chunking']['strategy']}"
-    )
+    logger.info(f"chunking.strategy={config['chunking']['strategy']}")
 
-    logger.info(
-        f"embedding.provider={config['embedding']['provider']}"
-    )
+    logger.info(f"embedding.provider={config['embedding']['provider']}")
 
     run_pipeline(config)
 
-    logger.info(
-        "Application execution completed successfully."
-    )
+    logger.info("Application execution completed successfully.")
 
 
 if __name__ == "__main__":

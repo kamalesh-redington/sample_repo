@@ -9,7 +9,7 @@ tenant:
 source:
   type: s3
   bucket: rag-engine-datasource
-  prefix: raw-documents/PNG_Sample.png
+  prefix: raw-documents/test.pdf
   region: ap-south-1
 
   # ── Azure Blob Storage ── (type: azure_blob) ────────────────────────────────

@@ -2,10 +2,10 @@ from config.logger import setup_logger
 
 logger = setup_logger(__name__)
 
-from PIL import Image
+from pathlib import Path
+import fitz
 
-import pytesseract
-
+from .pdf_extractor import PDFExtractor
 from .base import DocumentExtractor
 
 
@@ -15,22 +15,52 @@ class ImageExtractor(DocumentExtractor):
 
         try:
 
-            logger.info(f"Starting image OCR extraction: {file_path}")
+            logger.info(
+                f"Starting image extraction: {file_path}"
+            )
 
-            img = Image.open(file_path)
+            pdf_path = str(
+                Path(file_path).parent /
+                f"{Path(file_path).stem}_temp.pdf"
+            )
 
-            logger.debug(f"Image opened successfully: {img.size}")
+            # Create PDF from image using PyMuPDF
+            image_doc = fitz.open(file_path)
 
-            text = pytesseract.image_to_string(img)
+            pdf_bytes = image_doc.convert_to_pdf()
 
-            logger.info(f"Image OCR extraction completed: {file_path}")
+            pdf_doc = fitz.open("pdf", pdf_bytes)
 
-            logger.debug(f"Extracted text length: {len(text)}")
+            pdf_doc.save(pdf_path)
 
-            return text.strip()
+            pdf_doc.close()
+            image_doc.close()
 
-        except Exception as e:
+            logger.info(
+                f"Image converted to PDF: {pdf_path}"
+            )
 
-            logger.exception(f"Image OCR extraction failed: {file_path}")
+            # Reuse existing PDF extractor
+            pdf_extractor = PDFExtractor()
+
+            extracted_text = pdf_extractor.extract_text(
+                pdf_path
+            )
+
+            logger.info(
+                f"PDF extraction completed: {pdf_path}"
+            )
+
+            logger.debug(
+                f"Extracted text length: {len(extracted_text)}"
+            )
+
+            return extracted_text.strip()
+
+        except Exception:
+
+            logger.exception(
+                f"Image extraction failed: {file_path}"
+            )
 
             raise
