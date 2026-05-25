@@ -9,7 +9,7 @@ tenant:
 source:
   type: s3
   bucket: rag-engine-datasource
-  prefix: raw-documents/test.pdf
+  prefix: raw-documents/cortex-xdr.pdf
   region: ap-south-1
 
   # ── Azure Blob Storage ── (type: azure_blob) ────────────────────────────────
@@ -71,9 +71,9 @@ embedding:
   # Providers: openai | azure_openai | bedrock | google | cohere | voyage | jina
   #            huggingface | sentence_transformers | instructor | fastembed | ollama
   #            splade | bm25 | hybrid | colbert | clip
-  provider: bedrock
+  provider: openai
 
-  model: amazon.titan-embed-text-v2:0 # model name as per provider docs
+  model: text-embedding-3-small # model name as per provider docs
 
   # Strategy type: dense | sparse | hybrid | late_interaction | instructor
   type: dense
@@ -122,6 +122,7 @@ vector_store:
   
   extra:
     region: ap-south-1
+    index_name: rag-index
     
   batching:
     insert_batch_size: 100
@@ -142,7 +143,7 @@ object_store:
     access_key: ${AWS_ACCESS_KEY}
     secret_key: ${AWS_SECRET_KEY}
 
-  storage_format: parquet         # parquet | npy | json
+  storage_format: json         # parquet | npy | json
 
   layout:
     embeddings_path: embeddings/
