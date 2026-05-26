@@ -1,4 +1,0 @@
-uvicorn app:app --reload
-venv_rag\Scripts\activate
-Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
-streamlit run streamlit_app.py
