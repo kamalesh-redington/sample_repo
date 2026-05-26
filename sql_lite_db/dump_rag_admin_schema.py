@@ -1,7 +1,7 @@
 import sqlite3
 from pathlib import Path
 
-DB_PATH = Path(r"D:\s1_rag_engine\sql_lite_db\rag_admin.sqlite3")
+DB_PATH = Path(r"D:\Projects\rag\rag-engine\sql_lite_db")
 
 
 def get_schema(db_path: Path):

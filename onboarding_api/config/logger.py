@@ -2,8 +2,13 @@ import logging
 import os
 from logging.handlers import RotatingFileHandler
 from dotenv import load_dotenv
+import sys
 
 load_dotenv()
+
+# Force UTF-8 console output
+sys.stdout.reconfigure(encoding="utf-8")
+
 
 def setup_logger(name: str) -> logging.Logger:
 
@@ -22,8 +27,11 @@ def setup_logger(name: str) -> logging.Logger:
         datefmt="%Y-%m-%d %H:%M:%S"
     )
 
-    # Console Handler
-    console_handler = logging.StreamHandler()
+    # ==========================================
+    # Console Handler (UTF-8 SAFE)
+    # ==========================================
+
+    console_handler = logging.StreamHandler(sys.stdout)
     console_handler.setLevel(logging.INFO)
     console_handler.setFormatter(formatter)
     logger.addHandler(console_handler)

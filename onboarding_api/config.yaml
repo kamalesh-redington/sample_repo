@@ -71,9 +71,9 @@ embedding:
   # Providers: openai | azure_openai | bedrock | google | cohere | voyage | jina
   #            huggingface | sentence_transformers | instructor | fastembed | ollama
   #            splade | bm25 | hybrid | colbert | clip
-  provider: openai
+  provider: bedrock
 
-  model: text-embedding-3-small # model name as per provider docs
+  model: amazon.titan-embed-text-v2:0 # model name as per provider docs
 
   # Strategy type: dense | sparse | hybrid | late_interaction | instructor
   type: dense
@@ -81,7 +81,7 @@ embedding:
   # Modality: text | image | multimodal | audio | molecular
   modality: text
 
-  dimensions: 1536                 # output vector size
+  dimensions: 1024                 # output vector size
   batch_size: 32                   # texts per API call / forward pass
   normalize: true                  # L2-normalize output vectors
   pooling: mean                    # mean | cls | max  (token-based models only)
@@ -113,7 +113,7 @@ vector_store:
     #schema: public
 
   index:
-    name: rag-index
+    name: rag-index-v2
     type: flat                   # flat | ivfflat | hnsw | diskann
     metric: cosine                # cosine | l2 | dot_product
     #params:
@@ -122,7 +122,7 @@ vector_store:
   
   extra:
     region: ap-south-1
-    index_name: rag-index
+    index_name: rag-index-v2
     
   batching:
     insert_batch_size: 100
