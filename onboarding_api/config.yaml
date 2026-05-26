@@ -4,7 +4,7 @@
 # Supported: local | s3 | azure_blob | gdrive | sharepoint | web
 
 tenant:
-  name: redington-ecommerce-30
+  name: redington-ecommerce-34
 
 source:
   type: s3
@@ -81,7 +81,7 @@ embedding:
   # Modality: text | image | multimodal | audio | molecular
   modality: text
 
-  dimensions: 1536                 # output vector size
+  dimensions: 1024                 # output vector size
   batch_size: 32                   # texts per API call / forward pass
   normalize: true                  # L2-normalize output vectors
   pooling: mean                    # mean | cls | max  (token-based models only)
@@ -113,7 +113,7 @@ vector_store:
     #schema: public
 
   index:
-    name: rag-index
+    name: rag-index-v2
     type: flat                   # flat | ivfflat | hnsw | diskann
     metric: cosine                # cosine | l2 | dot_product
     #params:

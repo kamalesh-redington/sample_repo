@@ -35,11 +35,11 @@ def register_exception_handlers(app):
     try:
         from fastapi import HTTPException
         from fastapi.exceptions import RequestValidationError
-        from core import exceptions as core_exceptions
+        #from core import exceptions as core_exceptions
 
-        app.add_exception_handler(HTTPException, core_exceptions.http_exception_handler)
-        app.add_exception_handler(RequestValidationError, core_exceptions.validation_exception_handler)
-        app.add_exception_handler(Exception, core_exceptions.generic_exception_handler)
+        #app.add_exception_handler(HTTPException, core_exceptions.http_exception_handler)
+        #app.add_exception_handler(RequestValidationError, core_exceptions.validation_exception_handler)
+        #app.add_exception_handler(Exception, core_exceptions.generic_exception_handler)
 
         logger.info("Global exception handlers registered on app")
     except Exception:
@@ -544,7 +544,6 @@ def build_vector_index(
     )
 
     return index
-
 
 # ── Pipeline orchestrator ─────────────────────────────────────────────────────
 
